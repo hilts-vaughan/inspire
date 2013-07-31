@@ -90,6 +90,7 @@
     <Compile Include="Controls\AssetViewList.Designer.cs">
       <DependentUpon>AssetViewList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Database\IContentPage.cs" />
     <Compile Include="Controls\Database\ItemPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -421,7 +422,7 @@
     <Folder Include="MapEntities\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\Vaughan Hilts\Documents\GitHub\blastersgame\BlastersOnline\BlastersShared.Network\Inspire.Network.csproj">
+    <ProjectReference Include="..\BlastersShared.Network\Inspire.Network.csproj">
       <Project>{3af674ab-3f0c-46e3-97e0-0acb4cce201e}</Project>
       <Name>Inspire.Network</Name>
     </ProjectReference>

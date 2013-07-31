@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inspire.Shared;
+using Inspire.Shared.Models;
 
 namespace Toolkit.Controls.Database
 {

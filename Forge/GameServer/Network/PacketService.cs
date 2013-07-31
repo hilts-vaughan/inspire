@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Inspire.Network;
 
-namespace Toolkit
+namespace GameServer.Network
 {
     public class PacketService
     {

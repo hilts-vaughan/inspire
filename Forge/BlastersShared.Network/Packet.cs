@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Lidgren.Network;
+﻿using Lidgren.Network;
 
-namespace BlastersShared.Network.Packets
+namespace Inspire.Network
 {
     /// <summary>
     /// Represents a bare minimum packet that was sent over the wire

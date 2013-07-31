@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Inspire.Shared.Enums;
+﻿using Inspire.Shared.Models.Enums;
 
-namespace Inspire.Shared
+namespace Inspire.Shared.Models
 {
     /// <summary>
     /// An item template
     /// </summary>
     public class ItemTemplate
     {
+
+        /// <summary>
+        /// A unique ID in the database
+        /// </summary>
+        public int ID { get; set; }
 
         public string Name { get; set; }
         public string Description { get; set; }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using BlastersShared.Network;
-using BlastersShared.Network.Packets;
-using Lidgren.Network;
+﻿using Lidgren.Network;
 
-namespace BlastersShared.Network.Packets
+namespace Inspire.Network.Packets
 {
 
     /// <summary>

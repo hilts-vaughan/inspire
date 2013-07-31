@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
-using BlastersShared.Network.Packets;
+using Inspire.Network;
 using Lidgren.Network;
 using LobbyServer.Network;
 

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using Inspire.Network;
 using Lidgren.Network;
-using Toolkit;
 
-namespace LobbyServer.Network
+namespace GameServer.Network
 {
     /// <summary>
     /// The packet processor is responsbile for taking an incoming packet and identifying its type
