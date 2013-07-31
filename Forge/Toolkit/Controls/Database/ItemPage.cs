@@ -13,7 +13,7 @@ using Inspire.Shared.Models.Templates;
 
 namespace Toolkit.Controls.Database
 {
-    public partial class ItemPage : UserControl
+    public partial class ItemPage : UserControl, IContentPage
     {
 
         private ItemTemplate _boundObject;
@@ -25,6 +25,20 @@ namespace Toolkit.Controls.Database
             // Don't enable this control until an object is bound
             Enabled = false;
         }
+
+        public Type ContentType
+        {
+            get { return typeof(ItemTemplate); }
+        }
+
+
+        public void BindTemplateObject(object templateObject)
+        {
+            // var o = Convert.ChangeType(templateObject, ContentType);
+            var o = templateObject as ItemTemplate;
+            BindTemplateObject(o);
+        }
+
 
         /// <summary>
         /// Binds a particular item to this control.
@@ -52,6 +66,8 @@ namespace Toolkit.Controls.Database
             Enabled = true;
 
         }
+
+  
 
     }
 }

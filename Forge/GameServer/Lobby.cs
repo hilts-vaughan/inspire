@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading;
 using GameServer.Models;
 using GameServer.Network;
+using GameServer.Services.Auth;
 using Inspire.Shared.Service;
-using LobbyServer.Services;
 
 namespace GameServer
 {

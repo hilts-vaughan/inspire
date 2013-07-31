@@ -72,7 +72,6 @@
     <Compile Include="Network\PacketService.cs" />
     <Compile Include="Lobby.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MasterAccount.cs" />
     <Compile Include="Services\Editor\EditorService.cs" />
     <Compile Include="TrueObservableCollection.cs" />
   </ItemGroup>
@@ -94,6 +93,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Repositories\" />
     <Folder Include="Services\Chat\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
