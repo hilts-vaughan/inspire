@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filters\AuthorizedPacketFilter.cs" />
     <Compile Include="GlobalPacketMap.cs" />
     <Compile Include="Packet.cs" />
     <Compile Include="Packets\All\ChatPacket.cs" />
