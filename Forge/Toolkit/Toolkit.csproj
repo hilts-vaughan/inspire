@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4C356D8F-B0B4-45DD-B026-833B9A02AA14}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Toolkit</RootNamespace>
+    <AssemblyName>Toolkit</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Categories-application-development.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="C3.XNA.Primitives2D">
+      <HintPath>C:\C3.XNA.Primitives2D.dll</HintPath>
+    </Reference>
+    <Reference Include="Lidgren.Network, Version=2011.3.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\Vaughan Hilts\Documents\GitHub\inspire\Dependencies\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build" />
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.AudioImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="ScintillaNet">
+      <HintPath>..\..\..\..\ScintillaNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>C:\DockPanel_2.5_RC1_Bin\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ContentBuilder.cs" />
+    <Compile Include="Controls\AssetViewList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AssetViewList.Designer.cs">
+      <DependentUpon>AssetViewList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Database\ItemPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Database\ItemPage.Designer.cs">
+      <DependentUpon>ItemPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GraphicsDeviceControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\GraphicsDeviceService.cs" />
+    <Compile Include="Controls\MapListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MapListView.Designer.cs">
+      <DependentUpon>MapListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataManager.cs" />
+    <Compile Include="DirectoryHelper.cs" />
+    <Compile Include="DynamicContentManager.cs" />
+    <Compile Include="FileSystemTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAssetBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAssetBuilder.Designer.cs">
+      <DependentUpon>FormAssetBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAssetExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAssetExplorer.Designer.cs">
+      <DependentUpon>FormAssetExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAssetSelectDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAssetSelectDialog.Designer.cs">
+      <DependentUpon>FormAssetSelectDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormContentExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormContentExplorer.Designer.cs">
+      <DependentUpon>FormContentExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDatabase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDatabase.Designer.cs">
+      <DependentUpon>FormDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEntityEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEntityEditor.Designer.cs">
+      <DependentUpon>FormEntityEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEventEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEventEditor.Designer.cs">
+      <DependentUpon>FormEventEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormNewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNewProject.Designer.cs">
+      <DependentUpon>FormNewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPlugins.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPlugins.Designer.cs">
+      <DependentUpon>FormPlugins.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProjectSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProjectSettings.Designer.cs">
+      <DependentUpon>FormProjectSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProperties.Designer.cs">
+      <DependentUpon>FormProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormScript.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormScript.Designer.cs">
+      <DependentUpon>FormScript.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IContent.cs" />
+    <Compile Include="LimitedStack.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mapping\MapEditorGlobals.cs" />
+    <Compile Include="NetworkManager.cs" />
+    <Compile Include="PacketProcessor.cs" />
+    <Compile Include="PacketService.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ProjectSettings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceContainer.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="ShellIcon.cs" />
+    <Compile Include="ToolWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolWindow.Designer.cs">
+      <DependentUpon>ToolWindow.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Controls\AssetViewList.resx">
+      <DependentUpon>AssetViewList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Database\ItemPage.resx">
+      <DependentUpon>ItemPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MapListView.resx">
+      <DependentUpon>MapListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileSystemTreeView.resx">
+      <DependentUpon>FileSystemTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAssetBuilder.resx">
+      <DependentUpon>FormAssetBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAssetExplorer.resx">
+      <DependentUpon>FormAssetExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAssetSelectDialog.resx">
+      <DependentUpon>FormAssetSelectDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormContentExplorer.resx">
+      <DependentUpon>FormContentExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDatabase.resx">
+      <DependentUpon>FormDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEntityEditor.resx">
+      <DependentUpon>FormEntityEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEventEditor.resx">
+      <DependentUpon>FormEventEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNewProject.resx">
+      <DependentUpon>FormNewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPlugins.resx">
+      <DependentUpon>FormPlugins.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProjectSettings.resx">
+      <DependentUpon>FormProjectSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProperties.resx">
+      <DependentUpon>FormProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScript.resx">
+      <DependentUpon>FormScript.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="ToolWindow.resx">
+      <DependentUpon>ToolWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Categories-application-development.ico" />
+    <Content Include="Game.ico" />
+    <None Include="Resources\image.png" />
+    <None Include="Resources\image_add.png" />
+    <None Include="Resources\image_delete.png" />
+    <None Include="Resources\image_link.png" />
+    <None Include="Resources\folder_delete.png" />
+    <None Include="Resources\book.png" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\logo_2.png" />
+    <None Include="Resources\player_default.png" />
+    <None Include="Resources\npc_ico.png" />
+    <None Include="Resources\chara01_a3_2x.bmp" />
+    <None Include="Resources\npc_ico1.png" />
+    <Content Include="icons\folder.ico" />
+    <None Include="Resources\icons.folder.ico.ico" />
+    <None Include="Resources\timeline_marker.png" />
+    <None Include="Resources\splash.png" />
+    <None Include="Resources\splash_modern.png" />
+    <None Include="Resources\erase.png" />
+    <None Include="Resources\eyes.png" />
+    <None Include="Resources\page_white_paint.png" />
+    <None Include="Resources\finger_point.png" />
+    <None Include="Resources\accept.png" />
+    <None Include="Resources\wand.png" />
+    <None Include="Resources\paintbrush.png" />
+    <None Include="Resources\user_edit1.png" />
+    <Content Include="SciLexer.dll" />
+    <None Include="Resources\script_add.png" />
+    <None Include="Resources\user_delete.png" />
+    <None Include="Resources\user_add.png" />
+    <None Include="Resources\user_edit.png" />
+    <None Include="Resources\shape_square.png" />
+    <None Include="Resources\report_edit.png" />
+    <None Include="Resources\report_disk.png" />
+    <None Include="Resources\report_add.png" />
+    <None Include="Resources\plugin.png" />
+    <None Include="Resources\pictures.png" />
+    <None Include="Resources\W_Book003.png" />
+    <None Include="Resources\resultset_next.png" />
+    <None Include="Resources\photo_add.png" />
+    <None Include="Resources\cog_edit.png" />
+    <None Include="Resources\folder_add.png" />
+    <None Include="Resources\novella.png" />
+    <None Include="Resources\cut.png" />
+    <None Include="Resources\page_copy.png" />
+    <None Include="Resources\paste_plain.png" />
+    <None Include="Resources\cog.png" />
+    <None Include="Resources\folder_star.png" />
+    <None Include="Resources\database_edit.png" />
+    <None Include="Resources\arrow_undo.png" />
+    <None Include="Resources\arrow_redo.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\application_osx_terminal.png" />
+    <None Include="Resources\pencil.png" />
+    <None Include="Resources\map_add.png" />
+    <None Include="Resources\bomb.png" />
+    <None Include="Resources\mouse.png" />
+    <None Include="Resources\cursor.png" />
+    <None Include="Resources\map_edit.png" />
+    <None Include="Resources\magnifier.png" />
+    <None Include="Resources\magnifier_zoom_in.png" />
+    <None Include="Resources\magifier_zoom_out.png" />
+    <None Include="Resources\pencil1.png" />
+    <None Include="Resources\paintcan.png" />
+    <None Include="Resources\lightbulb_add.png" />
+    <None Include="Resources\lightbulb_off.png" />
+    <None Include="Resources\eye.png" />
+    <None Include="Resources\information.png" />
+    <None Include="Resources\folder_edit.png" />
+    <None Include="Resources\coins_add.png" />
+    <None Include="Resources\folder_explore.png" />
+    <Content Include="Resources\photo.png" />
+    <None Include="Resources\door.png" />
+    <None Include="Resources\printer_empty.png" />
+    <None Include="Resources\printer.png" />
+    <None Include="Resources\disk.png" />
+    <None Include="Resources\folder.png" />
+    <None Include="Resources\page.png" />
+    <None Include="Resources\new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MapEntities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\Vaughan Hilts\Documents\GitHub\blastersgame\BlastersOnline\BlastersShared.Network\Inspire.Network.csproj">
+      <Project>{3af674ab-3f0c-46e3-97e0-0acb4cce201e}</Project>
+      <Name>Inspire.Network</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Vaughan Hilts\Documents\GitHub\inspire\Forge\Inspire.Shared\Inspire.Shared.csproj">
+      <Project>{c7c387e1-0bcd-4976-b066-58d5bcb1db35}</Project>
+      <Name>Inspire.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
