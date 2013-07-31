@@ -62,9 +62,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Mapping\AccountMap.cs" />
     <Compile Include="Models\Mapping\ItemTemplateMap.cs" />
     <Compile Include="Models\ServerContext.cs" />
-    <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="Services\Auth\AuthenticationService.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Network\ClientNetworkManager.cs" />
     <Compile Include="Network\PacketProcessor.cs" />

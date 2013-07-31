@@ -1,6 +1,6 @@
 ﻿using Inspire.Shared.Models.Enums;
 
-namespace Inspire.Shared.Models
+namespace Inspire.Shared.Models.Templates
 {
     /// <summary>
     /// An item template

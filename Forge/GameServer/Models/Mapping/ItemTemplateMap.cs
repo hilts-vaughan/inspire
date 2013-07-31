@@ -1,5 +1,6 @@
 using System.Data.Entity.ModelConfiguration;
 using Inspire.Shared.Models;
+using Inspire.Shared.Models.Templates;
 
 namespace GameServer.Models.Mapping
 {

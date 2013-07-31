@@ -39,9 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Enums\ContentType.cs" />
     <Compile Include="Models\Enums\ItemType.cs" />
-    <Compile Include="Models\ItemTemplate.cs" />
+    <Compile Include="Models\Templates\ItemTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Service.cs" />
     <Compile Include="Service\ServiceContainer.cs" />

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inspire.Shared;
 using Inspire.Shared.Models;
+using Inspire.Shared.Models.Templates;
 
 namespace Toolkit.Controls.Database
 {
