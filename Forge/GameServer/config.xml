@@ -1,0 +1,64 @@
+﻿<configuration>
+  <configSections>
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"/>
+  </configSections>
+
+  <log4net>
+    
+    <appender name="ColoredConsoleAppender" type="log4net.Appender.ColoredConsoleAppender">
+      <target value="Console.Error" />
+      <mapping>
+        <level value="FATAL" />
+        <foreColor value="Red" />
+        <backColor value="White" />
+      </mapping>
+      <mapping>
+        <level value="ERROR" />
+        <foreColor value="Red, HighIntensity" />
+      </mapping>
+      <mapping>
+        <level value="WARN" />
+        <foreColor value="Yellow" />
+      </mapping>
+      <mapping>
+        <level value="INFO" />
+        <foreColor value="White" />
+      </mapping>
+      <mapping>
+        <level value="DEBUG" />
+        <foreColor value="Green" />
+      </mapping>
+
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="[%utcdate{HH:mm}] %message%newline" />
+      </layout>
+
+    </appender>
+    
+    
+    <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file value="logs/GENERAL_" />
+      <appendToFile value="true" />
+      <rollingStyle value="Date" />
+      <maxSizeRollBackups value="10" />
+      <maximumFileSize value="1MB" />
+      <staticLogFileName value="false" />
+      <datePattern value="yyyy-MM-dd.lo\g"/>
+
+      <layout type="log4net.Layout.PatternLayout">
+        <conversionPattern value="[%utcdate{HH:mm}] %message%newline" />
+      </layout>
+
+    </appender>
+
+
+    <root>
+      <level value="ALL" />
+      <appender-ref ref="ColoredConsoleAppender" />
+      <appender-ref ref="RollingFileAppender" />      
+    </root>
+
+
+
+  </log4net>
+</configuration>
