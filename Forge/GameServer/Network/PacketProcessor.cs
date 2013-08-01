@@ -40,22 +40,20 @@ namespace GameServer.Network
             val[0] = incomingMessage;
 
             //Take the given type in the context and create our packet from it
-            
+
             // Try and fetch the packet, otherwise abort it
-            try
-            {
 
-                var returnValue =
-                    (Packet) type.InvokeMember("FromNetBuffer", BindingFlags.InvokeMethod, null, type, val);
-                returnValue.Sender = incomingMessage.SenderConnection;
 
-                //Automated packet service
-                _packetService.ProcessReceivedPacket(returnValue);
-            }
-            catch (Exception exception)
-            {
-                Logger.Instance.Log(Level.Warn, "A packet that had a malformed payload was attempt to be sent. Ignoring for now.");   
-            }
+            var returnValue =
+                (Packet)type.InvokeMember("FromNetBuffer", BindingFlags.InvokeMethod, null, type, val);
+            returnValue.Sender = incomingMessage.SenderConnection;
+
+            //Automated packet service
+            _packetService.ProcessReceivedPacket(returnValue);
+
+
+            //Logger.Instance.Log(Level.Warn, "A packet that had a malformed payload was attempt to be sent. Ignoring for now.");
+
 
 
 

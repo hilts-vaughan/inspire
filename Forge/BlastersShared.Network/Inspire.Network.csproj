@@ -69,7 +69,9 @@
     <Compile Include="Packet.cs" />
     <Compile Include="Packets\All\ChatPacket.cs" />
     <Compile Include="Packets\Client\ContentRequestPacket.cs" />
+    <Compile Include="Packets\Client\Content\ContentListRequestPacket.cs" />
     <Compile Include="Packets\Client\LoginRequestPacket.cs" />
+    <Compile Include="Packets\Server\Content\ContentListResult.cs" />
     <Compile Include="Packets\Server\Content\ContentResultPacket.cs" />
     <Compile Include="Packets\Server\LoginResultPacket.cs" />
     <Compile Include="Packets\SPlayerDisconnect.cs" />

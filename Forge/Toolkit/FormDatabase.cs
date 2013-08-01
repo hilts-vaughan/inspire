@@ -8,7 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using BlastersGame.Network;
 using Inspire.Network.Packets.Client;
+using Inspire.Network.Packets.Client.Content;
 using Inspire.Network.Packets.Server;
+using Inspire.Network.Packets.Server.Content;
 using Inspire.Shared.Models.Enums;
 using Toolkit.Controls.Database;
 
@@ -22,7 +24,14 @@ namespace Toolkit
 
             // Make a subtle request for an item, disable the form in the meanwhile
             PacketService.RegisterPacket<ContentResultPacket>(Handler);
+            PacketService.RegisterPacket<ContentListResultPacket>(Handler);
+
         }
+
+
+
+
+
 
         private void lstIndex_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -33,16 +42,26 @@ namespace Toolkit
             // Send the request
             NetworkManager.Instance.SendPacket(request);
 
-            Enabled = false;
         }
 
         private void Handler(ContentResultPacket contentResultPacket)
         {
 
             var page = GetActiveContentPage();
+
+            // Clear all bindings first
+            var contentGrid = tabContentPages.SelectedTab.Controls[0];
+            BindingHelper.ClearBindings(contentGrid);
+
             page.BindTemplateObject(contentResultPacket.ContentObject);
 
-            Enabled = true; 
+
+        }
+
+        private void Handler(ContentListResultPacket contentListResultPacket)
+        {           
+            lstIndex.Items.Clear();
+            contentListResultPacket.EditorTemplateEntries.ForEach(x => lstIndex.Items.Add(x));
         }
 
 
@@ -55,6 +74,29 @@ namespace Toolkit
             // Retrieve the value now
             var contentPage = (IContentPage) contentControl;
             return contentPage;
+        }
+
+        /// <summary>
+        /// An event that fires when the tab page changes. This is used to make a list request.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tabContentPages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Make the request
+            var type = GetActiveContentPage().ContentType;
+            var request = new ContentListRequestPacket(type);
+
+            // Send the request
+            NetworkManager.Instance.SendPacket(request);
+
+        }
+
+        private void FormDatabase_Load(object sender, EventArgs e)
+        {
+            // Select the first item
+            tabContentPages.SelectedIndex = 0;
+            tabContentPages_SelectedIndexChanged(null, null);
         }
 
 

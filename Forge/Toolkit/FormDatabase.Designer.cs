@@ -30,9 +30,9 @@
         {
             this.tabContentPages = new System.Windows.Forms.TabControl();
             this.tabItems = new System.Windows.Forms.TabPage();
-            this.itemPage = new Toolkit.Controls.Database.ItemPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lstIndex = new System.Windows.Forms.ListBox();
+            this.itemPage = new Toolkit.Controls.Database.ItemPage();
             this.tabContentPages.SuspendLayout();
             this.tabItems.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +49,7 @@
             this.tabContentPages.SelectedIndex = 0;
             this.tabContentPages.Size = new System.Drawing.Size(900, 575);
             this.tabContentPages.TabIndex = 1;
+            this.tabContentPages.SelectedIndexChanged += new System.EventHandler(this.tabContentPages_SelectedIndexChanged);
             // 
             // tabItems
             // 
@@ -60,15 +61,6 @@
             this.tabItems.TabIndex = 0;
             this.tabItems.Text = "Items";
             this.tabItems.UseVisualStyleBackColor = true;
-            // 
-            // itemPage
-            // 
-            this.itemPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemPage.Enabled = false;
-            this.itemPage.Location = new System.Drawing.Point(3, 3);
-            this.itemPage.Name = "itemPage";
-            this.itemPage.Size = new System.Drawing.Size(886, 543);
-            this.itemPage.TabIndex = 1;
             // 
             // tabPage2
             // 
@@ -92,6 +84,15 @@
             this.lstIndex.TabIndex = 2;
             this.lstIndex.SelectedIndexChanged += new System.EventHandler(this.lstIndex_SelectedIndexChanged);
             // 
+            // itemPage
+            // 
+            this.itemPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemPage.Enabled = false;
+            this.itemPage.Location = new System.Drawing.Point(3, 3);
+            this.itemPage.Name = "itemPage";
+            this.itemPage.Size = new System.Drawing.Size(886, 543);
+            this.itemPage.TabIndex = 1;
+            // 
             // FormDatabase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -105,6 +106,7 @@
             this.Name = "FormDatabase";
             this.ShowIcon = false;
             this.Text = "Database";
+            this.Load += new System.EventHandler(this.FormDatabase_Load);
             this.tabContentPages.ResumeLayout(false);
             this.tabItems.ResumeLayout(false);
             this.ResumeLayout(false);
