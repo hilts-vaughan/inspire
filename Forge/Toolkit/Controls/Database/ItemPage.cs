@@ -31,7 +31,9 @@ namespace Toolkit.Controls.Database
         public ContentType ContentType
         {
             get { return ContentType.Item; }
-        }        
+        }
+
+        public object BoundObject { get; set; }
 
         public void BindTemplateObject(object templateObject)
         {
@@ -47,21 +49,18 @@ namespace Toolkit.Controls.Database
         /// <param name="itemTemplate"></param>
         public void BindItem(ItemTemplate itemTemplate)
         {
-            // The bound template goes here
-            _boundObject = itemTemplate;
-
             // Bind all the properties required
 
             // Textbox bindings
-            textName.DataBindings.Add("Text", _boundObject, "Name");
-            textDescription.DataBindings.Add("Text", _boundObject, "Description");
+            textName.DataBindings.Add("Text", BoundObject, "Name");
+            textDescription.DataBindings.Add("Text", BoundObject, "Description");
 
             // Numeric stuff will be validated here
-            numericPrice.DataBindings.Add("Value", _boundObject, "Price");
-            numericUseSpeed.DataBindings.Add("Value", _boundObject, "UseSpeed");
+            numericPrice.DataBindings.Add("Value", BoundObject, "Price");
+            numericUseSpeed.DataBindings.Add("Value", BoundObject, "UseSpeed");
 
             // Checkboxes
-            checkConsume.DataBindings.Add("Checked", _boundObject, "Consumed");
+            checkConsume.DataBindings.Add("Checked", BoundObject, "Consumed");
 
             // Enable this object
             Enabled = true;

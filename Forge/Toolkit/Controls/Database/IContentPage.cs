@@ -16,6 +16,11 @@ namespace Toolkit.Controls.Database
         ContentType ContentType { get; }
 
         /// <summary>
+        /// The object that has been bound to this content page
+        /// </summary>
+        object BoundObject { get; set; }
+
+        /// <summary>
         /// A method to begin binding the given object to the page itself
         /// </summary>
         /// <param name="templateObject"></param>
