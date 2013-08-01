@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
+using BlastersShared;
 using GameServer.Models;
 using GameServer.Network;
 using GameServer.Services.Auth;
+using GameServer.Services.Editor;
 using Inspire.Shared.Service;
 
 namespace GameServer
@@ -13,6 +15,7 @@ namespace GameServer
 
 
         static AuthenticationService _authenticationService = new AuthenticationService();
+        static EditorService _editorService = new EditorService();
 
         static ServiceContainer   _serviceContainer = new ServiceContainer();
 
@@ -33,6 +36,7 @@ namespace GameServer
 
             // Add services
             _serviceContainer.RegisterService(_authenticationService);
+            _serviceContainer.RegisterService(_editorService);
 
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -58,6 +62,8 @@ namespace GameServer
 
 
 
+
+            Logger.Instance.Log(Level.Info,  "Succesfully started game loop.");
 
             while (true)
             {

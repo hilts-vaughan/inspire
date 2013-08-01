@@ -8,8 +8,8 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
+using BlastersGame.Network;
 using Toolkit.Mapping;
-using Toolkit.Network;
 using WeifenLuo.WinFormsUI.Docking;
 using ScintillaNet;
 

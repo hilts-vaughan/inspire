@@ -9,10 +9,11 @@ namespace Toolkit.Controls.Database
 {
     public interface IContentPage
     {
+
         /// <summary>
-        /// The content type this content page will have for static typing
+        /// The content type specified by this page
         /// </summary>
-        Type ContentType { get; }
+        ContentType ContentType { get; }
 
         /// <summary>
         /// A method to begin binding the given object to the page itself

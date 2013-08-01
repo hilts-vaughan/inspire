@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using BlastersShared;
 using Inspire.Network;
 using Inspire.Network.Packets;
 using Lidgren.Network;
@@ -113,30 +114,20 @@ namespace GameServer.Network
                 switch (incomingMessage.MessageType)
                 {
                     case NetIncomingMessageType.VerboseDebugMessage:
-
-                    case NetIncomingMessageType.StatusChanged:
-                        var netStatus = (NetConnectionStatus)incomingMessage.ReadByte();
-
-                        //var n = incomingMessage.SenderConnection.RemoteEndpoint;
-
-
-
-                        //If a player disconnected, signal a disconnect packet to the server
-                        if (netStatus == NetConnectionStatus.Disconnected)
-                        {
-                            var dcPacket = new SPlayerDisconnect();
-                            dcPacket.Sender = incomingMessage.SenderConnection;
-
-                            PacketService.ProcessReceivedPacket(dcPacket);
-
-                        }
-                        break;
-
                     case NetIncomingMessageType.DebugMessage:
-
                     case NetIncomingMessageType.WarningMessage:
-
                     case NetIncomingMessageType.ErrorMessage:
+                        Console.WriteLine(incomingMessage.ReadString());
+
+                        ////If a player disconnected, signal a disconnect packet to the server
+                        //if (netStatus == NetConnectionStatus.Disconnected)
+                        //{
+                        //    var dcPacket = new SPlayerDisconnect();
+                        //    dcPacket.Sender = incomingMessage.SenderConnection;
+
+                        //    PacketService.ProcessReceivedPacket(dcPacket);
+
+                        //}
                         break;
 
                     case NetIncomingMessageType.Data:

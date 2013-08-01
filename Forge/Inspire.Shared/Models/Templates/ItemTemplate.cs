@@ -1,4 +1,5 @@
-﻿using Inspire.Shared.Models.Enums;
+﻿using System;
+using Inspire.Shared.Models.Enums;
 
 namespace Inspire.Shared.Models.Templates
 {
@@ -7,6 +8,21 @@ namespace Inspire.Shared.Models.Templates
     /// </summary>
     public class ItemTemplate
     {
+        public ItemTemplate(int id, string name, string description, ItemType type, int price, bool consumed, int useSpeed)
+        {
+            ID = id;
+            Name = name;
+            Description = description;
+            Type = type;
+            Price = price;
+            Consumed = consumed;
+            UseSpeed = useSpeed;
+        }
+
+        public ItemTemplate()
+        {
+            
+        }
 
         /// <summary>
         /// A unique ID in the database

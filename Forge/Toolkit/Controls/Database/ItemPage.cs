@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inspire.Shared;
 using Inspire.Shared.Models;
+using Inspire.Shared.Models.Enums;
 using Inspire.Shared.Models.Templates;
 
 namespace Toolkit.Controls.Database
@@ -26,17 +27,17 @@ namespace Toolkit.Controls.Database
             Enabled = false;
         }
 
-        public Type ContentType
-        {
-            get { return typeof(ItemTemplate); }
-        }
 
+        public ContentType ContentType
+        {
+            get { return ContentType.Item; }
+        }        
 
         public void BindTemplateObject(object templateObject)
         {
             // var o = Convert.ChangeType(templateObject, ContentType);
             var o = templateObject as ItemTemplate;
-            BindTemplateObject(o);
+            BindItem(o);
         }
 
 
