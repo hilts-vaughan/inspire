@@ -17,8 +17,13 @@ namespace Inspire.Shared.Models
             CreationDate = creationDate;
         }
 
+        public Account()
+        {
+            
+        }
 
         public int AccountId { get; set; }
+        public bool EditorAllowed { get; set; }
 
         public string Username { get; set; }
 

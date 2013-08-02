@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using BlastersGame.Network;
 using Inspire.Network.Packets.Client;
+using Inspire.Network.Packets.Server;
 using Inspire.Shared.Crypto;
 using Lidgren.Network;
 using Toolkit.Mapping;
@@ -20,7 +21,20 @@ namespace Toolkit
         {
             InitializeComponent();
 
+            // Register for event
+            PacketService.RegisterPacket<LoginResultPacket>(HandleLogin);
 
+        }
+
+        private void HandleLogin(LoginResultPacket loginResultPacket)
+        {
+            if (loginResultPacket.Result == LoginResultPacket.LoginResult.Succesful)
+                Close();
+            else
+                MessageBox.Show(
+                    "Your login credentials were rejected. Ensure credentials are correct and your account is authorized to login.");
+
+            buttonLogin.Enabled = true;
         }
 
         private bool _pendingLogin = false;

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using GameServer.Editor;
 using GameServer.Models;
 using GameServer.Network;
+using Inspire.Network;
 using Inspire.Network.Packets.Client;
+using Inspire.Network.Packets.Server;
+using Inspire.Shared.Crypto;
 using Inspire.Shared.Service;
 
 namespace GameServer.Services.Editor
@@ -30,23 +33,47 @@ namespace GameServer.Services.Editor
         {
             var username = editorLoginRequestPacket.Username;
             var password = editorLoginRequestPacket.Password;
-            
-            using (var context = new ServerContext())
-            {
-                
-            }
 
-            _authorizationTable.AuthenticateUser(editorLoginRequestPacket.Sender);
+            var result = LoginResultPacket.LoginResult.Succesful;
+
+            if (AreCredentialsValid(username, password))
+                _authorizationTable.AuthenticateUser(editorLoginRequestPacket.Sender);
+            else
+                result = LoginResultPacket.LoginResult.Failed;
+
+            var packet = new LoginResultPacket(result);
+            ClientNetworkManager.Instance.SendPacket(packet, editorLoginRequestPacket.Sender);
+
+
+        }
+
+
+        /// <summary>
+        /// Determines whether the given username and password are valid to authenticate with.
+        /// </summary>
+        /// <param name="username">The username to challenge</param>
+        /// <param name="password">The password to challenge</param>
+        bool AreCredentialsValid(string username, string password)
+        {
+
+            // Get our context
+            var context = new ServerContext();
+            var account = context.Accounts.FirstOrDefault(x => x.Username.ToLower() == username.ToLower() && x.EditorAllowed);
+
+            if (account == null)
+                return false;
+
+            return account.Password  == password;
         }
 
         public override void PeformUpdate()
         {
-            
+
         }
 
         public override void Setup()
         {
-            
+
         }
     }
 }

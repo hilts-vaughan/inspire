@@ -76,7 +76,7 @@ namespace GameServer.Services.Auth
             if (account == null)
                 return false;
 
-            return HashHelper.CalculateSha512Hash(account.Password) == password;
+            return account.Password == password;
         }
 
         public override void PeformUpdate()

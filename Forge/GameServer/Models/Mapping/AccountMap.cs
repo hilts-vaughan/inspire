@@ -15,11 +15,6 @@ namespace GameServer.Models.Mapping
                 .IsRequired()
                 .HasMaxLength(45);
 
-            // Properties
-            this.Property(t => t.Password)
-                .IsRequired()
-                .HasMaxLength(45);
-
              // Properties
             this.Property(t => t.CreationDate)
                 .IsRequired();

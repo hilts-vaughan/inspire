@@ -78,7 +78,6 @@
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4});
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.ShowLines = false;
             this.treeView1.ShowPlusMinus = false;
             this.treeView1.ShowRootLines = false;
             this.treeView1.Size = new System.Drawing.Size(284, 261);

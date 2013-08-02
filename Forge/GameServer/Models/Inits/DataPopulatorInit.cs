@@ -4,6 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Inspire.Shared.Crypto;
+using Inspire.Shared.Models;
 using Inspire.Shared.Models.Enums;
 using Inspire.Shared.Models.Templates;
 
@@ -26,6 +28,12 @@ namespace GameServer.Models.Inits
 
 
             }
+
+            // Add a new user
+            var rootUser = new Account(0, "root", HashHelper.CalculateSha512Hash("root"), DateTime.UtcNow);
+            rootUser.EditorAllowed = true;
+
+            context.Accounts.Add(rootUser);
 
             context.SaveChanges();
             base.Seed(context);

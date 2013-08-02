@@ -405,6 +405,11 @@
     <None Include="Resources\paintbrush.png" />
     <None Include="Resources\user_edit1.png" />
     <None Include="Resources\gear.png" />
+    <None Include="Resources\wand1.png" />
+    <None Include="Resources\pencil2.png" />
+    <None Include="Resources\paint-brush-color.png" />
+    <None Include="Resources\paint-brush.png" />
+    <None Include="Resources\eraser.png" />
     <Content Include="SciLexer.dll" />
     <None Include="Resources\script_add.png" />
     <None Include="Resources\user_delete.png" />
@@ -484,6 +489,7 @@
   <ItemGroup>
     <Folder Include="MapEntities\" />
     <Folder Include="Mapping\Actions\" />
+    <Folder Include="Scripting\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlastersShared.Network\Inspire.Network.csproj">
