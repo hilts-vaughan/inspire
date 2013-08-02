@@ -42,9 +42,12 @@
     <Compile Include="Crypto\HashHelper.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\Enums\ArmourType.cs" />
     <Compile Include="Models\Enums\ContentType.cs" />
     <Compile Include="Models\Enums\ItemType.cs" />
+    <Compile Include="Models\Templates\ClassificationTemplate.cs" />
     <Compile Include="Models\Templates\EditorTemplateEntry.cs" />
+    <Compile Include="Models\Templates\IContentTemplate.cs" />
     <Compile Include="Models\Templates\ItemTemplate.cs" />
     <Compile Include="Models\Templates\SkillTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

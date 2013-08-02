@@ -6,10 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace Toolkit
 {
-    public partial class FormContentExplorer : ToolWindow
+    public partial class FormContentExplorer : Form
     {
         public FormContentExplorer()
         {

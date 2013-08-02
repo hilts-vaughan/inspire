@@ -43,8 +43,13 @@ namespace GameServer.Services.Editor
                     switch (contentSaveRequestPacket.ContentType)
                     {
                         case ContentType.Item:
-                            var entity = context.ItemTemplates.Attach(contentSaveRequestPacket.ContentObject as ItemTemplate);
-                            context.Entry(entity).State = EntityState.Modified;                            
+                            var item = context.ItemTemplates.Attach(contentSaveRequestPacket.ContentObject as ItemTemplate);
+                            context.Entry(item).State = EntityState.Modified;
+                            context.SaveChanges();
+                            break;
+                        case ContentType.Skill:
+                            var skill = context.SkillTemplates.Attach(contentSaveRequestPacket.ContentObject as SkillTemplate);
+                            context.Entry(skill).State = EntityState.Modified;
                             context.SaveChanges();
                             break;
 
@@ -78,7 +83,9 @@ namespace GameServer.Services.Editor
                 case ContentType.Item:
                     editorTemplateEntries = GetAllItems();
                     break;
-
+                case ContentType.Skill:
+                    editorTemplateEntries = GetAllSkills();
+                    break;
                 default:
                     Logger.Instance.Log(Level.Warn, "The client has requested a resource with an unknown identifier.");
                     return;
@@ -91,6 +98,16 @@ namespace GameServer.Services.Editor
                 ClientNetworkManager.Instance.SendPacket(packet, contentListRequestPacket.Sender);
             }
 
+        }
+
+        private List<EditorTemplateEntry> GetAllSkills()
+        {
+            var entries = new List<EditorTemplateEntry>();
+            var context = new ServerContext();
+
+            foreach (var skilltemplate in context.SkillTemplates)
+                entries.Add(new EditorTemplateEntry(skilltemplate.Id, skilltemplate.Name));
+            return entries;
         }
 
         private List<EditorTemplateEntry> GetAllItems()
@@ -113,7 +130,9 @@ namespace GameServer.Services.Editor
                 case ContentType.Item:
                     o = GetItemByID(contentRequestPacket.ID);
                     break;
-
+                case ContentType.Skill:
+                    o = GetSkillByID(contentRequestPacket.ID);
+                    break;
                 default:
                     Logger.Instance.Log(Level.Warn, "The client has requested a resource with an unknown identifier.");
                     return;
@@ -135,6 +154,13 @@ namespace GameServer.Services.Editor
             var context = new ServerContext();
             var item = context.ItemTemplates.FirstOrDefault(x => x.ID == id);
             return item;
+        }
+
+        private object GetSkillByID(int id)
+        {
+            var context = new ServerContext();
+            var skill = context.SkillTemplates.FirstOrDefault(x => x.Id == id);
+            return skill;
         }
 
 

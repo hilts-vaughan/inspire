@@ -24,6 +24,8 @@ namespace GameServer.Models
         }
 
         public DbSet<ItemTemplate> ItemTemplates { get; set; }
+        public DbSet<SkillTemplate> SkillTemplates { get; set; }
+
         public DbSet<Account> Accounts { get; set; }
     
 
@@ -32,7 +34,7 @@ namespace GameServer.Models
             //modelBuilder.Configurations.Add(new blastersmemberMap());
             modelBuilder.Configurations.Add(new ItemTemplateMap());
             modelBuilder.Configurations.Add(new AccountMap());
-
+            modelBuilder.Configurations.Add(new SkillTemplateMap());
 
         }
 

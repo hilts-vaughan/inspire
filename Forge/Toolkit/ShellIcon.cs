@@ -41,9 +41,7 @@ namespace C2C.FileSystem
 
 		public ShellIcon()
 		{
-			//
-			// TODO: Add constructor logic here
-			//
+
 		}
 
 

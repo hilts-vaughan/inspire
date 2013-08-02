@@ -69,6 +69,7 @@
     <Compile Include="Logger.cs" />
     <Compile Include="Models\Inits\DataPopulatorInit.cs" />
     <Compile Include="Models\Mapping\AccountMap.cs" />
+    <Compile Include="Models\Mapping\SkillTemplateMap.cs" />
     <Compile Include="Models\Mapping\ItemTemplateMap.cs" />
     <Compile Include="Models\ServerContext.cs" />
     <Compile Include="Services\Auth\AuthenticationService.cs" />

@@ -12,6 +12,7 @@ namespace Inspire.Shared.Models.Enums
     public enum ContentType
     {
         Item,
-        Monster
+        Monster,
+        Skill
     }
 }

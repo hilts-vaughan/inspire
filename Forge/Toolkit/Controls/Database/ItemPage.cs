@@ -62,6 +62,11 @@ namespace Toolkit.Controls.Database
             // Checkboxes
             checkConsume.DataBindings.Add("Checked", BoundObject, "Consumed");
 
+            // Bind the combobox we need
+            comboItemType.DataSource = Enum.GetValues(typeof(ItemType)).Cast<ItemType>();
+            comboItemType.DataBindings.Add("SelectedItem", BoundObject, "Type");
+
+
             // Enable this object
             Enabled = true;
 

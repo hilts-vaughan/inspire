@@ -20,6 +20,11 @@ namespace GameServer.Models.Inits
             {
                 var itemTemplate = new ItemTemplate(0, "Empty Item", "", ItemType.Consumable, 0, false, 0);
                 context.ItemTemplates.Add(itemTemplate);
+
+                var skillTemplate = new SkillTemplate("", 0, "Empty Skill", "");
+                context.SkillTemplates.Add(skillTemplate);
+
+
             }
 
             context.SaveChanges();

@@ -79,12 +79,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Controls.Add(this.treeContent);
-            this.HideOnClose = true;
+            //this.HideOnClose = true;
             this.Name = "FormContentExplorer";
-            this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockRight;
+            //this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockRight;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.TabText = "Content Explorer";
+            //this.TabText = "Content Explorer";
             this.Text = "Content Explorer";
             this.ResumeLayout(false);
 

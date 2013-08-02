@@ -72,7 +72,9 @@ namespace Toolkit
         private void Handler(ContentListResultPacket contentListResultPacket)
         {
             lstIndex.Items.Clear();
+            lstIndex.BeginUpdate();
             contentListResultPacket.EditorTemplateEntries.ForEach(x => lstIndex.Items.Add(x));
+            lstIndex.EndUpdate();
         }
 
 

@@ -31,7 +31,9 @@ namespace Inspire.Shared.Models.Templates
 
         public string Name { get; set; }
         public string Description { get; set; }
+        
         public ItemType Type { get; set; }
+
         public int Price { get; set; }
         public bool Consumed { get; set; }
         

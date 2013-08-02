@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.numericUseSpeed = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.numericPrice = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.comboScope = new System.Windows.Forms.ComboBox();
             this.checkConsume = new System.Windows.Forms.CheckBox();
@@ -39,12 +42,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.numericPrice = new System.Windows.Forms.NumericUpDown();
-            this.numericUseSpeed = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUseSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -69,6 +69,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General";
             // 
+            // numericUseSpeed
+            // 
+            this.numericUseSpeed.Location = new System.Drawing.Point(115, 224);
+            this.numericUseSpeed.Name = "numericUseSpeed";
+            this.numericUseSpeed.Size = new System.Drawing.Size(102, 20);
+            this.numericUseSpeed.TabIndex = 13;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(112, 205);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Use Speed";
+            // 
+            // numericPrice
+            // 
+            this.numericPrice.Location = new System.Drawing.Point(115, 171);
+            this.numericPrice.Name = "numericPrice";
+            this.numericPrice.Size = new System.Drawing.Size(102, 20);
+            this.numericPrice.TabIndex = 1;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -81,6 +104,7 @@
             // 
             // comboScope
             // 
+            this.comboScope.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboScope.Enabled = false;
             this.comboScope.FormattingEnabled = true;
             this.comboScope.Location = new System.Drawing.Point(15, 221);
@@ -118,6 +142,7 @@
             // 
             // comboItemType
             // 
+            this.comboItemType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboItemType.FormattingEnabled = true;
             this.comboItemType.Location = new System.Drawing.Point(15, 168);
             this.comboItemType.Name = "comboItemType";
@@ -157,29 +182,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Name";
             // 
-            // numericPrice
-            // 
-            this.numericPrice.Location = new System.Drawing.Point(115, 171);
-            this.numericPrice.Name = "numericPrice";
-            this.numericPrice.Size = new System.Drawing.Size(102, 20);
-            this.numericPrice.TabIndex = 1;
-            // 
-            // numericUseSpeed
-            // 
-            this.numericUseSpeed.Location = new System.Drawing.Point(115, 224);
-            this.numericUseSpeed.Name = "numericUseSpeed";
-            this.numericUseSpeed.Size = new System.Drawing.Size(102, 20);
-            this.numericUseSpeed.TabIndex = 13;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(112, 205);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Use Speed";
-            // 
             // ItemPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,8 +191,8 @@
             this.Size = new System.Drawing.Size(890, 540);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUseSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericPrice)).EndInit();
             this.ResumeLayout(false);
 
         }

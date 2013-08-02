@@ -9,9 +9,11 @@ using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using BlastersGame.Network;
+using Toolkit.Docking;
 using Toolkit.Mapping;
 using WeifenLuo.WinFormsUI.Docking;
 using ScintillaNet;
+using Style = WeifenLuo.WinFormsUI.Docking.Skins.Style;
 
 namespace Toolkit
 {
@@ -35,9 +37,9 @@ namespace Toolkit
 
             InitializeComponent();
 
+            dockPanel.Theme = new VS2012LightTheme();
 
-
-            //  m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
+            //m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
         }
 
         void Application_ApplicationExit(object sender, EventArgs e)
@@ -277,10 +279,12 @@ namespace Toolkit
 
         private void contentExplorerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!_contentExplorer.IsHidden)
-                _contentExplorer.Hide();
-            else
-                _contentExplorer.Show();
+            var contentExplorer = new ContentDockForm();
+            contentExplorer.Show(dockPanel);
+            //if (!_contentExplorer.IsHidden)
+            //    _contentExplorer.Hide();
+            //else
+            //    _contentExplorer.Show();
         }
 
         private void assetExplorerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -324,6 +328,15 @@ namespace Toolkit
         {
             var form = new FormDatabase();
             form.ShowDialog();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+           // var layerForm = new LayerForm();
+           // layerForm.Show(dockPanel);
+
+            var form = new HistoryDockForm();
+            form.Show(dockPanel, DockState.DockLeft);
         }
 
 

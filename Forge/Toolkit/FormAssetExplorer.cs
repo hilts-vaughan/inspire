@@ -9,10 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace Toolkit
 {
-    public partial class FormAssetExplorer : ToolWindow
+    public partial class FormAssetExplorer : DockContent  
     {
         public FormAssetExplorer()
         {

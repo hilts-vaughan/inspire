@@ -78,8 +78,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WeifenLuo.WinFormsUI.Docking">
-      <HintPath>C:\DockPanel_2.5_RC1_Bin\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=3.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +91,12 @@
     </Compile>
     <Compile Include="Controls\AssetViewList.Designer.cs">
       <DependentUpon>AssetViewList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Database\SkillPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Database\SkillPage.Designer.cs">
+      <DependentUpon>SkillPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Database\IContentPage.cs" />
     <Compile Include="Controls\Database\ItemPage.cs">
@@ -110,6 +117,30 @@
     </Compile>
     <Compile Include="DataManager.cs" />
     <Compile Include="DirectoryHelper.cs" />
+    <Compile Include="Docking\ContentDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docking\ContentDockForm.Designer.cs">
+      <DependentUpon>ContentDockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Docking\HistoryDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docking\HistoryDockForm.Designer.cs">
+      <DependentUpon>HistoryDockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Docking\LayersDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docking\LayersDockForm.Designer.cs">
+      <DependentUpon>LayersDockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Docking\ToolWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docking\ToolWindow.Designer.cs">
+      <DependentUpon>ToolWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="DynamicContentManager.cs" />
     <Compile Include="FileSystemTreeView.cs">
       <SubType>Component</SubType>
@@ -205,12 +236,19 @@
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="IContent.cs" />
+    <Compile Include="ISaveable.cs" />
     <Compile Include="LimitedStack.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mapping\LayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mapping\LayerForm.Designer.cs">
+      <DependentUpon>LayerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Mapping\MapEditorGlobals.cs" />
     <Compile Include="NetworkManager.cs" />
@@ -222,20 +260,29 @@
     <Compile Include="ServiceContainer.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ShellIcon.cs" />
-    <Compile Include="ToolWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ToolWindow.Designer.cs">
-      <DependentUpon>ToolWindow.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Controls\AssetViewList.resx">
       <DependentUpon>AssetViewList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Database\SkillPage.resx">
+      <DependentUpon>SkillPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Database\ItemPage.resx">
       <DependentUpon>ItemPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MapListView.resx">
       <DependentUpon>MapListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docking\ContentDockForm.resx">
+      <DependentUpon>ContentDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docking\HistoryDockForm.resx">
+      <DependentUpon>HistoryDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docking\LayersDockForm.resx">
+      <DependentUpon>LayersDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docking\ToolWindow.resx">
+      <DependentUpon>ToolWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FileSystemTreeView.resx">
       <DependentUpon>FileSystemTreeView.cs</DependentUpon>
@@ -300,10 +347,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ToolWindow.resx">
-      <DependentUpon>ToolWindow.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
