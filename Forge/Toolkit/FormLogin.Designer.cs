@@ -38,6 +38,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.labelStatus = new System.Windows.Forms.Label();
             this.pollStatus = new System.Windows.Forms.Timer(this.components);
+            this.buttonConfig = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,6 +126,16 @@
             this.pollStatus.Interval = 250;
             this.pollStatus.Tick += new System.EventHandler(this.pollStatus_Tick);
             // 
+            // buttonConfig
+            // 
+            this.buttonConfig.Image = global::Toolkit.Properties.Resources.gear;
+            this.buttonConfig.Location = new System.Drawing.Point(320, 121);
+            this.buttonConfig.Name = "buttonConfig";
+            this.buttonConfig.Size = new System.Drawing.Size(25, 23);
+            this.buttonConfig.TabIndex = 4;
+            this.buttonConfig.UseVisualStyleBackColor = true;
+            this.buttonConfig.Click += new System.EventHandler(this.buttonConfig_Click);
+            // 
             // FormLogin
             // 
             this.AcceptButton = this.buttonLogin;
@@ -132,6 +143,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 149);
             this.ControlBox = false;
+            this.Controls.Add(this.buttonConfig);
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.buttonLogin);
@@ -161,5 +173,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.Timer pollStatus;
+        private System.Windows.Forms.Button buttonConfig;
     }
 }

@@ -56,6 +56,12 @@ namespace Toolkit
             }
         }
 
+        private void buttonConfig_Click(object sender, EventArgs e)
+        {
+            var formSettings = new FormSettings();
+            formSettings.ShowDialog();
+        }
+
 
   
     }

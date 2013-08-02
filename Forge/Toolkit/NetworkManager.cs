@@ -37,6 +37,7 @@ namespace BlastersGame.Network
            //config.SimulatedMinimumLatency = (float)MathHelper.Clamp((float)random.NextDouble(), 0, 0.95f); //(float) random.NextDouble();
            //config.SimulatedMinimumLatency = (float)MathHelper.Clamp((float)random.NextDouble(), 0, 0.05f); //(float) random.NextDouble();
             //config.SimulatedRandomLatency = 0.05f;
+            config.ConnectionTimeout = 5;
 
             _client = new NetClient(config);
 
