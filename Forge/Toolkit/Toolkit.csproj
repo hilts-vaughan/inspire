@@ -115,6 +115,12 @@
     <Compile Include="Controls\MapListView.Designer.cs">
       <DependentUpon>MapListView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Rendering\MapRenderControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Rendering\MapRenderControl.Designer.cs">
+      <DependentUpon>MapRenderControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataManager.cs" />
     <Compile Include="DirectoryHelper.cs" />
     <Compile Include="Docking\ContentDockForm.cs">
@@ -134,6 +140,18 @@
     </Compile>
     <Compile Include="Docking\LayersDockForm.Designer.cs">
       <DependentUpon>LayersDockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Docking\MapDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docking\MapDockForm.Designer.cs">
+      <DependentUpon>MapDockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Docking\TilesetDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docking\TilesetDockForm.Designer.cs">
+      <DependentUpon>TilesetDockForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Docking\ToolWindow.cs">
       <SubType>Form</SubType>
@@ -244,12 +262,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mapping\LayerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Mapping\LayerForm.Designer.cs">
-      <DependentUpon>LayerForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Mapping\IMapAction.cs" />
     <Compile Include="Mapping\MapEditorGlobals.cs" />
     <Compile Include="NetworkManager.cs" />
     <Compile Include="PacketProcessor.cs" />
@@ -280,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Docking\LayersDockForm.resx">
       <DependentUpon>LayersDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docking\MapDockForm.resx">
+      <DependentUpon>MapDockForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Docking\ToolWindow.resx">
       <DependentUpon>ToolWindow.cs</DependentUpon>
@@ -464,6 +480,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MapEntities\" />
+    <Folder Include="Mapping\Actions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlastersShared.Network\Inspire.Network.csproj">

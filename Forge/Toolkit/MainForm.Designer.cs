@@ -64,6 +64,7 @@ namespace Toolkit
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.contentExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.assetExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.layersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.closeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,6 +89,7 @@ namespace Toolkit
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.tilesetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -238,7 +240,9 @@ namespace Toolkit
             this.toolStripMenuItemView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
             this.contentExplorerToolStripMenuItem,
-            this.assetExplorerToolStripMenuItem});
+            this.assetExplorerToolStripMenuItem,
+            this.layersToolStripMenuItem,
+            this.tilesetsToolStripMenuItem});
             this.toolStripMenuItemView.Name = "toolStripMenuItemView";
             this.toolStripMenuItemView.Size = new System.Drawing.Size(44, 20);
             this.toolStripMenuItemView.Text = "View";
@@ -249,7 +253,7 @@ namespace Toolkit
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
             this.toolStripMenuItem2.Size = new System.Drawing.Size(187, 22);
-            this.toolStripMenuItem2.Text = "Tileset";
+            this.toolStripMenuItem2.Text = "History";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // contentExplorerToolStripMenuItem
@@ -268,6 +272,13 @@ namespace Toolkit
             this.assetExplorerToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.assetExplorerToolStripMenuItem.Text = "Asset Explorer";
             this.assetExplorerToolStripMenuItem.Click += new System.EventHandler(this.assetExplorerToolStripMenuItem_Click);
+            // 
+            // layersToolStripMenuItem
+            // 
+            this.layersToolStripMenuItem.Name = "layersToolStripMenuItem";
+            this.layersToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.layersToolStripMenuItem.Text = "Layers";
+            this.layersToolStripMenuItem.Click += new System.EventHandler(this.layersToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -526,6 +537,13 @@ namespace Toolkit
             this.dockPanel.SkinStyle = WeifenLuo.WinFormsUI.Docking.Skins.Style.VisualStudio2012Light;
             this.dockPanel.TabIndex = 18;
             // 
+            // tilesetsToolStripMenuItem
+            // 
+            this.tilesetsToolStripMenuItem.Name = "tilesetsToolStripMenuItem";
+            this.tilesetsToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.tilesetsToolStripMenuItem.Text = "Tilesets";
+            this.tilesetsToolStripMenuItem.Click += new System.EventHandler(this.tilesetsToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(579, 409);
@@ -598,5 +616,7 @@ namespace Toolkit
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private WeifenLuo.WinFormsUI.Docking.DockPanel dockPanel;
+        private System.Windows.Forms.ToolStripMenuItem layersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tilesetsToolStripMenuItem;
     }
 }

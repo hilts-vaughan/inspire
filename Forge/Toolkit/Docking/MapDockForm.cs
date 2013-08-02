@@ -10,12 +10,23 @@ using System.Windows.Forms;
 
 namespace Toolkit.Docking
 {
-    public partial class LayersDockForm : ToolWindow
+    public partial class MapDockForm : ToolWindow, ISaveable
     {
-        public LayersDockForm()
+        public MapDockForm()
         {
             InitializeComponent();
-            TabText = "Layers";
+            TabText = "New Map";
         }
+
+
+        /// <summary>
+        /// Allows this form to save itself
+        /// </summary>
+        public void Save()
+        {
+            
+        }
+
+
     }
 }

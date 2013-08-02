@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Lidgren.Network;
+
+namespace GameServer.Editor.ContentLocking
+{
+    /// <summary>
+    /// A collection of keys internally of content that has been locked
+    /// </summary>
+    public class ContentLockStore
+    {
+        // Current locks on a particular piece of content
+        private Dictionary<int, NetConnection> _contentLocks; 
+
+        public bool TryAcquireLock(NetConnection connection, int ID)
+        {
+            // Trying to aqquire a lock for something you already have or you're not authorized to obtain
+            if (_contentLocks.ContainsKey(ID))
+                return false;
+
+            // Noone has taken it - go ahead and grab this
+            _contentLocks.Add(ID, connection);
+
+        }
+
+        public bool ReleaseLock(NetConnection connection, int ID)
+        {
+            // If they don't have a lock, they can't release it
+            if (!HasLock(connection, ID))
+                return false;
+
+            // Release the lock
+            _contentLocks.Remove(ID);
+
+        }
+
+        /// <summary>
+        /// Returns a list of all the locked content IDs for a particular store
+        /// </summary>
+        /// <returns></returns>
+        public List<int> GetLockedContentIDs()
+        {
+            return _contentLocks.Keys.ToList();
+        }
+
+        /// <summary>
+        /// Determines whether a particular connection has a lock on a piece of content
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public bool HasLock(NetConnection connection, int ID)
+        {
+            // If the key dosen't even exist, don't bother
+            if (!_contentLocks.ContainsKey(ID))
+                return false;
+
+            return _contentLocks[ID] == connection;
+
+        }
+
+
+    }
+}

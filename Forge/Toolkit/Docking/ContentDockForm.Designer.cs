@@ -35,7 +35,7 @@
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Node1", new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Node0", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Inspire Game", new System.Windows.Forms.TreeNode[] {
             treeNode3});
             this.imagesTree = new System.Windows.Forms.ImageList(this.components);
             this.imagesState = new System.Windows.Forms.ImageList(this.components);
@@ -48,6 +48,7 @@
             this.imagesTree.TransparentColor = System.Drawing.Color.Transparent;
             this.imagesTree.Images.SetKeyName(0, "blue-folder-horizontal.png");
             this.imagesTree.Images.SetKeyName(1, "blue-folder-horizontal-open.png");
+            this.imagesTree.Images.SetKeyName(2, "zodiac-leo.png");
             // 
             // imagesState
             // 
@@ -69,9 +70,10 @@
             treeNode3.Name = "Node1";
             treeNode3.StateImageKey = "control.png";
             treeNode3.Text = "Node1";
-            treeNode4.Name = "Node0";
+            treeNode4.ImageIndex = 2;
+            treeNode4.Name = "GameNode";
             treeNode4.StateImageKey = "control.png";
-            treeNode4.Text = "Node0";
+            treeNode4.Text = "Inspire Game";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4});
             this.treeView1.SelectedImageIndex = 0;

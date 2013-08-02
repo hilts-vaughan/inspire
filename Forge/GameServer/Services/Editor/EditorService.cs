@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlastersShared;
+using GameServer.Editor;
+using GameServer.Editor.ContentLocking;
 using GameServer.Models;
 using GameServer.Network;
 using Inspire.Network;
@@ -23,12 +25,18 @@ namespace GameServer.Services.Editor
     /// </summary>  
     public class EditorService : Service
     {
+        // Some objects that will come in handy
+        private AuthorizationTable _authorizationTable = new AuthorizationTable();
+        private ContentLockManager _contentLockManager = new ContentLockManager();
 
         public EditorService()
         {
             PacketService.RegisterPacket<ContentRequestPacket>(Handler);
             PacketService.RegisterPacket<ContentListRequestPacket>(Handler);
             PacketService.RegisterPacket<ContentSaveRequestPacket>(Handler);
+
+            // The editor module will bootstrap it's own services
+
         }
 
         private void Handler(ContentSaveRequestPacket contentSaveRequestPacket)

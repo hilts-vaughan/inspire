@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace Toolkit.Docking
 {
-    public partial class LayersDockForm : ToolWindow
+    public partial class TilesetDockForm : ToolWindow
     {
-        public LayersDockForm()
+        public TilesetDockForm()
         {
             InitializeComponent();
-            TabText = "Layers";
+            TabText = "Tilesets";
         }
     }
 }

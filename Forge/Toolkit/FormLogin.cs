@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using BlastersGame.Network;
+using Inspire.Network.Packets.Client;
+using Inspire.Shared.Crypto;
 using Toolkit.Mapping;
 
 namespace Toolkit
@@ -17,13 +20,18 @@ namespace Toolkit
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonLogin_Click(object sender, EventArgs e)
         {
-            Close();
+            // Disable the login button
+            buttonLogin.Enabled = false;
 
-            MapEditorGlobals.Username = textBox1.Text;
-            MapEditorGlobals.Password = textBox2.Text;
+            // Send a packet requesting a login
+            var request = new EditorLoginRequestPacket(textUsername.Text, HashHelper.CalculateSha512Hash(textPassword.Text));
+            NetworkManager.Instance.SendPacket(request);
 
         }
+
+
+  
     }
 }

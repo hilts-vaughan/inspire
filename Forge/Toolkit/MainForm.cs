@@ -24,6 +24,12 @@ namespace Toolkit
         FormContentExplorer _contentExplorer = new FormContentExplorer();
         FormAssetExplorer _assetExplorer = new FormAssetExplorer();
 
+        // All the dock windows being used
+        ContentDockForm _contentDockForm = new ContentDockForm();
+        HistoryDockForm _historyDockForm = new HistoryDockForm();
+        LayersDockForm _layersDockForm = new LayersDockForm();
+        TilesetDockForm _tilesetDockForm = new TilesetDockForm();
+
         private bool m_bSaveLayout = true;
         private DeserializeDockContent m_deserializeDockContent;
 
@@ -39,7 +45,7 @@ namespace Toolkit
 
             dockPanel.Theme = new VS2012LightTheme();
 
-            //m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
+            m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
         }
 
         void Application_ApplicationExit(object sender, EventArgs e)
@@ -94,11 +100,19 @@ namespace Toolkit
 
         private IDockContent GetContentFromPersistString(string persistString)
         {
+            if (persistString == typeof(ContentDockForm).ToString())
+                return _contentDockForm;
 
-            //else if (persistString == typeof(DummyTaskList).ToString())
-            //  return m_taskList;
+            if (persistString == typeof(HistoryDockForm).ToString())
+                return _historyDockForm;
 
-            return new DockContent();
+            if (persistString == typeof(LayersDockForm).ToString())
+                return _layersDockForm;
+
+            if (persistString == typeof (TilesetDockForm).ToString())
+                return _tilesetDockForm;
+
+            throw new Exception("A backwards compatibilty issue was detected - regressing");
         }
 
         private void CloseAllContents()
@@ -124,11 +138,41 @@ namespace Toolkit
         private void MainForm_Load(object sender, System.EventArgs e)
         {
 
+            //Set to the working directory
+            ProjectSettings.Instance.Location = Directory.GetCurrentDirectory();
+
+            ProjectSettings.Instance.SaveProject();
+            Text = "Inspire - " + ProjectSettings.Instance.Name + "   [" + ProjectSettings.Instance.Location + "]";
+
+
+            //    _contentExplorer.Show(dockPanel);
+            //    _assetExplorer.Show(dockPanel);
+
+
+            //Update the network manager
+            thread = new Thread(NetworkLoop);
+            thread.Start();
+
+
+            string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "windows.config");
+
+            if (File.Exists(configFile))
+                dockPanel.LoadFromXml(configFile, m_deserializeDockContent);
+
+            // Show the login dialog - need to get an authentication token before we can do anything interesting
+            var loginForm = new FormLogin();
+            loginForm.ShowDialog();
+
+
         }
 
         private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "windows.config");
+            if (m_bSaveLayout)
+                dockPanel.SaveAsXml(configFile);
+            else if (File.Exists(configFile))
+                File.Delete(configFile);
         }
 
 
@@ -144,59 +188,8 @@ namespace Toolkit
         private void MainForm_Shown(object sender, EventArgs e)
         {
 
-            ////Check if a project had been loaded previously
-            //if (File.Exists(@"editor.config"))
-            //{
-            //    //The first line is the filepath, make sure it's still existent on the disk
-            //    using (StreamReader reader = new StreamReader(@"editor.config"))
-            //    {
-            //        string path = reader.ReadLine();
-
-            //        //If the project still exists...
-            //        if (File.Exists(path + "\\project.dreamproj"))
-            //        {
-            //            ProjectSettings.Instance.LoadProject(path);
-            //        }
-            //        else
-            //        {
-            //            DialogResult result = MessageBox.Show(
-            //                    "The project loaded cannot be found on the disk. Would you like to create a new project? Otherwise, you will be prompted to load one.",
-            //                    "Project load error",
-            //                    MessageBoxButtons.YesNo);
-
-            //            if (result == DialogResult.Yes)
-            //                CreateNewProject();
-            //            else
-            //            {
-            //                //You really should do something...
-
-            //            }
-
-            //        }
-
-            //    }
-            //}
-
-            //else
-            //{
-            //    //No existing project, prompt to make one
-            //    CreateNewProject();
-            //}
-
-            //Set to the working directory
-            ProjectSettings.Instance.Location = Directory.GetCurrentDirectory();
-
-            ProjectSettings.Instance.SaveProject();
-            Text = "Inspire - " + ProjectSettings.Instance.Name + "   [" + ProjectSettings.Instance.Location + "]";
 
 
-            //    _contentExplorer.Show(dockPanel);
-            //    _assetExplorer.Show(dockPanel);
-
-
-            //Update the network manager
-            thread = new Thread(NetworkLoop);
-            thread.Start();
 
         }
 
@@ -279,8 +272,7 @@ namespace Toolkit
 
         private void contentExplorerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var contentExplorer = new ContentDockForm();
-            contentExplorer.Show(dockPanel);
+            _contentDockForm.Show();
             //if (!_contentExplorer.IsHidden)
             //    _contentExplorer.Hide();
             //else
@@ -289,10 +281,7 @@ namespace Toolkit
 
         private void assetExplorerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!_assetExplorer.IsHidden)
-                _assetExplorer.Hide();
-            else
-                _assetExplorer.Show();
+            _assetExplorer.Show(dockPanel);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -332,11 +321,17 @@ namespace Toolkit
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-           // var layerForm = new LayerForm();
-           // layerForm.Show(dockPanel);
+            _historyDockForm.Show(dockPanel);
+        }
 
-            var form = new HistoryDockForm();
-            form.Show(dockPanel, DockState.DockLeft);
+        private void layersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _layersDockForm.Show(dockPanel);
+        }
+
+        private void tilesetsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _tilesetDockForm.Show(dockPanel);
         }
 
 
