@@ -84,6 +84,9 @@ namespace GameServer.Services.Auth
 
         }
 
-
+        public override void Setup()
+        {
+            
+        }
     }
 }

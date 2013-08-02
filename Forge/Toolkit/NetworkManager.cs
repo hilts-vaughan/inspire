@@ -129,6 +129,13 @@ namespace BlastersGame.Network
         }
 
         public event EventHandler<DisconnectArgs> ClientDisconnected;
+        public event EventHandler ClientConnected;
+
+        protected virtual void OnClientConnected()
+        {
+            EventHandler handler = ClientConnected;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
 
         public void InvokeClientDisconnected(DisconnectArgs e)
         {
@@ -167,6 +174,12 @@ namespace BlastersGame.Network
                         {                       
                             InvokeClientDisconnected(new DisconnectArgs(message));
                         }
+
+                        if (type == NetConnectionStatus.Connected)
+                        {
+                            OnClientConnected();
+                        }
+
                         break;
 
                     case NetIncomingMessageType.ErrorMessage:

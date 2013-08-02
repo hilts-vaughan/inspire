@@ -16,5 +16,12 @@
         /// The name associated with this piece of content
         /// </summary>
         string Name { get; set; }
+
+
+        /// <summary>
+        /// A virtual category allows developers to organize content in a hierachy without breaking structure
+        /// </summary>
+        string VirtualCategory { get; set; }
+
     }
 }

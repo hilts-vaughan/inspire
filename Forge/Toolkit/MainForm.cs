@@ -334,6 +334,11 @@ namespace Toolkit
             _tilesetDockForm.Show(dockPanel);
         }
 
+        private void MainForm_Leave(object sender, EventArgs e)
+        {
+            thread.Abort();
+        }
+
 
 
 

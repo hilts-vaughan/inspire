@@ -43,5 +43,10 @@ namespace GameServer.Services.Editor
         {
             
         }
+
+        public override void Setup()
+        {
+            
+        }
     }
 }

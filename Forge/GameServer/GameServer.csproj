@@ -67,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Editor\AuthorizationTable.cs" />
+    <Compile Include="Editor\ContentLocking\ContentLockStore.cs" />
+    <Compile Include="Editor\ContentLocking\ContentLockManager.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Models\Inits\DataPopulatorInit.cs" />
     <Compile Include="Models\Mapping\AccountMap.cs" />

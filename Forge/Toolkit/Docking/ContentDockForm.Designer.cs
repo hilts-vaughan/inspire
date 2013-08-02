@@ -49,6 +49,7 @@
             this.imagesTree.Images.SetKeyName(0, "blue-folder-horizontal.png");
             this.imagesTree.Images.SetKeyName(1, "blue-folder-horizontal-open.png");
             this.imagesTree.Images.SetKeyName(2, "zodiac-leo.png");
+            this.imagesTree.Images.SetKeyName(3, "lock.png");
             // 
             // imagesState
             // 

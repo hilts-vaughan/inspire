@@ -16,6 +16,7 @@
         /// </summary>
         public ServiceContainer ServiceContainer { get; set; }
 
+        public abstract void Setup();
 
     }
 }

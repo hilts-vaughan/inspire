@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textPassword = new System.Windows.Forms.TextBox();
             this.textUsername = new System.Windows.Forms.TextBox();
@@ -35,6 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonLogin = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.pollStatus = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,9 +47,9 @@
             this.groupBox1.Controls.Add(this.textUsername);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 29);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(410, 96);
+            this.groupBox1.Size = new System.Drawing.Size(410, 88);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Credentials";
@@ -86,7 +89,8 @@
             // 
             // buttonLogin
             // 
-            this.buttonLogin.Location = new System.Drawing.Point(347, 114);
+            this.buttonLogin.Enabled = false;
+            this.buttonLogin.Location = new System.Drawing.Point(347, 121);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(75, 23);
             this.buttonLogin.TabIndex = 1;
@@ -97,20 +101,38 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 118);
+            this.checkBox1.Location = new System.Drawing.Point(12, 125);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(95, 17);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "Remember Me";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStatus.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelStatus.Location = new System.Drawing.Point(378, 9);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(44, 15);
+            this.labelStatus.TabIndex = 3;
+            this.labelStatus.Text = "Offline";
+            // 
+            // pollStatus
+            // 
+            this.pollStatus.Enabled = true;
+            this.pollStatus.Interval = 250;
+            this.pollStatus.Tick += new System.EventHandler(this.pollStatus_Tick);
+            // 
             // FormLogin
             // 
             this.AcceptButton = this.buttonLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 141);
+            this.ClientSize = new System.Drawing.Size(434, 149);
             this.ControlBox = false;
+            this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.buttonLogin);
             this.Controls.Add(this.groupBox1);
@@ -137,5 +159,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.Timer pollStatus;
     }
 }

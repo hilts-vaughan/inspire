@@ -29,13 +29,11 @@ namespace GameServer.Services.Editor
         private AuthorizationTable _authorizationTable = new AuthorizationTable();
         private ContentLockManager _contentLockManager = new ContentLockManager();
 
+        // Services bootstrapped by this one
+        private static EditorAuthenticationService _editorAuthenticationService ;
+
         public EditorService()
         {
-            PacketService.RegisterPacket<ContentRequestPacket>(Handler);
-            PacketService.RegisterPacket<ContentListRequestPacket>(Handler);
-            PacketService.RegisterPacket<ContentSaveRequestPacket>(Handler);
-
-            // The editor module will bootstrap it's own services
 
         }
 
@@ -174,6 +172,21 @@ namespace GameServer.Services.Editor
 
         public override void PeformUpdate()
         {
+
+        }
+
+        public override void Setup()
+        {
+            PacketService.RegisterPacket<ContentRequestPacket>(Handler);
+            PacketService.RegisterPacket<ContentListRequestPacket>(Handler);
+            PacketService.RegisterPacket<ContentSaveRequestPacket>(Handler);
+
+            // The editor module will bootstrap it's own services
+            _editorAuthenticationService = new EditorAuthenticationService(_authorizationTable);
+
+
+            // Set them all up
+            ServiceContainer.RegisterService(_editorAuthenticationService);
 
         }
     }

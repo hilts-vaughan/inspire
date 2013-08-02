@@ -50,6 +50,10 @@ namespace Inspire.Shared.Service
         {
             service.ServiceContainer = this;
             _serviceLookupTable.Add(service.GetType(), service);
+
+            // Setup now
+            service.Setup();
+
         }
 
         /// <summary>

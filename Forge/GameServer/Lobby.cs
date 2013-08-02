@@ -15,8 +15,8 @@ namespace GameServer
 
 
         static AuthenticationService _authenticationService = new AuthenticationService();
-        static EditorService _editorService = new EditorService();
-        private static EditorAuthenticationService _editorAuthenticationService;
+        private static EditorService _editorService;
+
 
         static ServiceContainer   _serviceContainer = new ServiceContainer();
 
@@ -24,7 +24,6 @@ namespace GameServer
         static void Main(string[] args)
         {
 
-            _editorAuthenticationService = new EditorAuthenticationService();
 
             // Setup some stuff, because why not
             Console.Title = "Blasters Lobby Gateway";
@@ -37,11 +36,13 @@ namespace GameServer
 
             //Logger.Instance.Log(Level.Info, "The lobby server has succesfully been started.");
 
+            _editorService = new EditorService();
 
             // Add services
             _serviceContainer.RegisterService(_authenticationService);
+
+            // Add this service
             _serviceContainer.RegisterService(_editorService);
-            _serviceContainer.RegisterService(_editorAuthenticationService);
 
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;

@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="BindingHelper.cs" />
     <Compile Include="ContentBuilder.cs" />
+    <Compile Include="ContentExplorer\ContentMapper.cs" />
     <Compile Include="Controls\AssetViewList.cs">
       <SubType>UserControl</SubType>
     </Compile>

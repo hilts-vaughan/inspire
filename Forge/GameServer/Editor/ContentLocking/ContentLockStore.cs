@@ -24,6 +24,8 @@ namespace GameServer.Editor.ContentLocking
             // Noone has taken it - go ahead and grab this
             _contentLocks.Add(ID, connection);
 
+            return true;
+
         }
 
         public bool ReleaseLock(NetConnection connection, int ID)
@@ -34,6 +36,8 @@ namespace GameServer.Editor.ContentLocking
 
             // Release the lock
             _contentLocks.Remove(ID);
+
+            return true;
 
         }
 
