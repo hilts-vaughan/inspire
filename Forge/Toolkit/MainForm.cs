@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using BlastersGame.Network;
+using Toolkit.Configuration;
 using Toolkit.Docking;
 using Toolkit.Mapping;
 using WeifenLuo.WinFormsUI.Docking;
@@ -173,6 +174,9 @@ namespace Toolkit
                 dockPanel.SaveAsXml(configFile);
             else if (File.Exists(configFile))
                 File.Delete(configFile);
+
+            // Save out to the app config
+            AppConfiguration.Instance.Serialize();
         }
 
 

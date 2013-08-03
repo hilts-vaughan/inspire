@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindingHelper.cs" />
+    <Compile Include="Configuration\AppConfiguration.cs" />
     <Compile Include="ContentBuilder.cs" />
     <Compile Include="ContentExplorer\ContentCategory.cs" />
     <Compile Include="ContentExplorer\ContentMapper.cs" />
