@@ -215,6 +215,8 @@ namespace Toolkit
 
             if (persistString == typeof (GenericContentBindForm).ToString())
                 return null;
+            if (persistString == typeof (MapForm).ToString())
+                return null;
 
             throw new Exception("A backwards compatibilty issue was detected - regressing");
         }
