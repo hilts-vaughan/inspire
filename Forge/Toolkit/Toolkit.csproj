@@ -432,6 +432,9 @@
     <None Include="Resources\eraser.png" />
     <None Include="Resources\disk1.png" />
     <None Include="Resources\disks.png" />
+    <None Include="Resources\terminal.png" />
+    <None Include="Resources\network.png" />
+    <None Include="Resources\information1.png" />
     <Content Include="SciLexer.dll" />
     <None Include="Resources\script_add.png" />
     <None Include="Resources\user_delete.png" />

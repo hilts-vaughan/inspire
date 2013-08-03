@@ -50,11 +50,17 @@ namespace Toolkit
             this.toolStripMenuItemNewProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemLoadProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemView = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.consoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.networkMonitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.contentExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.assetExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,8 +95,6 @@ namespace Toolkit
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -137,7 +141,7 @@ namespace Toolkit
             this.toolStripMenuItemNewProject.Enabled = false;
             this.toolStripMenuItemNewProject.Image = global::Toolkit.Properties.Resources.folder_add;
             this.toolStripMenuItemNewProject.Name = "toolStripMenuItemNewProject";
-            this.toolStripMenuItemNewProject.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItemNewProject.Size = new System.Drawing.Size(187, 22);
             this.toolStripMenuItemNewProject.Text = "New Project...";
             this.toolStripMenuItemNewProject.Click += new System.EventHandler(this.toolStripMenuItemNewProject_Click);
             // 
@@ -146,18 +150,37 @@ namespace Toolkit
             this.toolStripMenuItemLoadProject.Enabled = false;
             this.toolStripMenuItemLoadProject.Image = global::Toolkit.Properties.Resources.folder_edit;
             this.toolStripMenuItemLoadProject.Name = "toolStripMenuItemLoadProject";
-            this.toolStripMenuItemLoadProject.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItemLoadProject.Size = new System.Drawing.Size(187, 22);
             this.toolStripMenuItemLoadProject.Text = "Load Project...";
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(184, 6);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Image = global::Toolkit.Properties.Resources.disk1;
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(187, 22);
+            this.toolStripMenuItem6.Text = "Save Content";
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Image = global::Toolkit.Properties.Resources.disks;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
+            this.toolStripMenuItem1.Text = "Save All";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(184, 6);
             // 
             // printPreviewToolStripMenuItem
             // 
@@ -165,26 +188,28 @@ namespace Toolkit
             this.printPreviewToolStripMenuItem.Image = global::Toolkit.Properties.Resources.cog;
             this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.printPreviewToolStripMenuItem.Text = "Project Settings...";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(184, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Image = global::Toolkit.Properties.Resources.door;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // toolStripMenuItemView
             // 
             this.toolStripMenuItemView.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem7,
+            this.toolStripSeparator8,
             this.toolStripMenuItem2,
             this.contentExplorerToolStripMenuItem,
             this.assetExplorerToolStripMenuItem,
@@ -193,6 +218,35 @@ namespace Toolkit
             this.toolStripMenuItemView.Name = "toolStripMenuItemView";
             this.toolStripMenuItemView.Size = new System.Drawing.Size(44, 20);
             this.toolStripMenuItemView.Text = "View";
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.consoleToolStripMenuItem,
+            this.networkMonitorToolStripMenuItem});
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(187, 22);
+            this.toolStripMenuItem7.Text = "Debug";
+            // 
+            // consoleToolStripMenuItem
+            // 
+            this.consoleToolStripMenuItem.Image = global::Toolkit.Properties.Resources.terminal;
+            this.consoleToolStripMenuItem.Name = "consoleToolStripMenuItem";
+            this.consoleToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.consoleToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.consoleToolStripMenuItem.Text = "Console";
+            // 
+            // networkMonitorToolStripMenuItem
+            // 
+            this.networkMonitorToolStripMenuItem.Image = global::Toolkit.Properties.Resources.network;
+            this.networkMonitorToolStripMenuItem.Name = "networkMonitorToolStripMenuItem";
+            this.networkMonitorToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.networkMonitorToolStripMenuItem.Text = "Network Monitor";
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(184, 6);
             // 
             // toolStripMenuItem2
             // 
@@ -264,6 +318,7 @@ namespace Toolkit
             // 
             // toolStripMenuItem5
             // 
+            this.toolStripMenuItem5.Enabled = false;
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
             this.toolStripMenuItem5.Size = new System.Drawing.Size(198, 22);
@@ -272,6 +327,7 @@ namespace Toolkit
             // 
             // toolStripMenuItem4
             // 
+            this.toolStripMenuItem4.Enabled = false;
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.toolStripMenuItem4.Size = new System.Drawing.Size(198, 22);
@@ -325,19 +381,20 @@ namespace Toolkit
             // 
             this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
             this.contentsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.contentsToolStripMenuItem.Text = "&Contents";
+            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.contentsToolStripMenuItem.Text = "Documentation";
+            this.contentsToolStripMenuItem.Click += new System.EventHandler(this.contentsToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(138, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(173, 6);
             // 
             // aboutToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Image = global::Toolkit.Properties.Resources.information;
+            this.aboutToolStripMenuItem.Image = global::Toolkit.Properties.Resources.information1;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -543,25 +600,6 @@ namespace Toolkit
             this.dockPanel.SkinStyle = WeifenLuo.WinFormsUI.Docking.Skins.Style.VisualStudio2012Light;
             this.dockPanel.TabIndex = 18;
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Image = global::Toolkit.Properties.Resources.disks;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.S)));
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
-            this.toolStripMenuItem1.Text = "Save All";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // toolStripMenuItem6
-            // 
-            this.toolStripMenuItem6.Image = global::Toolkit.Properties.Resources.disk1;
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(187, 22);
-            this.toolStripMenuItem6.Text = "Save Content";
-            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
-            // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(579, 409);
@@ -638,5 +676,9 @@ namespace Toolkit
         private System.Windows.Forms.ToolStripButton toolStripButton10;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem consoleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem networkMonitorToolStripMenuItem;
     }
 }

@@ -481,6 +481,11 @@ namespace Toolkit
             buttonSaveAll.PerformClick();
         }
 
+        private void contentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://neoindies.com/");
+        }
+
 
 
 
