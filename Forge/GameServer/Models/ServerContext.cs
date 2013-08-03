@@ -25,6 +25,7 @@ namespace GameServer.Models
 
         public DbSet<ItemTemplate> ItemTemplates { get; set; }
         public DbSet<SkillTemplate> SkillTemplates { get; set; }
+        public DbSet<MapTemplate> MapTemplates { get; set; }
 
         public DbSet<Account> Accounts { get; set; }
     
@@ -35,6 +36,7 @@ namespace GameServer.Models
             modelBuilder.Configurations.Add(new ItemTemplateMap());
             modelBuilder.Configurations.Add(new AccountMap());
             modelBuilder.Configurations.Add(new SkillTemplateMap());
+            modelBuilder.Configurations.Add(new MapTemplateMap());
 
         }
 

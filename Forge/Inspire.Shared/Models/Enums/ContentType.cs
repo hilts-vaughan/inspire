@@ -13,6 +13,7 @@ namespace Inspire.Shared.Models.Enums
     {
         Item,
         Monster,
-        Skill
+        Skill,
+        Map
     }
 }

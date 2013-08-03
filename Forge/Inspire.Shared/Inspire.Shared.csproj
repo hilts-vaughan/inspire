@@ -49,6 +49,7 @@
     <Compile Include="Models\Templates\EditorTemplateEntry.cs" />
     <Compile Include="Models\Templates\IContentTemplate.cs" />
     <Compile Include="Models\Templates\ItemTemplate.cs" />
+    <Compile Include="Models\Templates\MapTemplate.cs" />
     <Compile Include="Models\Templates\SkillTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Service.cs" />

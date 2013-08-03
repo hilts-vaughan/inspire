@@ -110,6 +110,9 @@ namespace GameServer.Services.Editor
                 case ContentType.Skill:
                     editorTemplateEntries = GetAllSkills(contentListRequestPacket.Sender);
                     break;
+                case ContentType.Map:
+                    editorTemplateEntries = GetAllMaps(contentListRequestPacket.Sender);
+                    break;
                 default:
                     Logger.Instance.Log(Level.Warn, "The client has requested a resource with an unknown identifier.");
                     return;
@@ -122,6 +125,20 @@ namespace GameServer.Services.Editor
                 ClientNetworkManager.Instance.SendPacket(packet, contentListRequestPacket.Sender);
             }
 
+        }
+
+        private List<EditorTemplateEntry> GetAllMaps(NetConnection connection)
+        {
+            var entries = new List<EditorTemplateEntry>();
+            var context = new ServerContext();
+
+            foreach (var itemTemplate in context.MapTemplates)
+            {
+                var locked = _contentLockManager.AnyoneHasLock(connection, itemTemplate.Id, ContentType.Map);
+                entries.Add(new EditorTemplateEntry(itemTemplate.Id, itemTemplate.Name, itemTemplate.VirtualCategory,
+                                                    ContentType.Map, locked));
+            }
+            return entries;
         }
 
         private List<EditorTemplateEntry> GetAllSkills(NetConnection connection)
@@ -171,6 +188,9 @@ namespace GameServer.Services.Editor
                     case ContentType.Skill:
                         o = GetSkillByID(contentRequestPacket.ID);
                         break;
+                    case ContentType.Map:
+                        o = GetMapByID(contentRequestPacket.ID);
+                    break;
                     default:
                         Logger.Instance.Log(Level.Warn,
                                             "The client has requested a resource with an unknown identifier.");
@@ -183,6 +203,13 @@ namespace GameServer.Services.Editor
 
 
 
+        }
+
+        private object GetMapByID(int id)
+        {
+            var context = new ServerContext();
+            var map = context.MapTemplates.FirstOrDefault(x => x.Id == id);
+            return map;
         }
 
         private object GetItemByID(int id)

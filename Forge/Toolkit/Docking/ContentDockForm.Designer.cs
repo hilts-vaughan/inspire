@@ -41,11 +41,12 @@
             this.imagesTree.TransparentColor = System.Drawing.Color.Transparent;
             this.imagesTree.Images.SetKeyName(0, "folder.png");
             this.imagesTree.Images.SetKeyName(1, "folder-open.png");
-            this.imagesTree.Images.SetKeyName(2, "map.png");
+            this.imagesTree.Images.SetKeyName(2, "zone.png");
             this.imagesTree.Images.SetKeyName(3, "screwdriver.png");
             this.imagesTree.Images.SetKeyName(4, "ghost.png");
             this.imagesTree.Images.SetKeyName(5, "xfn.png");
-            this.imagesTree.Images.SetKeyName(6, "lock.png");
+            this.imagesTree.Images.SetKeyName(6, "map.png");
+            this.imagesTree.Images.SetKeyName(7, "lock.png");
             // 
             // imagesState
             // 
