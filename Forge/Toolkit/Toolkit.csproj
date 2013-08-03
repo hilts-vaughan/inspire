@@ -133,6 +133,12 @@
     <Compile Include="Docking\ContentDockForm.Designer.cs">
       <DependentUpon>ContentDockForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Docking\Content\GenericContentBindForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Docking\Content\GenericContentBindForm.Designer.cs">
+      <DependentUpon>GenericContentBindForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Docking\FormExtensions.cs" />
     <Compile Include="Docking\HistoryDockForm.cs">
       <SubType>Form</SubType>
@@ -264,7 +270,6 @@
     <Compile Include="FormWaitDialog.Designer.cs">
       <DependentUpon>FormWaitDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="IContent.cs" />
     <Compile Include="ISaveable.cs" />
     <Compile Include="LimitedStack.cs" />
     <Compile Include="MainForm.cs">
@@ -298,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Docking\ContentDockForm.resx">
       <DependentUpon>ContentDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Docking\Content\GenericContentBindForm.resx">
+      <DependentUpon>GenericContentBindForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Docking\HistoryDockForm.resx">
       <DependentUpon>HistoryDockForm.cs</DependentUpon>

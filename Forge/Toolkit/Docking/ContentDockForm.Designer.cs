@@ -66,6 +66,7 @@
             this.treeContent.Size = new System.Drawing.Size(284, 261);
             this.treeContent.StateImageList = this.imagesState;
             this.treeContent.TabIndex = 0;
+            this.treeContent.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeContent_NodeMouseDoubleClick);
             // 
             // ContentDockForm
             // 

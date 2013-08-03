@@ -10,10 +10,14 @@ using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using BlastersGame.Network;
+using Inspire.Network.Packets.Client;
 using Inspire.Network.Packets.Client.Content;
+using Inspire.Network.Packets.Server;
 using Inspire.Shared.Models.Enums;
+using Inspire.Shared.Models.Templates;
 using Toolkit.Configuration;
 using Toolkit.Docking;
+using Toolkit.Docking.Content;
 using Toolkit.Mapping;
 using WeifenLuo.WinFormsUI.Docking;
 using ScintillaNet;
@@ -50,6 +54,82 @@ namespace Toolkit
             dockPanel.Theme = new VS2012LightTheme();
 
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
+
+            // Bind for events
+            _contentDockForm.ContentRequested += ContentRequested;
+
+            // Listen for some particular events
+            PacketService.RegisterPacket<ContentResultPacket>(Handler);
+
+        }
+
+        public DialogResult ShowMessageBox(String message, String caption)
+        {
+            if (this.InvokeRequired)
+            {
+                return (DialogResult)this.Invoke(new FormDatabase.PassStringStringReturnDialogResultDelegate(ShowMessageBox), message, caption);
+            }
+            return MessageBox.Show(this, message, caption);
+        }
+
+        private void Handler(ContentResultPacket obj)
+        {
+            _pendingNetworkRequest = false;
+
+            if (obj.Locked)
+            {
+                ShowMessageBox("The server rejected your request for this content. This usually happens because someone else has it checked out.", "Server Response");
+                return;
+            }
+
+
+            _garb = obj;
+            ShowForm();
+
+
+
+        }
+
+        private ContentResultPacket _garb;
+
+        private void ShowForm()
+        {
+            if (this.InvokeRequired)
+            { // this refers to the current form
+                this.Invoke(new Action(ShowForm));  // this line invokes the same function on the same thread as the current form
+                return;
+            }
+
+            var bindForm = new GenericContentBindForm();
+            bindForm.Show(dockPanel, DockState.Float);
+            bindForm.SetBinding(_garb.ContentObject, _garb.ContentType);
+        }
+
+   
+
+        // This is a list of pending requests from the network
+        private bool _pendingNetworkRequest = false;
+
+        private void ContentRequested(object sender, TreeNodeMouseClickEventArgs treeNodeMouseClickEventArgs)
+        {
+
+            if (_pendingNetworkRequest)
+            {
+                MessageBox.Show("You must wait for your current network request to complete before issuing another.");
+                return;
+            }
+
+            // Retrieve the entry
+            var entry = (EditorTemplateEntry)treeNodeMouseClickEventArgs.Node.Tag;
+            _pendingNetworkRequest = true;
+
+            var request = new ContentRequestPacket(entry.ContentType, entry.ID);
+
+
+            // Send the request
+            NetworkManager.Instance.SendPacket(request);
+
+
         }
 
         void Application_ApplicationExit(object sender, EventArgs e)
@@ -113,8 +193,11 @@ namespace Toolkit
             if (persistString == typeof(LayersDockForm).ToString())
                 return _layersDockForm;
 
-            if (persistString == typeof (TilesetDockForm).ToString())
+            if (persistString == typeof(TilesetDockForm).ToString())
                 return _tilesetDockForm;
+
+            if (persistString == typeof (GenericContentBindForm).ToString())
+                return null;
 
             throw new Exception("A backwards compatibilty issue was detected - regressing");
         }

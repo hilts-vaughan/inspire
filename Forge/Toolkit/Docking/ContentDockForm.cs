@@ -41,6 +41,14 @@ namespace Toolkit.Docking
             treeContent.Invoke(() => treeContent.Sort());
         }
 
+        private void treeContent_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            // We've selected a node; we'll fire an event saying we wish proccess this
+            if (e.Node.Tag != null)
+                ContentRequested(sender, e);
+        }
+
+        public EventHandler<TreeNodeMouseClickEventArgs> ContentRequested;
 
 
 
