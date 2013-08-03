@@ -13,12 +13,15 @@ using Inspire.Network.Packets.Client.Content;
 using Inspire.Network.Packets.Server;
 using Inspire.Network.Packets.Server.Content;
 using Inspire.Shared.Models.Enums;
+using Inspire.Shared.Models.Templates;
 using Toolkit.Controls.Database;
 
 namespace Toolkit
 {
     public partial class FormDatabase : Form
     {
+        private int openedID = -1;
+
         public FormDatabase()
         {
             InitializeComponent();
@@ -34,7 +37,7 @@ namespace Toolkit
         {
             // Do something based on the result
             if (contentSaveResultPacket.RequestResult == RequestResult.Failed)
-                MessageBox.Show("An unexpected error occured while saving. Please try again. (The server rejected the request.)");
+                ShowMessageBox("An unexpected error occured while saving. Please try again. (The server rejected the request.)", "Server Response");
 
             // Fetch a new, clean list
             RequestContentList();
@@ -45,17 +48,44 @@ namespace Toolkit
 
         private void lstIndex_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            // Send a release request quickly
+
+            ReleaseContent();
+
             // Make the request
             var type = GetActiveContentPage().ContentType;
-            var request = new ContentRequestPacket(type, lstIndex.SelectedIndex + 1);
+            var request = new ContentRequestPacket(type, (lstIndex.SelectedItem as EditorTemplateEntry).ID);
+
 
             // Send the request
             NetworkManager.Instance.SendPacket(request);
 
+
+        }
+
+        private void ReleaseContent()
+        {
+            var contentPage = GetActiveContentPage();
+
+            if (contentPage.BoundObject != null)
+            {
+                if (openedID != contentPage.BoundObject.Id)
+                    return;
+
+                var releaseRequest = new ContentReleasePacket(contentPage.ContentType, contentPage.BoundObject.Id);
+                NetworkManager.Instance.SendPacket(releaseRequest);
+            }
         }
 
         private void Handler(ContentResultPacket contentResultPacket)
         {
+
+            if (contentResultPacket.Locked)
+            {
+                ShowMessageBox("The server rejected your request for this content. This usually happens because someone else has it checked out.", "Server Response");
+                return;
+            }
 
             var page = GetActiveContentPage();
 
@@ -63,11 +93,25 @@ namespace Toolkit
             var contentGrid = tabContentPages.SelectedTab.Controls[0];
             BindingHelper.ClearBindings(contentGrid);
 
-            page.BoundObject = contentResultPacket.ContentObject;
+            page.BoundObject = contentResultPacket.ContentObject as IContentTemplate;
             page.BindTemplateObject(contentResultPacket.ContentObject);
+
+            openedID = (contentResultPacket.ContentObject as IContentTemplate).Id;
+
 
 
         }
+
+        public DialogResult ShowMessageBox(String message, String caption)
+        {
+            if (this.InvokeRequired)
+            {
+                return (DialogResult)this.Invoke(new PassStringStringReturnDialogResultDelegate(ShowMessageBox), message, caption);
+            }
+            return MessageBox.Show(this, message, caption);
+        }
+
+        public delegate DialogResult PassStringStringReturnDialogResultDelegate(String s1, String s2);
 
         private void Handler(ContentListResultPacket contentListResultPacket)
         {
@@ -127,6 +171,22 @@ namespace Toolkit
 
             // We need to ensure no double clicks are permitted / navigation away
             Enabled = false;
+        }
+
+        private void FormDatabase_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormDatabase_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ReleaseContent();
+        }
+
+        private void lstIndex_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Left || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
+                e.Handled = true;
         }
 
 

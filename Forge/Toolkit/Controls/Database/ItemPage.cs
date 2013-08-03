@@ -33,7 +33,7 @@ namespace Toolkit.Controls.Database
             get { return ContentType.Item; }
         }
 
-        public object BoundObject { get; set; }
+        public IContentTemplate BoundObject { get; set; }
 
         public void BindTemplateObject(object templateObject)
         {

@@ -30,7 +30,7 @@ namespace GameServer.Services.Editor
         private ContentLockManager _contentLockManager = new ContentLockManager();
 
         // Services bootstrapped by this one
-        private static EditorAuthenticationService _editorAuthenticationService ;
+        private static EditorAuthenticationService _editorAuthenticationService;
 
         public EditorService()
         {
@@ -40,36 +40,53 @@ namespace GameServer.Services.Editor
         private void Handler(ContentSaveRequestPacket contentSaveRequestPacket)
         {
             var result = RequestResult.Succesful;
-            try
-            {
 
-                // Create our context and use it
-                using (var context = new ServerContext())
+            var locked = !_contentLockManager.HasLock(contentSaveRequestPacket.Sender, contentSaveRequestPacket.ContentObject.Id,
+                                                contentSaveRequestPacket.ContentType);
+            if (!locked)
+
+            {
+                try
                 {
-                    switch (contentSaveRequestPacket.ContentType)
+
+                    // Create our context and use it
+                    using (var context = new ServerContext())
                     {
-                        case ContentType.Item:
-                            var item = context.ItemTemplates.Attach(contentSaveRequestPacket.ContentObject as ItemTemplate);
-                            context.Entry(item).State = EntityState.Modified;
-                            context.SaveChanges();
-                            break;
-                        case ContentType.Skill:
-                            var skill = context.SkillTemplates.Attach(contentSaveRequestPacket.ContentObject as SkillTemplate);
-                            context.Entry(skill).State = EntityState.Modified;
-                            context.SaveChanges();
-                            break;
+                        switch (contentSaveRequestPacket.ContentType)
+                        {
+                            case ContentType.Item:
+                                var item =
+                                    context.ItemTemplates.Attach(contentSaveRequestPacket.ContentObject as ItemTemplate);
+                                context.Entry(item).State = EntityState.Modified;
+                                context.SaveChanges();
+                                break;
+                            case ContentType.Skill:
+                                var skill =
+                                    context.SkillTemplates.Attach(
+                                        contentSaveRequestPacket.ContentObject as SkillTemplate);
+                                context.Entry(skill).State = EntityState.Modified;
+                                context.SaveChanges();
+                                break;
 
-                        default:
-                            result = RequestResult.Failed;
-                            return;
+                            default:
+                                result = RequestResult.Failed;
+                                return;
+                        }
                     }
-                }
 
+                }
+                catch (Exception exception)
+                {
+                    // Log the error and eat it
+                    Logger.Instance.Log(Level.Error,
+                                        "The content of type " + contentSaveRequestPacket.ContentType +
+                                        " failed to save: " + exception);
+                    result = RequestResult.Failed;
+                }
             }
-            catch (Exception exception)
+            else
             {
-                // Log the error and eat it
-                Logger.Instance.Log(Level.Error, "The content of type " + contentSaveRequestPacket.ContentType + " failed to save: " + exception);
+                // If it's locked, it's considered a failure
                 result = RequestResult.Failed;
             }
 
@@ -122,35 +139,38 @@ namespace GameServer.Services.Editor
             var context = new ServerContext();
 
             foreach (var itemTemplate in context.ItemTemplates)
-                entries.Add(new EditorTemplateEntry(itemTemplate.ID, itemTemplate.Name));
+                entries.Add(new EditorTemplateEntry(itemTemplate.Id, itemTemplate.Name));
             return entries;
         }
 
         private void Handler(ContentRequestPacket contentRequestPacket)
         {
             var type = contentRequestPacket.ContentType;
-            object o;
+            object o = null;
+            var locked = !_contentLockManager.TryAcquireLock(contentRequestPacket.Sender, contentRequestPacket.ID,
+                                                            contentRequestPacket.ContentType);
 
-            switch (type)
+            if (!locked)
             {
-                case ContentType.Item:
-                    o = GetItemByID(contentRequestPacket.ID);
-                    break;
-                case ContentType.Skill:
-                    o = GetSkillByID(contentRequestPacket.ID);
-                    break;
-                default:
-                    Logger.Instance.Log(Level.Warn, "The client has requested a resource with an unknown identifier.");
-                    return;
+
+                switch (type)
+                {
+                    case ContentType.Item:
+                        o = GetItemByID(contentRequestPacket.ID);
+                        break;
+                    case ContentType.Skill:
+                        o = GetSkillByID(contentRequestPacket.ID);
+                        break;
+                    default:
+                        Logger.Instance.Log(Level.Warn,
+                                            "The client has requested a resource with an unknown identifier.");
+                        return;
+                }
             }
 
+            var packet = new ContentResultPacket(o, locked);
+            ClientNetworkManager.Instance.SendPacket(packet, contentRequestPacket.Sender);
 
-            // Make sure we actually recieved something
-            if (o != null)
-            {
-                var packet = new ContentResultPacket(o);
-                ClientNetworkManager.Instance.SendPacket(packet, contentRequestPacket.Sender);
-            }
 
 
         }
@@ -158,7 +178,7 @@ namespace GameServer.Services.Editor
         private object GetItemByID(int id)
         {
             var context = new ServerContext();
-            var item = context.ItemTemplates.FirstOrDefault(x => x.ID == id);
+            var item = context.ItemTemplates.FirstOrDefault(x => x.Id == id);
             return item;
         }
 
@@ -180,6 +200,7 @@ namespace GameServer.Services.Editor
             PacketService.RegisterPacket<ContentRequestPacket>(Handler);
             PacketService.RegisterPacket<ContentListRequestPacket>(Handler);
             PacketService.RegisterPacket<ContentSaveRequestPacket>(Handler);
+            PacketService.RegisterPacket<ContentReleasePacket>(HandleRelease);
 
             // The editor module will bootstrap it's own services
             _editorAuthenticationService = new EditorAuthenticationService(_authorizationTable);
@@ -189,5 +210,18 @@ namespace GameServer.Services.Editor
             ServiceContainer.RegisterService(_editorAuthenticationService);
 
         }
+
+        private void HandleRelease(ContentReleasePacket contentReleasePacket)
+        {
+            // The client claims it's done, so relesae the lock if needed
+            var success = _contentLockManager.TryReleaseLock(contentReleasePacket.Sender, contentReleasePacket.ID,
+                                               contentReleasePacket.ContentType);
+
+            if(!success)
+                Logger.Instance.Log(Level.Warn, "A connection attempted to release a resource that didn't belong to them. Ignoring.");
+            else
+                Logger.Instance.Log(Level.Debug, "Succesfully unlocked " + contentReleasePacket.ID);
+        }
+
     }
 }

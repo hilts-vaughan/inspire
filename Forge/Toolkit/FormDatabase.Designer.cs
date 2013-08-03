@@ -30,11 +30,11 @@
         {
             this.tabContentPages = new System.Windows.Forms.TabControl();
             this.tabItems = new System.Windows.Forms.TabPage();
-            this.itemPage = new Toolkit.Controls.Database.ItemPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.skillPage1 = new Toolkit.Controls.Database.SkillPage();
             this.lstIndex = new System.Windows.Forms.ListBox();
             this.buttonApplyChanges = new System.Windows.Forms.Button();
+            this.itemPage = new Toolkit.Controls.Database.ItemPage();
+            this.skillPage1 = new Toolkit.Controls.Database.SkillPage();
             this.tabContentPages.SuspendLayout();
             this.tabItems.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -65,16 +65,6 @@
             this.tabItems.Text = "Items";
             this.tabItems.UseVisualStyleBackColor = true;
             // 
-            // itemPage
-            // 
-            this.itemPage.BoundObject = null;
-            this.itemPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemPage.Enabled = false;
-            this.itemPage.Location = new System.Drawing.Point(3, 3);
-            this.itemPage.Name = "itemPage";
-            this.itemPage.Size = new System.Drawing.Size(886, 514);
-            this.itemPage.TabIndex = 1;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.skillPage1);
@@ -85,16 +75,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Skills";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // skillPage1
-            // 
-            this.skillPage1.BoundObject = null;
-            this.skillPage1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.skillPage1.Enabled = false;
-            this.skillPage1.Location = new System.Drawing.Point(3, 3);
-            this.skillPage1.Name = "skillPage1";
-            this.skillPage1.Size = new System.Drawing.Size(886, 514);
-            this.skillPage1.TabIndex = 1;
             // 
             // lstIndex
             // 
@@ -107,6 +87,7 @@
             this.lstIndex.Size = new System.Drawing.Size(165, 575);
             this.lstIndex.TabIndex = 2;
             this.lstIndex.SelectedIndexChanged += new System.EventHandler(this.lstIndex_SelectedIndexChanged);
+            this.lstIndex.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstIndex_KeyDown);
             // 
             // buttonApplyChanges
             // 
@@ -117,6 +98,26 @@
             this.buttonApplyChanges.Text = "Apply";
             this.buttonApplyChanges.UseVisualStyleBackColor = true;
             this.buttonApplyChanges.Click += new System.EventHandler(this.buttonApplyChanges_Click);
+            // 
+            // itemPage
+            // 
+            this.itemPage.BoundObject = null;
+            this.itemPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemPage.Enabled = false;
+            this.itemPage.Location = new System.Drawing.Point(3, 3);
+            this.itemPage.Name = "itemPage";
+            this.itemPage.Size = new System.Drawing.Size(886, 514);
+            this.itemPage.TabIndex = 1;
+            // 
+            // skillPage1
+            // 
+            this.skillPage1.BoundObject = null;
+            this.skillPage1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.skillPage1.Enabled = false;
+            this.skillPage1.Location = new System.Drawing.Point(3, 3);
+            this.skillPage1.Name = "skillPage1";
+            this.skillPage1.Size = new System.Drawing.Size(886, 514);
+            this.skillPage1.TabIndex = 1;
             // 
             // FormDatabase
             // 
@@ -133,7 +134,9 @@
             this.Name = "FormDatabase";
             this.ShowIcon = false;
             this.Text = "Database";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDatabase_FormClosing);
             this.Load += new System.EventHandler(this.FormDatabase_Load);
+            this.Leave += new System.EventHandler(this.FormDatabase_Leave);
             this.tabContentPages.ResumeLayout(false);
             this.tabItems.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

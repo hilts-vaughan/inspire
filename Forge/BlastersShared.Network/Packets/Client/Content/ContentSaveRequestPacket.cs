@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BlastersShared;
 using Inspire.Network.Packets.Server;
 using Inspire.Shared.Models.Enums;
+using Inspire.Shared.Models.Templates;
 using Lidgren.Network;
 
 namespace Inspire.Network.Packets.Client.Content
@@ -15,10 +16,10 @@ namespace Inspire.Network.Packets.Client.Content
          /// <summary>
         /// An object that has content shoved within it
         /// </summary>
-        public object ContentObject { get; set; }
+        public IContentTemplate ContentObject { get; set; }
         public ContentType ContentType { get; set; }
 
-        public ContentSaveRequestPacket(object contentObject, ContentType contentType)
+        public ContentSaveRequestPacket(IContentTemplate contentObject, ContentType contentType)
         {
             ContentObject = contentObject;
             ContentType = contentType;
@@ -45,7 +46,7 @@ namespace Inspire.Network.Packets.Client.Content
             var bytes = incomingMessage.ReadBytes(length);
             var type = (ContentType) incomingMessage.ReadByte();
 
-            var o = SerializationHelper.ByteArrayToObject(bytes);
+            var o = SerializationHelper.ByteArrayToObject(bytes) as IContentTemplate;
             var packet = new ContentSaveRequestPacket(o, type);
 
             return packet;

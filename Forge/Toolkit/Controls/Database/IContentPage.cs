@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Inspire.Shared.Models.Enums;
+using Inspire.Shared.Models.Templates;
 
 namespace Toolkit.Controls.Database
 {
@@ -18,7 +19,7 @@ namespace Toolkit.Controls.Database
         /// <summary>
         /// The object that has been bound to this content page
         /// </summary>
-        object BoundObject { get; set; }
+        IContentTemplate BoundObject { get; set; }
 
         /// <summary>
         /// A method to begin binding the given object to the page itself

@@ -13,7 +13,7 @@ namespace GameServer.Editor.ContentLocking
     public class ContentLockStore
     {
         // Current locks on a particular piece of content
-        private Dictionary<int, NetConnection> _contentLocks; 
+        private Dictionary<int, NetConnection> _contentLocks = new Dictionary<int, NetConnection>(); 
 
         public bool TryAcquireLock(NetConnection connection, int ID)
         {

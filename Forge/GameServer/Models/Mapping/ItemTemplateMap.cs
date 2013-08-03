@@ -9,7 +9,7 @@ namespace GameServer.Models.Mapping
         public ItemTemplateMap()
         {
             // Primary Key
-            this.HasKey(t => t.ID);
+            this.HasKey(t => t.Id);
 
             // Properties
             this.Property(t => t.Name)

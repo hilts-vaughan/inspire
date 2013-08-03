@@ -6,11 +6,11 @@ namespace Inspire.Shared.Models.Templates
     /// <summary>
     /// An item template
     /// </summary>
-    public class ItemTemplate
+    public class ItemTemplate : IContentTemplate
     {
         public ItemTemplate(int id, string name, string description, ItemType type, int price, bool consumed, int useSpeed)
         {
-            ID = id;
+            Id = id;
             Name = name;
             Description = description;
             Type = type;
@@ -24,12 +24,9 @@ namespace Inspire.Shared.Models.Templates
             
         }
 
-        /// <summary>
-        /// A unique ID in the database
-        /// </summary>
-        public int ID { get; set; }
-
+        public int Id { get; set; }
         public string Name { get; set; }
+        public string VirtualCategory { get; set; }
         public string Description { get; set; }
         
         public ItemType Type { get; set; }

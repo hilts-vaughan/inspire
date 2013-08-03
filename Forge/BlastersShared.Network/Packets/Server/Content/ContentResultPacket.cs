@@ -14,20 +14,26 @@ namespace Inspire.Network.Packets.Server
         /// An object that has content shoved within it
         /// </summary>
         public object ContentObject { get; set; }
+        public bool Locked { get; set; }
 
-        public ContentResultPacket(object contentObject)
+        public ContentResultPacket(object contentObject, bool locked)
         {
             ContentObject = contentObject;
+            Locked = locked;
         }
 
         public override NetOutgoingMessage ToNetBuffer(ref NetOutgoingMessage netOutgoingMessage)
         {
             base.ToNetBuffer(ref netOutgoingMessage);
 
-            var bytes = SerializationHelper.ObjectToByteArray(ContentObject);
+            netOutgoingMessage.Write(Locked);
 
-            netOutgoingMessage.Write(bytes.Length);
-            netOutgoingMessage.Write(bytes);
+            if (!Locked)
+            {
+                var bytes = SerializationHelper.ObjectToByteArray(ContentObject);
+                netOutgoingMessage.Write(bytes.Length);
+                netOutgoingMessage.Write(bytes);
+            }
 
             return netOutgoingMessage;
         }
@@ -35,11 +41,20 @@ namespace Inspire.Network.Packets.Server
 
         public new static Packet FromNetBuffer(NetIncomingMessage incomingMessage)
         {
-            var length = incomingMessage.ReadInt32();
-            var bytes = incomingMessage.ReadBytes(length);
 
-            var o = SerializationHelper.ByteArrayToObject(bytes);
-            var packet = new ContentResultPacket(o);
+            object o = null;
+            var locked = incomingMessage.ReadBoolean();
+
+
+            if (!locked)
+            {
+                var length = incomingMessage.ReadInt32();
+                var bytes = incomingMessage.ReadBytes(length);
+
+                o = SerializationHelper.ByteArrayToObject(bytes);
+            }
+
+            var packet = new ContentResultPacket(o, locked);
 
             return packet;
         }
