@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inspire.Network", "Blasters
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameServer", "GameServer\GameServer.csproj", "{0BB1A6FD-79C7-4193-9BAE-5039A6AEB829}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inspire.GameEngine", "Inspire.GameEngine\Inspire.GameEngine.csproj", "{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_MockGame|Any CPU = Debug_MockGame|Any CPU
@@ -85,6 +87,21 @@ Global
 		{0BB1A6FD-79C7-4193-9BAE-5039A6AEB829}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{0BB1A6FD-79C7-4193-9BAE-5039A6AEB829}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0BB1A6FD-79C7-4193-9BAE-5039A6AEB829}.Release|x86.ActiveCfg = Release|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Debug_MockGame|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Debug_MockGame|Any CPU.Build.0 = Debug|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Debug_MockGame|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Debug_MockGame|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Debug_MockGame|x86.ActiveCfg = Debug|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A4B36FE1-4D31-4FB9-9927-DC1DBB6418C5}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

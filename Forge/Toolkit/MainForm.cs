@@ -84,10 +84,27 @@ namespace Toolkit
 
 
             _garb = obj;
-            ShowForm();
+
+            if (obj.ContentType != ContentType.Map)
+                ShowForm();
+            else
+                ShowMapForm();
 
 
 
+        }
+
+        private void ShowMapForm()
+        {
+            if (this.InvokeRequired)
+            { // this refers to the current form
+                this.Invoke(new Action(ShowMapForm));  // this line invokes the same function on the same thread as the current form
+                return;
+            }
+
+            var bindForm = new MapForm();
+            bindForm.Show(dockPanel, DockState.Float);
+            bindForm.SetBinding(_garb.ContentObject);
         }
 
         private ContentResultPacket _garb;
@@ -448,7 +465,7 @@ namespace Toolkit
 
         private void buttonSaveContent_Click(object sender, EventArgs e)
         {
-            var activePanel = dockPanel.ActiveContent;
+            var activePanel = dockPanel.ActiveDocument;
             var saveable = activePanel as ISaveable;
 
 
