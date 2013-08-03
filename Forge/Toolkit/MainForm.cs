@@ -4,11 +4,14 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using BlastersGame.Network;
+using Inspire.Network.Packets.Client.Content;
+using Inspire.Shared.Models.Enums;
 using Toolkit.Configuration;
 using Toolkit.Docking;
 using Toolkit.Mapping;
@@ -164,8 +167,25 @@ namespace Toolkit
             var loginForm = new FormLogin();
             loginForm.ShowDialog();
 
+            // Show the waiting screen and ask for patience
+
+            // Generate the ContentMap dynamically, assinging everyone a backing
+            foreach (var contentType in GetValues<ContentType>())
+            {
+                //  Send out a request for each content type
+                var request = new ContentListRequestPacket(contentType);
+                NetworkManager.Instance.SendPacket(request);
+            }
 
         }
+
+
+
+        private static IEnumerable<T> GetValues<T>()
+        {
+            return Enum.GetValues(typeof(T)).Cast<T>();
+        }
+
 
         private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

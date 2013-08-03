@@ -30,26 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContentDockForm));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Node2");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Node3");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Node1", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Inspire Game", new System.Windows.Forms.TreeNode[] {
-            treeNode3});
             this.imagesTree = new System.Windows.Forms.ImageList(this.components);
             this.imagesState = new System.Windows.Forms.ImageList(this.components);
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeContent = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // imagesTree
             // 
             this.imagesTree.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imagesTree.ImageStream")));
             this.imagesTree.TransparentColor = System.Drawing.Color.Transparent;
-            this.imagesTree.Images.SetKeyName(0, "blue-folder-horizontal.png");
-            this.imagesTree.Images.SetKeyName(1, "blue-folder-horizontal-open.png");
-            this.imagesTree.Images.SetKeyName(2, "zodiac-leo.png");
-            this.imagesTree.Images.SetKeyName(3, "lock.png");
+            this.imagesTree.Images.SetKeyName(0, "folder.png");
+            this.imagesTree.Images.SetKeyName(1, "folder-open.png");
+            this.imagesTree.Images.SetKeyName(2, "map.png");
+            this.imagesTree.Images.SetKeyName(3, "screwdriver.png");
+            this.imagesTree.Images.SetKeyName(4, "ghost.png");
+            this.imagesTree.Images.SetKeyName(5, "xfn.png");
             // 
             // imagesState
             // 
@@ -57,39 +52,27 @@
             this.imagesState.TransparentColor = System.Drawing.Color.Transparent;
             this.imagesState.Images.SetKeyName(0, "control.png");
             // 
-            // treeView1
+            // treeContent
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.ImageIndex = 0;
-            this.treeView1.ImageList = this.imagesTree;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node2";
-            treeNode1.Text = "Node2";
-            treeNode2.Name = "Node3";
-            treeNode2.Text = "Node3";
-            treeNode3.Name = "Node1";
-            treeNode3.StateImageKey = "control.png";
-            treeNode3.Text = "Node1";
-            treeNode4.ImageIndex = 2;
-            treeNode4.Name = "GameNode";
-            treeNode4.StateImageKey = "control.png";
-            treeNode4.Text = "Inspire Game";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
-            this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.ShowPlusMinus = false;
-            this.treeView1.ShowRootLines = false;
-            this.treeView1.Size = new System.Drawing.Size(284, 261);
-            this.treeView1.StateImageList = this.imagesState;
-            this.treeView1.TabIndex = 0;
+            this.treeContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeContent.ImageIndex = 0;
+            this.treeContent.ImageList = this.imagesTree;
+            this.treeContent.Location = new System.Drawing.Point(0, 0);
+            this.treeContent.Name = "treeContent";
+            this.treeContent.PathSeparator = "/";
+            this.treeContent.SelectedImageIndex = 0;
+            this.treeContent.ShowPlusMinus = false;
+            this.treeContent.ShowRootLines = false;
+            this.treeContent.Size = new System.Drawing.Size(284, 261);
+            this.treeContent.StateImageList = this.imagesState;
+            this.treeContent.TabIndex = 0;
             // 
             // ContentDockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.treeContent);
             this.Name = "ContentDockForm";
             this.Text = "ContentDockForm";
             this.ResumeLayout(false);
@@ -98,7 +81,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeContent;
         private System.Windows.Forms.ImageList imagesTree;
         private System.Windows.Forms.ImageList imagesState;
     }

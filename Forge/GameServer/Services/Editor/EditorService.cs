@@ -117,7 +117,7 @@ namespace GameServer.Services.Editor
 
             if (editorTemplateEntries != null)
             {
-                var packet = new ContentListResultPacket(editorTemplateEntries);
+                var packet = new ContentListResultPacket(editorTemplateEntries, contentListRequestPacket.ContentType);
                 ClientNetworkManager.Instance.SendPacket(packet, contentListRequestPacket.Sender);
             }
 
@@ -168,7 +168,7 @@ namespace GameServer.Services.Editor
                 }
             }
 
-            var packet = new ContentResultPacket(o, locked);
+            var packet = new ContentResultPacket(o, locked, contentRequestPacket.ContentType);
             ClientNetworkManager.Instance.SendPacket(packet, contentRequestPacket.Sender);
 
 

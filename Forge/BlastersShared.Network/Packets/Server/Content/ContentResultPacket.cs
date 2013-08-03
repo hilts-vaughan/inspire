@@ -1,4 +1,5 @@
 ﻿using BlastersShared;
+using Inspire.Shared.Models.Enums;
 using Lidgren.Network;
 
 namespace Inspire.Network.Packets.Server
@@ -15,11 +16,13 @@ namespace Inspire.Network.Packets.Server
         /// </summary>
         public object ContentObject { get; set; }
         public bool Locked { get; set; }
+        public ContentType  ContentType { get; set; }
 
-        public ContentResultPacket(object contentObject, bool locked)
+        public ContentResultPacket(object contentObject, bool locked, ContentType contentType)
         {
             ContentObject = contentObject;
             Locked = locked;
+            ContentType = contentType;
         }
 
         public override NetOutgoingMessage ToNetBuffer(ref NetOutgoingMessage netOutgoingMessage)
@@ -27,6 +30,7 @@ namespace Inspire.Network.Packets.Server
             base.ToNetBuffer(ref netOutgoingMessage);
 
             netOutgoingMessage.Write(Locked);
+            netOutgoingMessage.Write((byte)ContentType);
 
             if (!Locked)
             {
@@ -44,7 +48,7 @@ namespace Inspire.Network.Packets.Server
 
             object o = null;
             var locked = incomingMessage.ReadBoolean();
-
+            var type = (ContentType) incomingMessage.ReadByte();
 
             if (!locked)
             {
@@ -54,7 +58,7 @@ namespace Inspire.Network.Packets.Server
                 o = SerializationHelper.ByteArrayToObject(bytes);
             }
 
-            var packet = new ContentResultPacket(o, locked);
+            var packet = new ContentResultPacket(o, locked, type);
 
             return packet;
         }
