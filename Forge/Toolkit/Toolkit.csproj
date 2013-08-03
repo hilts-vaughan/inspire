@@ -89,6 +89,7 @@
     <Compile Include="ContentBuilder.cs" />
     <Compile Include="ContentExplorer\ContentCategory.cs" />
     <Compile Include="ContentExplorer\ContentMapper.cs" />
+    <Compile Include="ContentExplorer\NodeSorter.cs" />
     <Compile Include="Controls\AssetViewList.cs">
       <SubType>UserControl</SubType>
     </Compile>

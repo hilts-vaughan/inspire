@@ -50,12 +50,49 @@ namespace Toolkit.ContentExplorer
 
             foreach (var editorTemplateEntry in _templateEntries)
             {
-                var node = new TreeNode(editorTemplateEntry.Name, (int)_contentType + 3, (int)_contentType + 3);
-                node.Tag = editorTemplateEntry;
-                root.Nodes.Add(node);
+                var n = root;
+
+                if (editorTemplateEntry.VirtualDirectory != null)
+                {
+                    // Generates nodes if needed
+                    foreach (
+                        var dirBit in
+                            editorTemplateEntry.VirtualDirectory.Split("/".ToArray(),
+                                                                       StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        n = AddNode(n, dirBit);
+                    }
+
+                    // This node belongs here, so add it here
+                    var node = new TreeNode(editorTemplateEntry.Name, (int)_contentType + 3, (int)_contentType + 3);
+                    node.Tag = editorTemplateEntry;
+                    n.Nodes.Add(node);
+                }
+                else
+                {
+                    var node = new TreeNode(editorTemplateEntry.Name, (int)_contentType + 3, (int)_contentType + 3);
+                    node.Tag = editorTemplateEntry;
+                    root.Nodes.Add(node);
+                }
+            
+
+
             }
 
             return root;
+        }
+
+
+        private TreeNode AddNode(TreeNode node, string key)
+        {
+            if (node.Nodes.ContainsKey(key))
+            {
+                return node.Nodes[key];
+            }
+            else
+            {
+                return node.Nodes.Add(key, key);
+            }
         }
 
         private void VerifyCategoryExists(TreeNode root, string virtualCategory)

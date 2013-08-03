@@ -17,14 +17,16 @@ namespace Inspire.Shared.Models.Templates
             
         }
 
-        public EditorTemplateEntry(int id, string name)
+        public EditorTemplateEntry(int id, string name, string virtualDirectory)
         {
             ID = id;
             Name = name;
+            VirtualDirectory = virtualDirectory;
         }
 
         public int ID { get; set; }
         public string Name { get; set; }
+        public string VirtualDirectory { get; set; }
 
         public override string ToString()
         {

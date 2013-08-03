@@ -26,6 +26,7 @@ namespace Toolkit.Docking
 
             // Listen for content data incoming
             PacketService.RegisterPacket<ContentListResultPacket>(HandleContent);
+            treeContent.TreeViewNodeSorter = new NodeSorter();
 
         }
 
@@ -37,7 +38,7 @@ namespace Toolkit.Docking
 
             // Add to the tree
             treeContent.Invoke(() => treeContent.Nodes.Add(categoryNode));
-
+            treeContent.Invoke(() => treeContent.Sort());
         }
 
 

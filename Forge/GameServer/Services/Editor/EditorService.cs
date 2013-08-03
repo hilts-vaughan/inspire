@@ -129,7 +129,7 @@ namespace GameServer.Services.Editor
             var context = new ServerContext();
 
             foreach (var skilltemplate in context.SkillTemplates)
-                entries.Add(new EditorTemplateEntry(skilltemplate.Id, skilltemplate.Name));
+                entries.Add(new EditorTemplateEntry(skilltemplate.Id, skilltemplate.Name, skilltemplate.VirtualCategory));
             return entries;
         }
 
@@ -139,7 +139,7 @@ namespace GameServer.Services.Editor
             var context = new ServerContext();
 
             foreach (var itemTemplate in context.ItemTemplates)
-                entries.Add(new EditorTemplateEntry(itemTemplate.Id, itemTemplate.Name));
+                entries.Add(new EditorTemplateEntry(itemTemplate.Id, itemTemplate.Name, itemTemplate.VirtualCategory));
             return entries;
         }
 
