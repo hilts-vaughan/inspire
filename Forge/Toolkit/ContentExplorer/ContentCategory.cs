@@ -51,6 +51,7 @@ namespace Toolkit.ContentExplorer
             foreach (var editorTemplateEntry in _templateEntries)
             {
                 var n = root;
+                TreeNode node;
 
                 if (editorTemplateEntry.VirtualDirectory != null)
                 {
@@ -64,17 +65,23 @@ namespace Toolkit.ContentExplorer
                     }
 
                     // This node belongs here, so add it here
-                    var node = new TreeNode(editorTemplateEntry.Name, (int)_contentType + 3, (int)_contentType + 3);
+                    node = new TreeNode(editorTemplateEntry.Name, (int)_contentType + 3, (int)_contentType + 3);
                     node.Tag = editorTemplateEntry;
                     n.Nodes.Add(node);
                 }
                 else
                 {
-                    var node = new TreeNode(editorTemplateEntry.Name, (int)_contentType + 3, (int)_contentType + 3);
+                    node = new TreeNode(editorTemplateEntry.Name, (int)_contentType + 3, (int)_contentType + 3);
                     node.Tag = editorTemplateEntry;
                     root.Nodes.Add(node);
                 }
-            
+
+                if (editorTemplateEntry.Locked)
+                {
+                    node.ImageKey = "lock.png";
+                    node.SelectedImageKey = "lock.png";                    
+                }
+
 
 
             }

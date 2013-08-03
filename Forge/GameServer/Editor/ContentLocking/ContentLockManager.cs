@@ -47,6 +47,12 @@ namespace GameServer.Editor.ContentLocking
             return contentStore.HasLock(connection, ID);
         }
 
+        public bool AnyoneHasLock(NetConnection connection, int ID, ContentType contentType)
+        {
+            var contentStore = _contentLockStores[contentType];
+            return contentStore.AnyoneHasLock(connection, ID);
+        }
+
         public bool TryAcquireLock(NetConnection connection, int ID, ContentType contentType)
         {
             var contentStore = _contentLockStores[contentType];

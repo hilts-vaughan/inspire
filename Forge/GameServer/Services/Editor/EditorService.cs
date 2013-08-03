@@ -18,6 +18,7 @@ using Inspire.Network.Packets.Server.Content;
 using Inspire.Shared.Models.Enums;
 using Inspire.Shared.Models.Templates;
 using Inspire.Shared.Service;
+using Lidgren.Network;
 
 namespace GameServer.Services.Editor
 {
@@ -104,10 +105,10 @@ namespace GameServer.Services.Editor
             switch (type)
             {
                 case ContentType.Item:
-                    editorTemplateEntries = GetAllItems();
+                    editorTemplateEntries = GetAllItems(contentListRequestPacket.Sender);
                     break;
                 case ContentType.Skill:
-                    editorTemplateEntries = GetAllSkills();
+                    editorTemplateEntries = GetAllSkills(contentListRequestPacket.Sender);
                     break;
                 default:
                     Logger.Instance.Log(Level.Warn, "The client has requested a resource with an unknown identifier.");
@@ -123,23 +124,32 @@ namespace GameServer.Services.Editor
 
         }
 
-        private List<EditorTemplateEntry> GetAllSkills()
+        private List<EditorTemplateEntry> GetAllSkills(NetConnection connection)
         {
             var entries = new List<EditorTemplateEntry>();
             var context = new ServerContext();
 
+
             foreach (var skilltemplate in context.SkillTemplates)
-                entries.Add(new EditorTemplateEntry(skilltemplate.Id, skilltemplate.Name, skilltemplate.VirtualCategory, ContentType.Skill));
+            {
+                var locked = _contentLockManager.AnyoneHasLock(connection, skilltemplate.Id, ContentType.Skill);
+                entries.Add(new EditorTemplateEntry(skilltemplate.Id, skilltemplate.Name, skilltemplate.VirtualCategory,
+                                                    ContentType.Skill, locked));
+            }
             return entries;
         }
 
-        private List<EditorTemplateEntry> GetAllItems()
+        private List<EditorTemplateEntry> GetAllItems(NetConnection connection)
         {
             var entries = new List<EditorTemplateEntry>();
             var context = new ServerContext();
 
             foreach (var itemTemplate in context.ItemTemplates)
-                entries.Add(new EditorTemplateEntry(itemTemplate.Id, itemTemplate.Name, itemTemplate.VirtualCategory, ContentType.Item));
+            {
+                var locked = _contentLockManager.AnyoneHasLock(connection, itemTemplate.Id, ContentType.Item);
+                entries.Add(new EditorTemplateEntry(itemTemplate.Id, itemTemplate.Name, itemTemplate.VirtualCategory,
+                                                    ContentType.Item, locked));
+            }
             return entries;
         }
 

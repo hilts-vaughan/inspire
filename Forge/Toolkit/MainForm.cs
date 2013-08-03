@@ -446,6 +446,41 @@ namespace Toolkit
             thread.Abort();
         }
 
+        private void buttonSaveContent_Click(object sender, EventArgs e)
+        {
+            var activePanel = dockPanel.ActiveContent;
+            var saveable = activePanel as ISaveable;
+
+
+            if (saveable != null)
+            {
+                saveable.Save();
+            }
+
+        }
+
+        private void buttonSaveAll_Click(object sender, EventArgs e)
+        {
+            foreach (var window in dockPanel.FloatWindows)
+            {
+                var saveable = window as ISaveable;
+                if (saveable != null)
+                {
+                    saveable.Save();
+                }                
+            }
+        }
+
+        private void toolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            buttonSaveContent.PerformClick();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            buttonSaveAll.PerformClick();
+        }
+
 
 
 

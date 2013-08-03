@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BlastersGame.Network;
+using Inspire.Network.Packets.Client.Content;
 using Inspire.Shared.Models.Enums;
 using Inspire.Shared.Models.Templates;
 using Toolkit.Controls.Database;
 
 namespace Toolkit.Docking.Content
 {
-    public partial class GenericContentBindForm : ToolWindow
+    public partial class GenericContentBindForm : ToolWindow, ISaveable
     {
         public GenericContentBindForm()
         {
@@ -26,10 +28,18 @@ namespace Toolkit.Docking.Content
 
         }
 
+        private int _id;
+        private ContentType _contentType;
+        private object _bound;
 
         public void SetBinding(object contentObject, ContentType contentType)
         {
+            
             var genericTemplate = contentObject as IContentTemplate;
+            
+            _id = genericTemplate.Id;
+            _contentType = contentType;
+            _bound = contentObject;
 
             // Determine what to do
             switch (contentType)
@@ -61,6 +71,28 @@ namespace Toolkit.Docking.Content
 
         }
 
+        private void GenericContentBindForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+        ReleaseContent();
+        }
+
+        private void ReleaseContent()
+        {
+                var releaseRequest = new ContentReleasePacket(_contentType, _id);
+                NetworkManager.Instance.SendPacket(releaseRequest);
+            
+        }
+
+
+        public void Save()
+        {
+            var request = new ContentSaveRequestPacket(_bound as IContentTemplate, _contentType);
+
+            // Send the request
+            NetworkManager.Instance.SendPacket(request);
+
+
+        }
 
     }
 }

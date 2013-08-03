@@ -45,6 +45,7 @@
             this.imagesTree.Images.SetKeyName(3, "screwdriver.png");
             this.imagesTree.Images.SetKeyName(4, "ghost.png");
             this.imagesTree.Images.SetKeyName(5, "xfn.png");
+            this.imagesTree.Images.SetKeyName(6, "lock.png");
             // 
             // imagesState
             // 

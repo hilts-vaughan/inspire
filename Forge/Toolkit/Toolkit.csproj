@@ -430,6 +430,8 @@
     <None Include="Resources\paint-brush-color.png" />
     <None Include="Resources\paint-brush.png" />
     <None Include="Resources\eraser.png" />
+    <None Include="Resources\disk1.png" />
+    <None Include="Resources\disks.png" />
     <Content Include="SciLexer.dll" />
     <None Include="Resources\script_add.png" />
     <None Include="Resources\user_delete.png" />

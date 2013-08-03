@@ -36,8 +36,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
+            this.HideOnClose = false;
             this.Name = "GenericContentBindForm";
             this.Text = "GenericContentBindForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GenericContentBindForm_FormClosed);
             this.ResumeLayout(false);
 
         }

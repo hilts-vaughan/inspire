@@ -18,18 +18,20 @@ namespace Inspire.Shared.Models.Templates
             
         }
 
-        public EditorTemplateEntry(int id, string name, string virtualDirectory, ContentType contentType)
+        public EditorTemplateEntry(int id, string name, string virtualDirectory, ContentType contentType, bool locked)
         {
             ID = id;
             Name = name;
             VirtualDirectory = virtualDirectory;
             ContentType = contentType;
+            Locked = locked;
         }
 
         public int ID { get; set; }
         public string Name { get; set; }
         public string VirtualDirectory { get; set; }
         public ContentType ContentType { get; set; }
+        public bool Locked { get; set; }
 
         public override string ToString()
         {

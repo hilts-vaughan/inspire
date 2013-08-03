@@ -77,6 +77,9 @@ namespace GameServer.Editor.ContentLocking
 
         }
 
-
+        public bool AnyoneHasLock(NetConnection connection, int ID)
+        {
+            return _contentLocks.ContainsKey(ID);
+        }
     }
 }
