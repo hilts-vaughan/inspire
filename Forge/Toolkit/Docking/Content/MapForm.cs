@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inspire.Shared.Models.Enums;
+using Inspire.Shared.Models.Map;
 using Inspire.Shared.Models.Templates;
 
 namespace Toolkit.Docking.Content
@@ -33,11 +34,20 @@ namespace Toolkit.Docking.Content
             Update();
             Invalidate();
 
+            // Get our map
+            var map = GameMap.FromTemplate(_template);
+
+            mapView.SetMap(map);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            MessageBox.Show("I'm saved");
+        }
+
+        private void timerRedraw_Tick(object sender, EventArgs e)
+        {
+            mapView.Invalidate();
         }
     }
 }

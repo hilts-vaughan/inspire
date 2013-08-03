@@ -28,25 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mapRenderControl1 = new Toolkit.Controls.Rendering.MapRenderControl();
+            this.components = new System.ComponentModel.Container();
+            this.mapView = new Toolkit.Controls.Rendering.MapRenderControl();
+            this.timerRedraw = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // mapRenderControl1
+            // mapView
             // 
-            this.mapRenderControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mapRenderControl1.Location = new System.Drawing.Point(0, 0);
-            this.mapRenderControl1.Name = "mapRenderControl1";
-            this.mapRenderControl1.Size = new System.Drawing.Size(284, 261);
-            this.mapRenderControl1.SpriteBatch = null;
-            this.mapRenderControl1.TabIndex = 0;
-            this.mapRenderControl1.Text = "mapRenderControl1";
+            this.mapView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapView.Location = new System.Drawing.Point(0, 0);
+            this.mapView.Name = "mapView";
+            this.mapView.Size = new System.Drawing.Size(284, 261);
+            this.mapView.SpriteBatch = null;
+            this.mapView.TabIndex = 0;
+            this.mapView.Text = "mapRenderControl1";
+            // 
+            // timerRedraw
+            // 
+            this.timerRedraw.Enabled = true;
+            this.timerRedraw.Interval = 120;
+            this.timerRedraw.Tick += new System.EventHandler(this.timerRedraw_Tick);
             // 
             // MapForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.mapRenderControl1);
+            this.Controls.Add(this.mapView);
+            this.DockAreas = WeifenLuo.WinFormsUI.Docking.DockAreas.Document;
             this.HideOnClose = false;
             this.Name = "MapForm";
             this.TabText = "Map";
@@ -57,6 +66,7 @@
 
         #endregion
 
-        private Controls.Rendering.MapRenderControl mapRenderControl1;
+        private Controls.Rendering.MapRenderControl mapView;
+        private System.Windows.Forms.Timer timerRedraw;
     }
 }

@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using BlastersGame.Network;
+using Inspire.GameEngine.ScreenManager.Network;
 using Inspire.Network;
 using Inspire.Network.Packets.Client;
 using Inspire.Network.Packets.Client.Content;

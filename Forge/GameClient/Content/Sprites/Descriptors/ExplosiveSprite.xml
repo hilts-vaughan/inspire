@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<SpriteDescriptor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>ExplosiveSprite</Name>
+  <SpritePath>Sprites\ExplosiveSprite</SpritePath>
+  <FrameSize>
+    <X>32</X>
+    <Y>32</Y>
+  </FrameSize>
+  <BoundingBox>
+    <X>0</X>
+    <Y>0</Y>
+    <Width>0</Width>
+    <Height>0</Height>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+  </BoundingBox>
+  <SpriteDepth>1</SpriteDepth>
+  <Animations>
+    
+    
+    <SpriteDescriptorAnimation>
+      <Name>Center</Name>
+      <Speed>0.1</Speed>
+      <FrameCount>1</FrameCount>
+      <Row>0</Row>
+    </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>Left</Name>
+      <Speed>0.1</Speed>
+      <FrameCount>1</FrameCount>
+      <Row>1</Row>
+    </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>Right</Name>
+      <Speed>0.1</Speed>
+      <FrameCount>1</FrameCount>
+      <Row>2</Row>
+    </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>Up</Name>
+      <Speed>0.1</Speed>
+      <FrameCount>1</FrameCount>
+      <Row>3</Row>
+    </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>Down</Name>
+      <Speed>0.1</Speed>
+      <FrameCount>1</FrameCount>
+      <Row>4</Row>
+    </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>LeftE</Name>
+      <Speed>0.15</Speed>
+      <FrameCount>1</FrameCount>
+      <Row>5</Row>
+    </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>RightE</Name>
+      <Speed>0.1</Speed>
+      <FrameCount>1</FrameCount>
+      <Row>6</Row>
+    </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>UpE</Name>
+      <Speed>0.1</Speed>
+      <FrameCount>1</FrameCount>
+      <Row>7</Row>
+    </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>DownE</Name>
+      <Speed>0.1</Speed>
+      <FrameCount>1</FrameCount>
+      <Row>8</Row>
+    </SpriteDescriptorAnimation>
+
+
+    
+  </Animations>
+</SpriteDescriptor>

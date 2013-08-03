@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<SpriteDescriptor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>RangeUp</Name>
+  <SpritePath>Sprites\Mods\RangeUp</SpritePath>
+  <FrameSize>
+    <X>32</X>
+    <Y>32</Y>
+  </FrameSize>
+  <BoundingBox>
+    <X>0</X>
+    <Y>0</Y>
+    <Width>32</Width>
+    <Height>32</Height>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+  </BoundingBox>
+  <SpriteDepth>1</SpriteDepth>
+  <Animations>
+    <SpriteDescriptorAnimation>
+      <Name>Default</Name>
+      <Speed>0.25</Speed>
+      <FrameCount>1</FrameCount>
+      <Row>0</Row>
+    </SpriteDescriptorAnimation>
+  </Animations>
+</SpriteDescriptor>

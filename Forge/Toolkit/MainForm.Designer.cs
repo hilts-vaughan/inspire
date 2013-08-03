@@ -609,6 +609,7 @@ namespace Toolkit
             this.Controls.Add(this.statusBar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuMain;
             this.Name = "MainForm";
             this.Text = "Inspire";

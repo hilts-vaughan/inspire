@@ -8,7 +8,7 @@ using Lidgren.Network;
 using Microsoft.Xna.Framework;
 using Toolkit;
 
-namespace BlastersGame.Network
+namespace Inspire.GameEngine.ScreenManager.Network
 {
     /// <summary>
     /// Creates and manages networking server that listens for incoming connections and handles the incoming data. 
@@ -31,11 +31,11 @@ namespace BlastersGame.Network
         {
             var config = new NetPeerConfiguration("Inspire");
             Random random = new Random();
-            
 
 
-           //config.SimulatedMinimumLatency = (float)MathHelper.Clamp((float)random.NextDouble(), 0, 0.95f); //(float) random.NextDouble();
-           //config.SimulatedMinimumLatency = (float)MathHelper.Clamp((float)random.NextDouble(), 0, 0.05f); //(float) random.NextDouble();
+
+            //config.SimulatedMinimumLatency = (float)MathHelper.Clamp((float)random.NextDouble(), 0, 0.95f); //(float) random.NextDouble();
+            //config.SimulatedMinimumLatency = (float)MathHelper.Clamp((float)random.NextDouble(), 0, 0.05f); //(float) random.NextDouble();
             //config.SimulatedRandomLatency = 0.05f;
             config.ConnectionTimeout = 500;
 
@@ -50,11 +50,14 @@ namespace BlastersGame.Network
 
         public NetConnectionStatus Status
         {
-            get { return _client.ConnectionStatus;  }
+            get { return _client.ConnectionStatus; }
         }
 
         public void Connect()
         {
+            if (!File.Exists(Environment.CurrentDirectory + "\\ip.txt"))
+                File.WriteAllText(Environment.CurrentDirectory + "\\ip.txt", "127.0.0.1");
+
             _client.Connect(File.ReadAllText(Environment.CurrentDirectory + "\\ip.txt"), 8787);
         }
 
@@ -72,7 +75,7 @@ namespace BlastersGame.Network
             {
                 if (_client.ServerConnection != null)
                     return _client.ServerConnection.AverageRoundtripTime;
-                    return 0f;
+                return 0f;
             }
         }
 
@@ -172,7 +175,7 @@ namespace BlastersGame.Network
 
 
                         if (type == NetConnectionStatus.Disconnected)
-                        {                       
+                        {
                             InvokeClientDisconnected(new DisconnectArgs(message));
                         }
 

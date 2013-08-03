@@ -10,8 +10,8 @@ namespace GameServer.Models
     {
         static ServerContext()
         {
-            Database.SetInitializer(new CreateDatabaseIfNotExists<ServerContext>());
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ServerContext>());
+            //Database.SetInitializer(new CreateDatabaseIfNotExists<ServerContext>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ServerContext>());
             Database.SetInitializer(new CustomInitializer());
         }
 

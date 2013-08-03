@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BlastersGame.Network;
+using Inspire.GameEngine.ScreenManager.Network;
 using Inspire.Network.Packets.Client.Content;
 using Inspire.Shared.Models.Enums;
 using Inspire.Shared.Models.Templates;

@@ -9,10 +9,12 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
-using BlastersGame.Network;
+using Inspire.GameEngine.ScreenManager.Network;
+using Inspire.Network;
 using Inspire.Network.Packets.Client;
 using Inspire.Network.Packets.Client.Content;
 using Inspire.Network.Packets.Server;
+using Inspire.Network.Packets.Server.Content;
 using Inspire.Shared.Models.Enums;
 using Inspire.Shared.Models.Templates;
 using Toolkit.Configuration;
@@ -20,7 +22,6 @@ using Toolkit.Docking;
 using Toolkit.Docking.Content;
 using Toolkit.Mapping;
 using WeifenLuo.WinFormsUI.Docking;
-using ScintillaNet;
 using Style = WeifenLuo.WinFormsUI.Docking.Skins.Style;
 
 namespace Toolkit
@@ -52,6 +53,8 @@ namespace Toolkit
             InitializeComponent();
 
             dockPanel.Theme = new VS2012LightTheme();
+            dockPanel.Theme = new VS2005Theme();
+
 
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
 
@@ -60,8 +63,61 @@ namespace Toolkit
 
             // Listen for some particular events
             PacketService.RegisterPacket<ContentResultPacket>(Handler);
+            PacketService.RegisterPacket<ContentSaveResultPacket>(HandleSaveResult);
+
+            //RegisterHotkeys();
 
         }
+
+        private void RegisterHotkeys()
+        {
+            Hotkey hk = new Hotkey();
+            hk.Windows = true;
+
+            hk.Pressed += HkOnPressed;
+            hk.Register(this);
+
+        }
+
+        private void HkOnPressed(object sender, HandledEventArgs handledEventArgs)
+        {
+            
+        }
+
+        private void HandleSaveResult(ContentSaveResultPacket contentSaveResultPacket)
+        {
+            if (contentSaveResultPacket.RequestResult == RequestResult.Succesful)
+            {
+                //TODO: Notify the user it was successful
+            }
+            else
+            {
+                ShowMessageBox(
+                    "The server rejected your save request. This usually happens due to trying to save locked content.",
+                    "Server Response");
+            }
+
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.S | Keys.ShiftKey))
+            {
+                buttonSaveContent.PerformClick();
+                return true;
+            }
+
+
+            if (keyData == (Keys.Control | Keys.S))
+            {
+                buttonSaveContent.PerformClick();
+                return true;
+            }
+
+        
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
 
         public DialogResult ShowMessageBox(String message, String caption)
         {
@@ -103,7 +159,7 @@ namespace Toolkit
             }
 
             var bindForm = new MapForm();
-            bindForm.Show(dockPanel, DockState.Float);
+            bindForm.Show(dockPanel, DockState.Document);
             bindForm.SetBinding(_garb.ContentObject);
         }
 
@@ -262,8 +318,13 @@ namespace Toolkit
 
             string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "windows.config");
 
+
             if (File.Exists(configFile))
                 dockPanel.LoadFromXml(configFile, m_deserializeDockContent);
+
+            if (!_contentDockForm.Visible)
+                _contentDockForm.Show(dockPanel, DockState.DockLeft);
+
 
             // Show the login dialog - need to get an authentication token before we can do anything interesting
             var loginForm = new FormLogin();
@@ -359,7 +420,7 @@ namespace Toolkit
 
         private void etcToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new FormScript().Show(dockPanel);
+         
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -469,7 +530,7 @@ namespace Toolkit
         {
             var activePanel = dockPanel.ActiveDocument;
             var saveable = activePanel as ISaveable;
-
+            var x = 12;
 
             if (saveable != null)
             {

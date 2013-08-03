@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" source="Tileset_Forest.tsx"/>
+ <layer name="Ground" width="30" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztw0ENAAAMA6Grf9OzsQckrJqqqvr6AT0bAu8=
+  </data>
+ </layer>
+ <layer name="Blocks" width="30" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzVVtEKwjAMzCfo24oInYjg3Iv//3O20GAJ6TWpbuhBYNs1d6Vps85EtKR47BRrikOKe4pAb8zURs0FwKG8jKn41oggf3Jw9bykpubbyu3NCXESPd+toPlyLeq9tooxXs5SX1TDUWTNIN57++pSPZ+A9rmRo2l+Ul+55zxAvt+sr8XXc/5HudqX1y2CfFQTxElN9m31Z16npTz3fHkc57Q0vevMY28pjiWugtOQNa3nSNuvUfk2wm3ZJ9E5+5dzNIpefw6E+7Psf1ZOanr/+6OQmr9UXwRZJ+u9zOKLtD33K02Ttbz1tXK9e1n2fdL+9+c8jxfkjSPD
+  </data>
+ </layer>
+ <layer name="Beams" width="30" height="25" opacity="0.9">
+  <properties>
+   <property name="Fringed" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BkAlEy5UbBKCAGiCGxRehorxwSW4aO9o6CUTAKRsEooD0AANbxAI8=
+  </data>
+ </layer>
+ <objectgroup name="PlayerSpawn" width="30" height="25" visible="0">
+  <object name="Player 3" type="PlayerSpawn" x="864" y="544" width="64" height="64"/>
+  <object name="Player 1" type="PlayerSpawn" x="32" y="544" width="64" height="64"/>
+  <object name="Player 3" type="PlayerSpawn" x="864" y="160" width="64" height="64"/>
+  <object name="Player 3" type="PlayerSpawn" x="32" y="160" width="64" height="64"/>
+  <object name="Player 3" type="PlayerSpawn" x="192" y="704" width="64" height="64"/>
+  <object name="Player 3" type="PlayerSpawn" x="704" y="704" width="64" height="64"/>
+  <object name="Player 3" type="PlayerSpawn" x="448" y="704" width="64" height="64"/>
+  <object name="Player 3" type="PlayerSpawn" x="672" y="32" width="64" height="64"/>
+  <object name="Player 3" type="PlayerSpawn" x="224" y="32" width="64" height="64"/>
+  <object name="Player 3" type="PlayerSpawn" x="448" y="32" width="64" height="64"/>
+ </objectgroup>
+</map>

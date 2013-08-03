@@ -4,9 +4,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlastersShared;
 using Inspire.Shared.Crypto;
 using Inspire.Shared.Models;
 using Inspire.Shared.Models.Enums;
+using Inspire.Shared.Models.Map;
 using Inspire.Shared.Models.Templates;
 
 namespace GameServer.Models.Inits
@@ -24,11 +26,14 @@ namespace GameServer.Models.Inits
                     "Battle Tower",
                     "Battle Tower/Interior",
                     "Battle Tower/Interior/Master Room",
-                    "Sinjo Town/Interior"
+                    "Sinjo Town/Interior",
+                    "Kruos Fields",
+                    "The Grand Clocktower",
+                    "The Grand Clocktower/Secrets"
                 };
 
             // Create some mock items
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 50; i++)
             {
                 var itemTemplate = new ItemTemplate(0, "New Item", "", ItemType.Consumable, 0, false, 0);
                 context.ItemTemplates.Add(itemTemplate);
@@ -36,7 +41,14 @@ namespace GameServer.Models.Inits
                 var skillTemplate = new SkillTemplate("", 0, "New Skill", "");
                 context.SkillTemplates.Add(skillTemplate);
 
-                var mapTemplate = new MapTemplate(0, "New Map", list[i % (list.Count - 1) ] );
+
+
+                var mapTemplate = new MapTemplate(0, "New Map", list[i % (list.Count) ] );
+
+                // Create some blank maps                
+                var bytes = SerializationHelper.ObjectToByteArray(new GameMap());
+                mapTemplate.BinaryData = bytes;
+
                 context.MapTemplates.Add(mapTemplate);
 
 

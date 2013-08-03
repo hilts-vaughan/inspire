@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="19" height="17" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" source="Tileset_Forest.tsx"/>
+ <layer name="Ground" width="19" height="17">
+  <data encoding="base64" compression="zlib">
+   eJxzZGBgcBzFo3gUj+IRjgGoxVIE
+  </data>
+ </layer>
+ <layer name="Blocks" width="19" height="17">
+  <data encoding="base64" compression="zlib">
+   eJytVMsKwjAQ3N9L80A8WUVQKYJ48v8vJpDByXbTeOjCkGTMTvZV7yLy3gGHjFeGq0i0B4pNdfWVm+oa6d6pauGukP9DnXs83oIW80law9kpXr8PraBy0jFa/vgd+VpxsYWB9kz3oBWJL7Z0fH1dn8YbW3HpmLZ4L20fnfx6jtkods04ZlwoBj0bo7i8wfX4ONASWffN0pk7caH+qK32hfZi8NAqPlwj2D/zBj/rG9JzHzq8U3urXtif1VnznH+SNkf0mOcC8Ubyd7KeB9TrI/v8f90yvr7ZPz4=
+  </data>
+ </layer>
+ <layer name="Beams" width="19" height="17">
+  <properties>
+   <property name="Fringed" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFlIIQAvJhJJgVQ0A+jgSzaAVC0eiBBITCllDcIANCYUsobkbB0AYAvzsDcw==
+  </data>
+ </layer>
+ <objectgroup name="PlayerSpawn" width="19" height="17">
+  <object name="Player 1" type="PlayerSpawn" x="64" y="416" width="64" height="64"/>
+  <object name="Player 2" type="PlayerSpawn" x="480" y="416" width="64" height="64"/>
+  <object name="Player 3" type="PlayerSpawn" x="480" y="64" width="64" height="64"/>
+  <object name="Player 4" type="PlayerSpawn" x="64" y="64" width="64" height="64"/>
+ </objectgroup>
+</map>

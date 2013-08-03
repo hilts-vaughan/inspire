@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="29" height="21" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" source="Tileset_Forest.tsx"/>
+ <layer name="Ground" width="29" height="21">
+  <data encoding="base64" compression="zlib">
+   eJztw0ENAAAMA6Grf9NzsRckrJqqqq8PYG0CYg==
+  </data>
+ </layer>
+ <layer name="Blocks" width="29" height="21">
+  <data encoding="base64" compression="zlib">
+   eJy9lsluwzAMRHm17KjLqU4RoA166XLp//9cFUCDPg0oHxOAkMx9SIrte0R8Nfq+A/00emz02WjpVHG/0alRwffaz+j8AM91ivnR/aXHlP0On2H3D3xXky9d7jb+XRCT/JroK/8C3hWyMtFXnB18xdxirI/kD5HjVmyPVUzX+7VNcLptVndhOPWTubGXzOdqOOnLdTkDjnfWO9bS7Rhzif8ebYZRvwreM3Q26Hj9AzlzhmY1UhzPOTuJJ/MjHnFm8++5aw7CZLT12kh+q/ca4/tkDzjH/sb1e8K9HNgtkb8V+rpAz2ekJrwt8ppI/9VkiilfjkX3Lca6ZTtA52q4dOq9ZzhX6Pk7y/Qi8plxe9WNMbM9IH3uUse7TPRmGBSTfM+3xDgPjoUnd8fMp++EWZ/YH+5u8mZ7mblw33Kn+jv1vX107gd5ZzjJl90ZvGoy4p3trnOMs1Zj7Kf8sXf+N45vh75n+yO732L+xn3/H3pr9AfswByz
+  </data>
+ </layer>
+ <layer name="Beams" width="29" height="21" opacity="0.9">
+  <properties>
+   <property name="Fringed" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYCAOiBCQFyPSHFKADAF5ORrYOQpGwSgYeCA8yM2jJSC2LCVUJpMCiC1LCZXJo2AUjALSAACuBwDv
+  </data>
+ </layer>
+ <objectgroup name="PlayerSpawn" width="29" height="21">
+  <object name="Player 1" type="PlayerSpawn" x="64" y="544" width="64" height="64"/>
+  <object name="Player 2" type="PlayerSpawn" x="800" y="544" width="64" height="64"/>
+  <object name="Player 3" type="PlayerSpawn" x="800" y="64" width="64" height="64"/>
+  <object name="Player 4" type="PlayerSpawn" x="64" y="64" width="64" height="64"/>
+  <object name="Player 3" type="PlayerSpawn" x="800" y="320" width="64" height="64"/>
+  <object name="Player 3" type="PlayerSpawn" x="64" y="320" width="64" height="64"/>
+ </objectgroup>
+</map>

@@ -35,7 +35,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\DevClient\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -69,9 +69,6 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.AudioImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
-    <Reference Include="ScintillaNet">
-      <HintPath>..\..\..\..\ScintillaNet.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -258,12 +255,6 @@
     <Compile Include="FormProperties.Designer.cs">
       <DependentUpon>FormProperties.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormScript.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormScript.Designer.cs">
-      <DependentUpon>FormScript.cs</DependentUpon>
-    </Compile>
     <Compile Include="Configuration\FormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +267,7 @@
     <Compile Include="FormWaitDialog.Designer.cs">
       <DependentUpon>FormWaitDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hotkey.cs" />
     <Compile Include="ISaveable.cs" />
     <Compile Include="LimitedStack.cs" />
     <Compile Include="MainForm.cs">
@@ -284,8 +276,10 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mapping\Actions\PencilAction.cs" />
     <Compile Include="Mapping\IMapAction.cs" />
     <Compile Include="Mapping\MapEditorGlobals.cs" />
+    <Compile Include="Mapping\MapEditScreen.cs" />
     <Compile Include="NetworkManager.cs" />
     <Compile Include="PacketProcessor.cs" />
     <Compile Include="PacketService.cs" />
@@ -369,9 +363,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProperties.resx">
       <DependentUpon>FormProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormScript.resx">
-      <DependentUpon>FormScript.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Configuration\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
@@ -522,13 +513,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MapEntities\" />
-    <Folder Include="Mapping\Actions\" />
     <Folder Include="Scripting\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlastersShared.Network\Inspire.Network.csproj">
       <Project>{3af674ab-3f0c-46e3-97e0-0acb4cce201e}</Project>
       <Name>Inspire.Network</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Inspire.GameEngine\Inspire.GameEngine.csproj">
+      <Project>{a4b36fe1-4d31-4fb9-9927-dc1dbb6418c5}</Project>
+      <Name>Inspire.GameEngine</Name>
     </ProjectReference>
     <ProjectReference Include="C:\Users\Vaughan Hilts\Documents\GitHub\inspire\Forge\Inspire.Shared\Inspire.Shared.csproj">
       <Project>{c7c387e1-0bcd-4976-b066-58d5bcb1db35}</Project>
