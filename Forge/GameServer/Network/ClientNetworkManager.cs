@@ -80,7 +80,7 @@ namespace GameServer.Network
         }
 
 
-        public delegate void ClientDisconnectedEvent(object sender, ClientDisconnectedEventArgs ca); 
+        public delegate void ClientDisconnectedEvent(object sender, ClientDisconnectedEventArgs ca);
 
 
         public class ClientDisconnectedEventArgs : EventArgs
@@ -117,23 +117,27 @@ namespace GameServer.Network
                     case NetIncomingMessageType.DebugMessage:
                     case NetIncomingMessageType.WarningMessage:
                     case NetIncomingMessageType.ErrorMessage:
+                        break;
+
+                    case NetIncomingMessageType.StatusChanged:
+                        var status = (NetConnectionStatus)incomingMessage.ReadByte();
                         Console.WriteLine(incomingMessage.ReadString());
 
-                        ////If a player disconnected, signal a disconnect packet to the server
-                        //if (netStatus == NetConnectionStatus.Disconnected)
-                        //{
-                        //    var dcPacket = new SPlayerDisconnect();
-                        //    dcPacket.Sender = incomingMessage.SenderConnection;
+                        //If a player disconnected, signal a disconnect packet to the server
+                        if (status == NetConnectionStatus.Disconnected)
+                        {
+                            var dcPacket = new SPlayerDisconnect();
+                            dcPacket.Sender = incomingMessage.SenderConnection;
 
-                        //    PacketService.ProcessReceivedPacket(dcPacket);
+                            PacketService.ProcessReceivedPacket(dcPacket);
 
-                        //}
+                        }
                         break;
 
                     case NetIncomingMessageType.Data:
 
 
-                  
+
 
                         //Read the packet ID
                         int packetID = incomingMessage.ReadInt32();

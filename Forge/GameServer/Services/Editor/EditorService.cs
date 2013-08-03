@@ -10,6 +10,7 @@ using GameServer.Editor.ContentLocking;
 using GameServer.Models;
 using GameServer.Network;
 using Inspire.Network;
+using Inspire.Network.Packets;
 using Inspire.Network.Packets.Client;
 using Inspire.Network.Packets.Client.Content;
 using Inspire.Network.Packets.Server;
@@ -44,7 +45,6 @@ namespace GameServer.Services.Editor
             var locked = !_contentLockManager.HasLock(contentSaveRequestPacket.Sender, contentSaveRequestPacket.ContentObject.Id,
                                                 contentSaveRequestPacket.ContentType);
             if (!locked)
-
             {
                 try
                 {
@@ -202,6 +202,9 @@ namespace GameServer.Services.Editor
             PacketService.RegisterPacket<ContentSaveRequestPacket>(Handler);
             PacketService.RegisterPacket<ContentReleasePacket>(HandleRelease);
 
+            // We care about connections disconnecting
+            PacketService.RegisterPacket<SPlayerDisconnect>(Handler);
+
             // The editor module will bootstrap it's own services
             _editorAuthenticationService = new EditorAuthenticationService(_authorizationTable);
 
@@ -211,16 +214,19 @@ namespace GameServer.Services.Editor
 
         }
 
+        private void Handler(SPlayerDisconnect sPlayerDisconnect)
+        {
+            _contentLockManager.PurgeLocks(sPlayerDisconnect.Sender);
+        }   
+
         private void HandleRelease(ContentReleasePacket contentReleasePacket)
         {
             // The client claims it's done, so relesae the lock if needed
             var success = _contentLockManager.TryReleaseLock(contentReleasePacket.Sender, contentReleasePacket.ID,
                                                contentReleasePacket.ContentType);
 
-            if(!success)
+            if (!success)
                 Logger.Instance.Log(Level.Warn, "A connection attempted to release a resource that didn't belong to them. Ignoring.");
-            else
-                Logger.Instance.Log(Level.Debug, "Succesfully unlocked " + contentReleasePacket.ID);
         }
 
     }

@@ -22,6 +22,19 @@ namespace GameServer.Editor.ContentLocking
                 _contentLockStores.Add(contentType, new ContentLockStore());
         }
 
+        /// <summary>
+        /// Invalidates and purges all locks for a given connection.
+        /// This is typically called when a connection has disconnected from the node.
+        /// </summary>
+        /// <param name="connection"></param>
+        public void PurgeLocks(NetConnection connection)
+        {
+            foreach (var contentLockStore in _contentLockStores.Values)
+            {
+                contentLockStore.ReleaseLocks(connection);
+            }
+        }
+
         public List<int> GetLockedContent(ContentType contentType)
         {
             var contentStore = _contentLockStores[contentType];

@@ -28,6 +28,17 @@ namespace GameServer.Editor.ContentLocking
 
         }
 
+        /// <summary>
+        /// Release sall locks with an associated contention
+        /// </summary>
+        /// <param name="connection"></param>
+        public void ReleaseLocks(NetConnection connection)
+        {
+            var keys = _contentLocks.Where(cLock => cLock.Value == connection).ToList();
+            keys.ForEach(x => ReleaseLock(x.Value, x.Key));
+
+        }
+
         public bool ReleaseLock(NetConnection connection, int ID)
         {
             // If they don't have a lock, they can't release it
