@@ -96,6 +96,9 @@ namespace Toolkit.Docking.Content
                 if(prevX == x && prevY == y)
                     continue;
 
+                if(x < 0 || y < 0)
+                    continue;
+
                 prevX = x;
                 prevY = y;
 
@@ -103,15 +106,23 @@ namespace Toolkit.Docking.Content
                 // Get vertical portion
                 var curTexture = MapEditorGlobals.CurrentActiveTexture;
                 var global = MapEditorGlobals.RectangleSelectedTiles;
-                var gX = MapEditorGlobals.RectangleSelectedTiles.X/32;
-                var gY = MapEditorGlobals.RectangleSelectedTiles.Y/32;
 
-                var tY = (gY)*curTexture.Width/32;
-                var tX = gX;
-                var tileID = tY + tX;
+                // We need to loop over the width of the editor
+                for (int w = 0; w < MapEditorGlobals.RectangleSelectedTiles.Width/32; w++)
+                {
+                    for (int h = 0; h < MapEditorGlobals.RectangleSelectedTiles.Height/32; h++)
+                    {
 
-                Map.Layers[0].MapTiles[x][y].TileId = tileID;
-                
+                        var gX = MapEditorGlobals.RectangleSelectedTiles.X/32 + w;
+                        var gY = MapEditorGlobals.RectangleSelectedTiles.Y/32 + h;
+
+                        var tY = (gY)*curTexture.Width/32;
+                        var tX = gX;
+                        var tileID = tY + tX;
+
+                        Map.Layers[0].MapTiles[x + w][y + h].TileId = tileID;
+                    }
+                }
 
                 // Refresh and paginate
 

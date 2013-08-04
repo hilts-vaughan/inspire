@@ -41,25 +41,48 @@ namespace Toolkit.Docking
             Mouse.WindowHandle = tilesetRenderControl1.Handle;
             var mouseState = Mouse.GetState();
 
+            var startX = mouseState.X/32;
+            var startY = mouseState.Y/32;
+            startX *= 32;
+            startY *= 32;
+
+
+            var prevX = -1;
+            var prevY = -1;
 
             while (mouseState.LeftButton == ButtonState.Pressed)
             {
+                mouseState = Mouse.GetState();
+
+  
+
 
                 var x = mouseState.X/32;
                 var y = mouseState.Y/32;
                 x *= 32;
                 y *= 32;
 
+                if (prevX == x && prevY == y)
+                    continue;
+
+                prevX = x;
+                prevY = y;
+
+
+                MapEditorGlobals.RectangleSelectedTiles = new Microsoft.Xna.Framework.Rectangle(startX, startY, 32 + (x - startX) , 32 + (y - startY));
 
 
 
-                MapEditorGlobals.RectangleSelectedTiles = new Microsoft.Xna.Framework.Rectangle(x, y, 32, 32);
+                // Compute the box like so
 
 
-                // Refresh and paginate
+                Refresh();
                 Application.DoEvents();
-                mouseState = Mouse.GetState();
             }
+
+            mouseState = Mouse.GetState();
+
+
 
 
         }
