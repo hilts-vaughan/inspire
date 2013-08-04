@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Inspire.GameEngine.ScreenManager.Network;
+using Inspire.Network.Packets.Client.Content;
 using Inspire.Shared.Models.Enums;
 using Inspire.Shared.Models.Map;
 using Inspire.Shared.Models.Templates;
@@ -130,6 +132,17 @@ namespace Toolkit.Docking.Content
                 Application.DoEvents();
 
             }
+        }
+
+        private void MapForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ReleaseContent();
+        }
+
+        private void ReleaseContent()
+        {
+            var releaseRequest = new ContentReleasePacket(ContentType.Map, _template.Id);
+            NetworkManager.Instance.SendPacket(releaseRequest);
         }
     }
 }

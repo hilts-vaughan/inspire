@@ -53,6 +53,7 @@
             this.Name = "MapForm";
             this.TabText = "Map";
             this.Text = "Map";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MapForm_FormClosing);
             this.ResumeLayout(false);
 
         }
