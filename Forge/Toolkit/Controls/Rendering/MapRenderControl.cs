@@ -9,7 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inspire.GameEngine.ScreenManager;
 using Inspire.Shared.Models.Map;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Toolkit.Mapping;
+using C3.XNA;
+using Color = Microsoft.Xna.Framework.Color;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace Toolkit.Controls.Rendering
 {
@@ -18,6 +23,8 @@ namespace Toolkit.Controls.Rendering
         private ScreenManager _screenManager;
         private GameMap _gameMap;
         private MapEditScreen screen;
+        private Color _gridColor;
+        private SpriteBatch _sb;
 
         public void SetMap(GameMap map)
         {
@@ -31,8 +38,14 @@ namespace Toolkit.Controls.Rendering
         {
             InitializeComponent();
 
+            _gridColor = Color.White;
+            _gridColor.A = 15;
+
+
 
         }
+
+
 
         public void TryToMakeContext()
         {
@@ -44,6 +57,8 @@ namespace Toolkit.Controls.Rendering
                 screen = new MapEditScreen(_gameMap);
                 _screenManager.AddScreen(screen, null);
                 screen.LoadContent();
+
+                _sb = new SpriteBatch(GraphicsDevice);
 
             }
 
@@ -61,11 +76,31 @@ namespace Toolkit.Controls.Rendering
 
         protected override void Draw()
         {
+
+
             if (_screenManager == null)
                 return;
 
             _screenManager.Draw(null);
             _screenManager.Update(null);
+
+
+            _sb.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
+
+            // Draw our grid overlay
+            for (int x = 0; x < _gameMap.Layers[0].Width; x++)
+            {
+                for (int y = 0; y < _gameMap.Layers[0].Height; y++)
+                {
+                    var rect = new Rectangle(x*32, y*32, 32, 32);
+
+                    _sb.DrawRectangle(rect, _gridColor, 2f);
+                }
+            }
+
+            _sb.End();
+
+
         }
     }
 }

@@ -26,6 +26,8 @@ namespace Toolkit.Mapping
         /// </summary>
         public static Texture2D CurrentActiveTexture { get; set; }
 
+        public static int[,] GlobalClipboardBuffer { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
