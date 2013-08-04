@@ -459,6 +459,9 @@
     <None Include="Resources\cross.png" />
     <None Include="Resources\edit.png" />
     <None Include="Resources\edit1.png" />
+    <None Include="Resources\scissors.png" />
+    <None Include="Resources\clipboard-paste.png" />
+    <None Include="Resources\clipboard-sign.png" />
     <Content Include="SciLexer.dll" />
     <None Include="Resources\script_add.png" />
     <None Include="Resources\user_delete.png" />
