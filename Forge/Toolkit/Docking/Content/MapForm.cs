@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BlastersShared;
 using Inspire.GameEngine.ScreenManager.Network;
 using Inspire.Network.Packets.Client.Content;
 using Inspire.Shared.Models.Enums;
@@ -71,7 +72,13 @@ namespace Toolkit.Docking.Content
 
         public void Save()
         {
-            MessageBox.Show("I'm saved");
+            // Serialize the data
+            _template.BinaryData = SerializationHelper.ObjectToByteArray(Map);
+
+            var request = new ContentSaveRequestPacket(_template,ContentType.Map);
+
+            // Send the request
+            NetworkManager.Instance.SendPacket(request);
         }
 
         private void timerRedraw_Tick(object sender, EventArgs e)

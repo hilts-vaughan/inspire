@@ -68,6 +68,11 @@ namespace GameServer.Services.Editor
                                 context.Entry(skill).State = EntityState.Modified;
                                 context.SaveChanges();
                                 break;
+                            case ContentType.Map:
+                                var map = context.MapTemplates.Attach(contentSaveRequestPacket.ContentObject as MapTemplate);
+                                context.Entry(map).State = EntityState.Modified;
+                                context.SaveChanges();
+                                break;
 
                             default:
                                 result = RequestResult.Failed;
@@ -190,7 +195,7 @@ namespace GameServer.Services.Editor
                         break;
                     case ContentType.Map:
                         o = GetMapByID(contentRequestPacket.ID);
-                    break;
+                        break;
                     default:
                         Logger.Instance.Log(Level.Warn,
                                             "The client has requested a resource with an unknown identifier.");
@@ -254,7 +259,7 @@ namespace GameServer.Services.Editor
         private void Handler(SPlayerDisconnect sPlayerDisconnect)
         {
             _contentLockManager.PurgeLocks(sPlayerDisconnect.Sender);
-        }   
+        }
 
         private void HandleRelease(ContentReleasePacket contentReleasePacket)
         {
