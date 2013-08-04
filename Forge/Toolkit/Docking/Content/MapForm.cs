@@ -22,6 +22,8 @@ namespace Toolkit.Docking.Content
 
         private MapTemplate _template;
 
+        public GameMap Map { get; set; }
+
         public void SetBinding(object contentObject)
         {
 
@@ -34,10 +36,18 @@ namespace Toolkit.Docking.Content
             Update();
             Invalidate();
 
+
+
             // Get our map
             var map = GameMap.FromTemplate(_template);
+            Map = map;
 
             mapView.SetMap(map);
+        }
+
+        public void TryToMakeContext()
+        {
+            mapView.TryToMakeContext();
         }
 
         public void Save()

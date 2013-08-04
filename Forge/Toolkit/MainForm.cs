@@ -66,7 +66,19 @@ namespace Toolkit
             PacketService.RegisterPacket<ContentSaveResultPacket>(HandleSaveResult);
 
             //RegisterHotkeys();
+            dockPanel.ActiveDocumentChanged += DockPanelOnActiveDocumentChanged;
 
+        }
+
+        private void DockPanelOnActiveDocumentChanged(object sender, EventArgs eventArgs)
+        {
+            var form = ((DockPanel) sender).ActiveDocument as MapForm;
+
+            if (form != null)
+            {
+                form.TryToMakeContext();
+                _layersDockForm.BindLayers(form.Map);
+            }
         }
 
         private void RegisterHotkeys()
@@ -81,7 +93,7 @@ namespace Toolkit
 
         private void HkOnPressed(object sender, HandledEventArgs handledEventArgs)
         {
-            
+
         }
 
         private void HandleSaveResult(ContentSaveResultPacket contentSaveResultPacket)
@@ -114,7 +126,7 @@ namespace Toolkit
                 return true;
             }
 
-        
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -159,9 +171,13 @@ namespace Toolkit
             }
 
             var bindForm = new MapForm();
-            bindForm.Show(dockPanel, DockState.Document);
             bindForm.SetBinding(_garb.ContentObject);
+            bindForm.Show(dockPanel, DockState.Document);
         }
+
+
+
+
 
         private ContentResultPacket _garb;
 
@@ -174,11 +190,11 @@ namespace Toolkit
             }
 
             var bindForm = new GenericContentBindForm();
-            bindForm.Show(dockPanel, DockState.Float);
+            bindForm.Show(dockPanel, DockState.Document);
             bindForm.SetBinding(_garb.ContentObject, _garb.ContentType);
         }
 
-   
+
 
         // This is a list of pending requests from the network
         private bool _pendingNetworkRequest = false;
@@ -269,9 +285,9 @@ namespace Toolkit
             if (persistString == typeof(TilesetDockForm).ToString())
                 return _tilesetDockForm;
 
-            if (persistString == typeof (GenericContentBindForm).ToString())
+            if (persistString == typeof(GenericContentBindForm).ToString())
                 return null;
-            if (persistString == typeof (MapForm).ToString())
+            if (persistString == typeof(MapForm).ToString())
                 return null;
 
             throw new Exception("A backwards compatibilty issue was detected - regressing");
@@ -420,7 +436,7 @@ namespace Toolkit
 
         private void etcToolStripMenuItem_Click(object sender, EventArgs e)
         {
-         
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -547,7 +563,7 @@ namespace Toolkit
                 if (saveable != null)
                 {
                     saveable.Save();
-                }                
+                }
             }
         }
 

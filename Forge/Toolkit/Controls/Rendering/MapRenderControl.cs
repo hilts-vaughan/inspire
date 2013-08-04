@@ -21,14 +21,8 @@ namespace Toolkit.Controls.Rendering
         public void SetMap(GameMap map)
         {
 
-            // Create our state manager and let's get started
 
-            _screenManager = new ScreenManager(null, GraphicsDevice);
-
-            var screen = new MapEditScreen(map);
-            _screenManager.AddScreen(screen, null);
-            screen.LoadContent();
-
+            _gameMap = map;
 
         }
 
@@ -40,7 +34,20 @@ namespace Toolkit.Controls.Rendering
 
         }
 
- 
+        public void TryToMakeContext()
+        {
+            // Create our state manager and let's get started
+            if (_screenManager == null)
+            {
+                _screenManager = new ScreenManager(null, GraphicsDevice);
+
+                var screen = new MapEditScreen(_gameMap);
+                _screenManager.AddScreen(screen, null);
+                screen.LoadContent();
+
+            }
+        }
+
 
         protected override void Initialize()
         {
