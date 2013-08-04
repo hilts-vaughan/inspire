@@ -110,6 +110,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\GraphicsDeviceService.cs" />
+    <Compile Include="Controls\ImprovedListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\MapListView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -282,7 +285,9 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mapping\Actions\EraserActioncs.cs" />
     <Compile Include="Mapping\Actions\PencilAction.cs" />
+    <Compile Include="Mapping\GameMapSnapshot.cs" />
     <Compile Include="Mapping\IMapAction.cs" />
     <Compile Include="Mapping\MapEditorGlobals.cs" />
     <Compile Include="Mapping\MapEditScreen.cs" />

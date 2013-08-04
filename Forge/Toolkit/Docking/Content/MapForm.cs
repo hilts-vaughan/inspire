@@ -21,11 +21,20 @@ namespace Toolkit.Docking.Content
 {
     public partial class MapForm : ToolWindow, ISaveable
     {
+
+        /// <summary>
+        /// The current layer
+        /// </summary>
+        public int CurrentLayer { get; set; }
+
         public MapForm()
         {
             InitializeComponent();
 
             Application.Idle += Application_Idle;
+
+            // Create a backup stack that can go thirty items into the past
+            BackupStack = new LimitedStack<GameMapSnapshot>(30);
 
         }
 
@@ -44,8 +53,12 @@ namespace Toolkit.Docking.Content
 
         public GameMap Map { get; set; }
 
+        public LimitedStack<GameMapSnapshot> BackupStack { get; set; }
+
         public void SetBinding(object contentObject)
         {
+
+
 
             var genericTemplate = contentObject as IContentTemplate;
             _template = contentObject as MapTemplate;
@@ -75,7 +88,7 @@ namespace Toolkit.Docking.Content
             // Serialize the data
             _template.BinaryData = SerializationHelper.ObjectToByteArray(Map);
 
-            var request = new ContentSaveRequestPacket(_template,ContentType.Map);
+            var request = new ContentSaveRequestPacket(_template, ContentType.Map);
 
             // Send the request
             NetworkManager.Instance.SendPacket(request);
@@ -83,7 +96,7 @@ namespace Toolkit.Docking.Content
 
         private void timerRedraw_Tick(object sender, EventArgs e)
         {
-           
+
         }
 
         private void mapView_MouseDown(object sender, MouseEventArgs e)
@@ -101,37 +114,21 @@ namespace Toolkit.Docking.Content
 
                 var x = mouseState.X / 32;
                 var y = mouseState.Y / 32;
-    
-                if(prevX == x && prevY == y)
+
+                if (prevX == x && prevY == y)
                     continue;
 
-                if(x < 0 || y < 0)
+                if (x < 0 || y < 0)
                     continue;
 
                 prevX = x;
                 prevY = y;
 
 
-                // Get vertical portion
-                var curTexture = MapEditorGlobals.CurrentActiveTexture;
-                var global = MapEditorGlobals.RectangleSelectedTiles;
+                var currentTool = MapEditorGlobals.ActiveActionType;
+                var action = (IMapAction)Activator.CreateInstance(currentTool);
+                action.Execute(Map, x, y, CurrentLayer);
 
-                // We need to loop over the width of the editor
-                for (int w = 0; w < MapEditorGlobals.RectangleSelectedTiles.Width/32; w++)
-                {
-                    for (int h = 0; h < MapEditorGlobals.RectangleSelectedTiles.Height/32; h++)
-                    {
-
-                        var gX = MapEditorGlobals.RectangleSelectedTiles.X/32 + w;
-                        var gY = MapEditorGlobals.RectangleSelectedTiles.Y/32 + h;
-
-                        var tY = (gY)*curTexture.Width/32;
-                        var tX = gX;
-                        var tileID = tY + tX;
-
-                        Map.Layers[0].MapTiles[x + w][y + h].TileId = tileID;
-                    }
-                }
 
                 // Refresh and paginate
 

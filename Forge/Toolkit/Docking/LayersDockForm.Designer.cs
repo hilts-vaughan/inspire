@@ -28,26 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listLayers = new System.Windows.Forms.ListView();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listLayers = new Toolkit.Controls.MyListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listLayers
             // 
             this.listLayers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader2});
+            this.columnHeader1});
             this.listLayers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listLayers.Location = new System.Drawing.Point(0, 0);
             this.listLayers.Name = "listLayers";
             this.listLayers.Size = new System.Drawing.Size(284, 261);
-            this.listLayers.TabIndex = 2;
+            this.listLayers.TabIndex = 0;
             this.listLayers.UseCompatibleStateImageBehavior = false;
             this.listLayers.View = System.Windows.Forms.View.Details;
+            this.listLayers.SelectedIndexChanged += new System.EventHandler(this.listLayers_SelectedIndexChanged);
             // 
-            // columnHeader2
+            // columnHeader1
             // 
-            this.columnHeader2.Text = "Layer Name";
-            this.columnHeader2.Width = 247;
+            this.columnHeader1.Text = "Layer Name";
+            this.columnHeader1.Width = 169;
             // 
             // LayersDockForm
             // 
@@ -63,8 +64,10 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listLayers;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private Controls.MyListView listLayers;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+
+
 
     }
 }

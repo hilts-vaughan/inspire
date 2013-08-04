@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Toolkit.Mapping.Actions;
 
 namespace Toolkit.Mapping
 {
@@ -26,12 +27,19 @@ namespace Toolkit.Mapping
         public static Texture2D CurrentActiveTexture { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public static Type ActiveActionType
+        {
+            get { return _activeActionType; }
+            set { _activeActionType = value; }
+        }
+
+        /// <summary>
         /// Drawing tiles?
         /// </summary>
         public static bool Drawing = true;
 
-
-
-
+        private static Type _activeActionType = typeof(PencilAction);
     }
 }

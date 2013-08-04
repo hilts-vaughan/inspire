@@ -22,6 +22,7 @@ using Toolkit.Configuration;
 using Toolkit.Docking;
 using Toolkit.Docking.Content;
 using Toolkit.Mapping;
+using Toolkit.Mapping.Actions;
 using WeifenLuo.WinFormsUI.Docking;
 using Style = WeifenLuo.WinFormsUI.Docking.Skins.Style;
 
@@ -100,7 +101,7 @@ namespace Toolkit
             if (form != null)
             {
                 form.TryToMakeContext();
-                _layersDockForm.BindLayers(form.Map);
+                _layersDockForm.BindLayers(form);
             }
         }
 
@@ -608,6 +609,7 @@ namespace Toolkit
         private void buttonPencil_Click(object sender, EventArgs e)
         {
             VerifySingleCheck(sender);
+            MapEditorGlobals.ActiveActionType = typeof (PencilAction);
         }
 
         private void VerifySingleCheck(object sender)
@@ -625,6 +627,7 @@ namespace Toolkit
 
         private void buttonEraser_Click(object sender, EventArgs e)
         {
+            MapEditorGlobals.ActiveActionType = typeof(EraserAction);
             VerifySingleCheck(sender);
         }
 
