@@ -47,6 +47,8 @@ namespace Toolkit.Docking
 
             listLayers.Items[LayerToIndex(mapForm)].Selected = true;
 
+            _mapContext.Refresh();
+
         }
 
         private int LayerToIndex(MapForm mapForm)
@@ -126,7 +128,8 @@ namespace Toolkit.Docking
                 return;
 
             _mapContext.Map.Layers.Swap(id, id + 1);
-        
+
+            listLayers.Items[ (_mapContext.Map.Layers.Count - 1) - (id + 1) ].Selected = true;
         
             BindLayers(_mapContext);
         }
@@ -139,6 +142,19 @@ namespace Toolkit.Docking
                 return;
 
             _mapContext.Map.Layers.Swap(id, id - 1);
+
+            listLayers.Items[(_mapContext.Map.Layers.Count - 1) - (id - 1)].Selected = true;
+
+            BindLayers(_mapContext);
+
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            var id = (int)listLayers.SelectedItems[0].Tag;
+
+            // Remove the layer
+            _mapContext.Map.Layers.RemoveAt(id);
 
             BindLayers(_mapContext);
 
