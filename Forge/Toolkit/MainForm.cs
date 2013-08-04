@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Collections;
@@ -44,6 +45,12 @@ namespace Toolkit
 
         private Thread thread;
 
+        // collection of button groups
+        private readonly ReadOnlyCollection<ReadOnlyCollection<ToolStripButton>> mGroups;
+
+        // an individual button group
+        private readonly ReadOnlyCollection<ToolStripButton> mGroup;
+
         public MainForm()
         {
             CheckForIllegalCrossThreadCalls = false;
@@ -68,11 +75,27 @@ namespace Toolkit
             //RegisterHotkeys();
             dockPanel.ActiveDocumentChanged += DockPanelOnActiveDocumentChanged;
 
+
+            // add controls to this list as needed
+            mGroup = new List<ToolStripButton>()
+                {
+                buttonPencil,
+                buttonEraser,
+                buttonFill,
+                buttonDropper
+                }.AsReadOnly();
+
+            // add new groups to this list as needed
+            mGroups = new List<ReadOnlyCollection<ToolStripButton>>
+                {
+                   mGroup
+                }.AsReadOnly();
+
         }
 
         private void DockPanelOnActiveDocumentChanged(object sender, EventArgs eventArgs)
         {
-            var form = ((DockPanel) sender).ActiveDocument as MapForm;
+            var form = ((DockPanel)sender).ActiveDocument as MapForm;
 
             if (form != null)
             {
@@ -580,6 +603,34 @@ namespace Toolkit
         private void contentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("http://neoindies.com/");
+        }
+
+        private void buttonPencil_Click(object sender, EventArgs e)
+        {
+            VerifySingleCheck(sender);
+        }
+
+        private void VerifySingleCheck(object sender)
+        {
+            foreach (ReadOnlyCollection<ToolStripButton> group in mGroups)
+                if (@group.Contains(sender))
+                    foreach (ToolStripButton b in @group)
+                        b.Checked = b == sender;
+        }
+
+        private void buttonDropper_Click(object sender, EventArgs e)
+        {
+            VerifySingleCheck(sender);
+        }
+
+        private void buttonEraser_Click(object sender, EventArgs e)
+        {
+            VerifySingleCheck(sender);
+        }
+
+        private void buttonFill_Click(object sender, EventArgs e)
+        {
+            VerifySingleCheck(sender);
         }
 
 

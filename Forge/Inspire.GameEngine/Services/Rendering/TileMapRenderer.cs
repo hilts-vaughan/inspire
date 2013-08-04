@@ -17,7 +17,7 @@ namespace Inspire.GameEngine.Services.Rendering
     {
 
         // A well kept tileset texture which is used for rendering the current map
-        private Texture2D _tilesetTexture;
+        public Texture2D _tilesetTexture;
 
         /// <summary>
         /// The tilemap renderer can attach itself to a parent screen to recieve things it needs
@@ -32,7 +32,7 @@ namespace Inspire.GameEngine.Services.Rendering
             _gameMap = gameMap;
 
             // Load up our texture if we need to
-            _tilesetTexture = TextureLoader.GetTexture(@"Levels\Tileset_Forest.png", parentScreen.ScreenManager.GraphicsDevice);
+            _tilesetTexture = TextureLoader.GetTexture(@"Levels\castle.png", parentScreen.ScreenManager.GraphicsDevice);
         }
 
 
@@ -46,7 +46,14 @@ namespace Inspire.GameEngine.Services.Rendering
                 {
                     for (int j = 0; j < layer.MapTiles[0].GetLength(0); j++)
                     {
-                       spriteBatch.Draw(_tilesetTexture, new Vector2(i * 32, j * 32), Color.White);
+
+                        if(layer.MapTiles[i][j].TileId < 0)
+                            continue;
+
+                        var y = layer.MapTiles[i][j].TileId /(_tilesetTexture.Width/32);
+                        var x = layer.MapTiles[i][j].TileId%(_tilesetTexture.Width/32);
+
+                       spriteBatch.Draw(_tilesetTexture, new Vector2(i * 32, j * 32), new Rectangle(x * 32, y * 32, 32, 32), Color.White);
                     }
                 }
 

@@ -17,6 +17,7 @@ namespace Toolkit.Controls.Rendering
     {
         private ScreenManager _screenManager;
         private GameMap _gameMap;
+        private MapEditScreen screen;
 
         public void SetMap(GameMap map)
         {
@@ -31,7 +32,6 @@ namespace Toolkit.Controls.Rendering
             InitializeComponent();
 
 
-
         }
 
         public void TryToMakeContext()
@@ -41,11 +41,15 @@ namespace Toolkit.Controls.Rendering
             {
                 _screenManager = new ScreenManager(null, GraphicsDevice);
 
-                var screen = new MapEditScreen(_gameMap);
+                screen = new MapEditScreen(_gameMap);
                 _screenManager.AddScreen(screen, null);
                 screen.LoadContent();
 
             }
+
+            // Since there was a context swap, do it up
+            MapEditorGlobals.CurrentActiveTexture = screen._renderer._tilesetTexture;
+            //CurrentActiveTexture
         }
 
 

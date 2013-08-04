@@ -116,6 +116,12 @@
     <Compile Include="Controls\MapListView.Designer.cs">
       <DependentUpon>MapListView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Rendering\TilesetRenderControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Rendering\TilesetRenderControl.Designer.cs">
+      <DependentUpon>TilesetRenderControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Rendering\MapRenderControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -319,6 +325,9 @@
     <EmbeddedResource Include="Docking\MapDockForm.resx">
       <DependentUpon>MapDockForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Docking\TilesetDockForm.resx">
+      <DependentUpon>TilesetDockForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Docking\ToolWindow.resx">
       <DependentUpon>ToolWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -435,6 +444,7 @@
     <None Include="Resources\terminal.png" />
     <None Include="Resources\network.png" />
     <None Include="Resources\information1.png" />
+    <None Include="Resources\paint-can.png" />
     <Content Include="SciLexer.dll" />
     <None Include="Resources\script_add.png" />
     <None Include="Resources\user_delete.png" />

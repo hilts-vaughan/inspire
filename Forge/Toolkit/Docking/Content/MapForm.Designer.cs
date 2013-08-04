@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.mapView = new Toolkit.Controls.Rendering.MapRenderControl();
-            this.timerRedraw = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // mapView
@@ -42,12 +40,7 @@
             this.mapView.SpriteBatch = null;
             this.mapView.TabIndex = 0;
             this.mapView.Text = "mapRenderControl1";
-            // 
-            // timerRedraw
-            // 
-            this.timerRedraw.Enabled = true;
-            this.timerRedraw.Interval = 120;
-            this.timerRedraw.Tick += new System.EventHandler(this.timerRedraw_Tick);
+            this.mapView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapView_MouseDown);
             // 
             // MapForm
             // 
@@ -67,6 +60,5 @@
         #endregion
 
         private Controls.Rendering.MapRenderControl mapView;
-        private System.Windows.Forms.Timer timerRedraw;
     }
 }

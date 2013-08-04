@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Toolkit.Mapping
 {
@@ -20,16 +21,17 @@ namespace Toolkit.Mapping
         public static bool ShowGround { get; set; }
 
         /// <summary>
+        /// The active texture given the map
+        /// </summary>
+        public static Texture2D CurrentActiveTexture { get; set; }
+
+        /// <summary>
         /// Drawing tiles?
         /// </summary>
         public static bool Drawing = true;
 
 
 
-        public static string Username { get; set; }
-
-
-        public static string Password { get; set; }
 
     }
 }

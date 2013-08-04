@@ -14,7 +14,7 @@ namespace Toolkit.Mapping
     public class MapEditScreen : ServiceEntityScreen
     {
         private readonly GameMap _gameMap;
-        private TileMapRenderer _renderer;
+        public TileMapRenderer _renderer;
 
         public MapEditScreen(GameMap gameMap)
         {
