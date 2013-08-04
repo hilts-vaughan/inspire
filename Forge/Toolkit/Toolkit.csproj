@@ -450,6 +450,14 @@
     <None Include="Resources\network.png" />
     <None Include="Resources\information1.png" />
     <None Include="Resources\paint-can.png" />
+    <None Include="Resources\new1.png" />
+    <None Include="Resources\plus-circle-frame.png" />
+    <None Include="Resources\arrow-090.png" />
+    <None Include="Resources\arrow-180.png" />
+    <None Include="Resources\arrow-270.png" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\edit.png" />
+    <None Include="Resources\edit1.png" />
     <Content Include="SciLexer.dll" />
     <None Include="Resources\script_add.png" />
     <None Include="Resources\user_delete.png" />

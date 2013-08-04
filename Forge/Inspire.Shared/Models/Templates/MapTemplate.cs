@@ -29,8 +29,6 @@ namespace Inspire.Shared.Models.Templates
 
 
         public byte[] BinaryData { get; set; }
-        public bool Fu { get; set; }
-        public int df { get; set; }
 
 
     }

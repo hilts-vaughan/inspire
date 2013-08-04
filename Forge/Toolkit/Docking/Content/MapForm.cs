@@ -107,6 +107,9 @@ namespace Toolkit.Docking.Content
             var prevX = -1;
             var prevY = -1;
 
+            var snapshot = (GameMap) SerializationHelper.ByteArrayToObject(SerializationHelper.ObjectToByteArray(Map));
+            BackupStack.Push(new GameMapSnapshot(snapshot,  MapEditorGlobals.ActiveActionType));
+
             while (mouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
             {
 

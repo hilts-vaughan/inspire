@@ -9,6 +9,13 @@ namespace Toolkit
 {
     public static class DirectoryHelper
     {
+        public static IList<T> Swap<T>(this IList<T> list, int indexA, int indexB)
+        {
+            T tmp = list[indexA];
+            list[indexA] = list[indexB];
+            list[indexB] = tmp;
+            return list;
+        }
 
         /// <summary>
         /// The directory to the graphics
@@ -19,6 +26,5 @@ namespace Toolkit
         /// The directory leading to the maps
         /// </summary>
         public static string MapsDirectory = Path.GetDirectoryName(Application.ExecutablePath) + "\\maps\\";
-
     }
 }

@@ -48,8 +48,12 @@ namespace Inspire.Shared.Models.Map
     public class MapLayer
     {
 
+        public string Name { get; set; }
+
         public MapLayer()
         {
+            Name = "New Layer";
+
             // The default is 100x100
             MapTiles = new MapTile[100][];
 

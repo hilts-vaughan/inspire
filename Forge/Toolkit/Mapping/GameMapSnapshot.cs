@@ -9,6 +9,11 @@ namespace Toolkit.Mapping
 {
     public class GameMapSnapshot
     {
+        public GameMapSnapshot(GameMap map, Type action)
+        {
+            Map = map;
+            Action = action;
+        }
 
         /// <summary>
         /// The map at this current snapshot
@@ -18,7 +23,7 @@ namespace Toolkit.Mapping
         /// <summary>
         /// The action that was performed to create this snapshot
         /// </summary>
-        public IMapAction Action { get; set; }
+        public Type Action { get; set; }
 
     }
 }

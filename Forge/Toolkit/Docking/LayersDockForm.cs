@@ -26,18 +26,18 @@ namespace Toolkit.Docking
         /// Binds a particular set of layers to this form
         /// </summary>
         /// <param name="gameMap"></param>
-        public void BindLayers(MapForm  mapForm)
+        public void BindLayers(MapForm mapForm)
         {
             // Bind the context
             _mapContext = mapForm;
 
-            listLayers.Items.Clear();            
+            listLayers.Items.Clear();
 
             // Begin populating the view
             for (int index = mapForm.Map.Layers.Count - 1; index >= 0; index--)
             {
                 var layer = mapForm.Map.Layers[index];
-                var item = new ListViewItem(new string[] {"Default Layer"});
+                var item = new ListViewItem(new string[] { layer.Name });
                 item.Tag = index;
 
 
@@ -45,21 +45,103 @@ namespace Toolkit.Docking
                 listLayers.Items.Add(item);
             }
 
-            listLayers.Items[(mapForm.Map.Layers.Count - 1) - _mapContext.CurrentLayer].Selected = true;
+            listLayers.Items[LayerToIndex(mapForm)].Selected = true;
+
+        }
+
+        private int LayerToIndex(MapForm mapForm)
+        {
+            return (mapForm.Map.Layers.Count - 1) - _mapContext.CurrentLayer;
+        }
+
+
+
+        private void listLayers_AfterLabelEdit(object sender, LabelEditEventArgs e)
+        {
+
+        }
+
+        private static DialogResult ShowInputDialog(ref string input)
+        {
+            System.Drawing.Size size = new System.Drawing.Size(200, 70);
+            Form inputBox = new Form();
+
+            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            inputBox.ClientSize = size;
+            inputBox.Text = "Name";
+
+            System.Windows.Forms.TextBox textBox = new TextBox();
+            textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
+            textBox.Location = new System.Drawing.Point(5, 5);
+            textBox.Text = input;
+            inputBox.Controls.Add(textBox);
+
+            Button okButton = new Button();
+            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(75, 23);
+            okButton.Text = "&OK";
+            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
+            inputBox.Controls.Add(okButton);
+
+            Button cancelButton = new Button();
+            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(75, 23);
+            cancelButton.Text = "&Cancel";
+            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
+            inputBox.Controls.Add(cancelButton);
+
+
+            DialogResult result = inputBox.ShowDialog();
+            input = textBox.Text;
+            return result;
+        }
+
+        private void buttonRename_Click(object sender, EventArgs e)
+        {
+            var layer = _mapContext.Map.Layers[_mapContext.CurrentLayer].Name;
+            ShowInputDialog(ref layer);
+            _mapContext.Map.Layers[_mapContext.CurrentLayer].Name = layer;
+
+            BindLayers(_mapContext);
 
         }
 
         private void listLayers_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (listLayers.SelectedItems.Count == 0)
                 return;
 
-            var id =(int)  listLayers.SelectedItems[0].Tag;
+            var id = (int)listLayers.SelectedItems[0].Tag;
             _mapContext.CurrentLayer = id;
         }
 
-  
 
+        private void buttonMoveUp_Click(object sender, EventArgs e)
+        {
+            var id = (int)listLayers.SelectedItems[0].Tag;
+
+            if (id == _mapContext.Map.Layers.Count - 1)
+                return;
+
+            _mapContext.Map.Layers.Swap(id, id + 1);
+        
+        
+            BindLayers(_mapContext);
+        }
+
+        private void buttonMoveDown_Click(object sender, EventArgs e)
+        {
+            var id = (int)listLayers.SelectedItems[0].Tag;
+
+            if (id == 0)
+                return;
+
+            _mapContext.Map.Layers.Swap(id, id - 1);
+
+            BindLayers(_mapContext);
+
+        }
     }
 }
