@@ -37,8 +37,11 @@ namespace Toolkit.Docking
             for (int index = mapForm.Map.Layers.Count - 1; index >= 0; index--)
             {
                 var layer = mapForm.Map.Layers[index];
-                var item = new ListViewItem(new string[] { layer.Name });
+                var item = new ListViewItem(new string[] { " " + layer.Name });
                 item.Tag = index;
+
+                if (layer.Visible)
+                    item.ImageIndex = 0;
 
 
 
@@ -70,7 +73,7 @@ namespace Toolkit.Docking
 
             inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             inputBox.ClientSize = size;
-            inputBox.Text = "Name";
+            inputBox.Text = "Layer Name";
 
             System.Windows.Forms.TextBox textBox = new TextBox();
             textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
@@ -93,6 +96,11 @@ namespace Toolkit.Docking
             cancelButton.Text = "&Cancel";
             cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
             inputBox.Controls.Add(cancelButton);
+
+            inputBox.AcceptButton = okButton;
+            inputBox.CancelButton = cancelButton;
+            inputBox.ControlBox = false;
+            inputBox.StartPosition = FormStartPosition.CenterScreen;
 
 
             DialogResult result = inputBox.ShowDialog();
@@ -129,9 +137,12 @@ namespace Toolkit.Docking
 
             _mapContext.Map.Layers.Swap(id, id + 1);
 
-            listLayers.Items[ (_mapContext.Map.Layers.Count - 1) - (id + 1) ].Selected = true;
-        
+
+
             BindLayers(_mapContext);
+
+            listLayers.SelectedIndices.Clear();
+            listLayers.Items[(_mapContext.Map.Layers.Count - 1) - (id + 1)].Selected = true;
         }
 
         private void buttonMoveDown_Click(object sender, EventArgs e)
@@ -143,21 +154,52 @@ namespace Toolkit.Docking
 
             _mapContext.Map.Layers.Swap(id, id - 1);
 
-            listLayers.Items[(_mapContext.Map.Layers.Count - 1) - (id - 1)].Selected = true;
+
 
             BindLayers(_mapContext);
+
+            listLayers.SelectedIndices.Clear();
+            listLayers.Items[(_mapContext.Map.Layers.Count - 1) - (id - 1)].Selected = true;
 
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+
+            if (_mapContext.Map.Layers.Count == 1)
+            {
+                MessageBox.Show(
+                    "You can't have any less than a single layer. Consider adding another, and removing this one.");
+                return;
+            }
+
             var id = (int)listLayers.SelectedItems[0].Tag;
 
-            // Remove the layer
             _mapContext.Map.Layers.RemoveAt(id);
+            _mapContext.CurrentLayer = 0;
 
             BindLayers(_mapContext);
 
+
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            var id = (int)listLayers.SelectedItems[0].Tag;
+
+            // Remove the layer
+            _mapContext.Map.Layers.Insert(id, new MapLayer());
+
+            BindLayers(_mapContext);
+        }
+
+        private void buttonToggleVisible_Click(object sender, EventArgs e)
+        {
+
+            var id = (int)listLayers.SelectedItems[0].Tag;
+            _mapContext.Map.Layers[id].Visible = !_mapContext.Map.Layers[id].Visible; 
+
+            BindLayers(_mapContext);
         }
     }
 }

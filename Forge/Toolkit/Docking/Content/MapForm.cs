@@ -15,6 +15,7 @@ using Inspire.Shared.Models.Map;
 using Inspire.Shared.Models.Templates;
 using Microsoft.Xna.Framework.Input;
 using Toolkit.Mapping;
+using Toolkit.Mapping.Actions;
 using ButtonState = System.Windows.Forms.ButtonState;
 
 namespace Toolkit.Docking.Content
@@ -133,10 +134,16 @@ namespace Toolkit.Docking.Content
                 action.Execute(Map, x, y, CurrentLayer);
 
 
+
                 // Refresh and paginate
 
                 Refresh();
                 Application.DoEvents();
+
+                if (action.GetType() == typeof(FloodToolAction))
+                    return;
+
+
 
             }
         }

@@ -68,8 +68,9 @@ namespace Toolkit.Docking
                 prevX = x;
                 prevY = y;
 
-
                 MapEditorGlobals.RectangleSelectedTiles = new Microsoft.Xna.Framework.Rectangle(startX, startY, 32 + (x - startX) , 32 + (y - startY));
+
+
 
 
 

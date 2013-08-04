@@ -42,6 +42,9 @@ namespace Inspire.GameEngine.Services.Rendering
 
             foreach (var layer in _gameMap.Layers)
             {
+                if(!layer.Visible)
+                    continue;
+
                 for (int i = 0; i < layer.MapTiles.GetLength(0); i++)
                 {
                     for (int j = 0; j < layer.MapTiles[0].GetLength(0); j++)

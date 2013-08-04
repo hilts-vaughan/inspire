@@ -48,10 +48,24 @@ namespace Inspire.Shared.Models.Map
     public class MapLayer
     {
 
+        public int Width
+        {
+            get { return MapTiles.GetLength(0); }
+        }
+
+        public int Height
+        {
+            get { return MapTiles[0].GetLength(0); }
+        }
+
         public string Name { get; set; }
+        public bool Visible { get; set; }
 
         public MapLayer()
         {
+
+            Visible = true;
+
             Name = "New Layer";
 
             // The default is 100x100

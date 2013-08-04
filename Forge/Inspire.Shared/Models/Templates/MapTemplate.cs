@@ -27,6 +27,7 @@ namespace Inspire.Shared.Models.Templates
         public string Name { get; set; }
         public string VirtualCategory { get; set; }
 
+        public byte ByteMe { get; set; }
 
         public byte[] BinaryData { get; set; }
 

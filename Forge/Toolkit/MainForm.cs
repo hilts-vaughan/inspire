@@ -61,7 +61,7 @@ namespace Toolkit
             InitializeComponent();
 
             dockPanel.Theme = new VS2012LightTheme();
-            dockPanel.Theme = new VS2005Theme();
+            //dockPanel.Theme = new VS2005Theme();
 
 
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
@@ -633,6 +633,7 @@ namespace Toolkit
 
         private void buttonFill_Click(object sender, EventArgs e)
         {
+            MapEditorGlobals.ActiveActionType = typeof (FloodToolAction);
             VerifySingleCheck(sender);
         }
 

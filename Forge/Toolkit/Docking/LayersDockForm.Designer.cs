@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LayersDockForm));
+            this.buttonAddLayer = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.buttonDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -36,16 +38,17 @@
             this.buttonMoveDown = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonRename = new System.Windows.Forms.ToolStripButton();
+            this.buttonToggleVisible = new System.Windows.Forms.ToolStripButton();
+            this.imageCollection = new System.Windows.Forms.ImageList(this.components);
             this.listLayers = new Toolkit.Controls.MyListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.buttonToggleVisible = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1.SuspendLayout();
+            this.buttonAddLayer.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // buttonAddLayer
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonAddLayer.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonAddLayer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton2,
             this.buttonDelete,
             this.toolStripSeparator1,
@@ -54,11 +57,11 @@
             this.toolStripSeparator2,
             this.buttonToggleVisible,
             this.buttonRename});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 236);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(284, 25);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
+            this.buttonAddLayer.Location = new System.Drawing.Point(0, 236);
+            this.buttonAddLayer.Name = "buttonAddLayer";
+            this.buttonAddLayer.Size = new System.Drawing.Size(284, 25);
+            this.buttonAddLayer.TabIndex = 1;
+            this.buttonAddLayer.Text = "toolStrip1";
             // 
             // toolStripButton2
             // 
@@ -68,6 +71,7 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "toolStripButton2";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // buttonDelete
             // 
@@ -119,6 +123,22 @@
             this.buttonRename.Text = "toolStripButton1";
             this.buttonRename.Click += new System.EventHandler(this.buttonRename_Click);
             // 
+            // buttonToggleVisible
+            // 
+            this.buttonToggleVisible.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonToggleVisible.Image = global::Toolkit.Properties.Resources.eye;
+            this.buttonToggleVisible.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonToggleVisible.Name = "buttonToggleVisible";
+            this.buttonToggleVisible.Size = new System.Drawing.Size(23, 22);
+            this.buttonToggleVisible.Text = "toolStripButton1";
+            this.buttonToggleVisible.Click += new System.EventHandler(this.buttonToggleVisible_Click);
+            // 
+            // imageCollection
+            // 
+            this.imageCollection.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageCollection.ImageStream")));
+            this.imageCollection.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageCollection.Images.SetKeyName(0, "eye.png");
+            // 
             // listLayers
             // 
             this.listLayers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -127,6 +147,7 @@
             this.listLayers.Location = new System.Drawing.Point(0, 0);
             this.listLayers.Name = "listLayers";
             this.listLayers.Size = new System.Drawing.Size(284, 261);
+            this.listLayers.SmallImageList = this.imageCollection;
             this.listLayers.TabIndex = 0;
             this.listLayers.UseCompatibleStateImageBehavior = false;
             this.listLayers.View = System.Windows.Forms.View.Details;
@@ -138,26 +159,17 @@
             this.columnHeader1.Text = "Layer Name";
             this.columnHeader1.Width = 169;
             // 
-            // buttonToggleVisible
-            // 
-            this.buttonToggleVisible.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonToggleVisible.Image = global::Toolkit.Properties.Resources.eye;
-            this.buttonToggleVisible.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonToggleVisible.Name = "buttonToggleVisible";
-            this.buttonToggleVisible.Size = new System.Drawing.Size(23, 22);
-            this.buttonToggleVisible.Text = "toolStripButton1";
-            // 
             // LayersDockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.buttonAddLayer);
             this.Controls.Add(this.listLayers);
             this.Name = "LayersDockForm";
             this.Text = "LayersDockForm";
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.buttonAddLayer.ResumeLayout(false);
+            this.buttonAddLayer.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,7 +179,7 @@
 
         private Controls.MyListView listLayers;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip buttonAddLayer;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton buttonMoveUp;
         private System.Windows.Forms.ToolStripButton buttonMoveDown;
@@ -176,6 +188,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton buttonRename;
         private System.Windows.Forms.ToolStripButton buttonToggleVisible;
+        private System.Windows.Forms.ImageList imageCollection;
 
 
 
