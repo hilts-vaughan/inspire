@@ -24,7 +24,7 @@ namespace Inspire.GameEngine.Services.Rendering
         /// </summary>
         public GameScreen ParentScreen { get; set; }
 
-        private GameMap _gameMap;
+        public GameMap _gameMap;
 
         public TileMapRenderer(GameScreen parentScreen, GameMap gameMap)
         {

@@ -35,7 +35,8 @@ namespace Toolkit.Docking.Content
             Application.Idle += Application_Idle;
 
             // Create a backup stack that can go thirty items into the past
-            BackupStack = new LimitedStack<GameMapSnapshot>(30);
+            BackupStack = new Stack<GameMapSnapshot>(30);
+            RedoStack = new Stack<GameMapSnapshot>(30);
 
         }
 
@@ -43,10 +44,11 @@ namespace Toolkit.Docking.Content
 
         void Application_Idle(object sender, EventArgs e)
         {
-            if ((DateTime.Now - then).Milliseconds > 500)
+            if ((DateTime.Now - then).Milliseconds > 250)
             {
                 then = DateTime.Now;
-                Update();
+                mapView.SetMap(Map);
+                Refresh();
             }
         }
 
@@ -54,7 +56,8 @@ namespace Toolkit.Docking.Content
 
         public GameMap Map { get; set; }
 
-        public LimitedStack<GameMapSnapshot> BackupStack { get; set; }
+        public Stack<GameMapSnapshot> BackupStack { get; set; }
+        public Stack<GameMapSnapshot> RedoStack { get; set; }
 
         public void SetBinding(object contentObject)
         {
@@ -108,6 +111,8 @@ namespace Toolkit.Docking.Content
             var prevX = -1;
             var prevY = -1;
 
+
+
             var snapshot = (GameMap) SerializationHelper.ByteArrayToObject(SerializationHelper.ObjectToByteArray(Map));
             BackupStack.Push(new GameMapSnapshot(snapshot,  MapEditorGlobals.ActiveActionType));
 
@@ -146,6 +151,8 @@ namespace Toolkit.Docking.Content
 
 
             }
+
+
         }
 
         private void MapForm_FormClosing(object sender, FormClosingEventArgs e)

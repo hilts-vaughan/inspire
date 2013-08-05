@@ -164,12 +164,6 @@
     <Compile Include="Docking\LayersDockForm.Designer.cs">
       <DependentUpon>LayersDockForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Docking\MapDockForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Docking\MapDockForm.Designer.cs">
-      <DependentUpon>MapDockForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Docking\TilesetDockForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -327,9 +321,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Docking\LayersDockForm.resx">
       <DependentUpon>LayersDockForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Docking\MapDockForm.resx">
-      <DependentUpon>MapDockForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Docking\TilesetDockForm.resx">
       <DependentUpon>TilesetDockForm.cs</DependentUpon>

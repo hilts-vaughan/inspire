@@ -98,6 +98,11 @@ namespace Toolkit
         {
             var form = ((DockPanel)sender).ActiveDocument as MapForm;
 
+            TryAndBindMap(form);
+        }
+
+        private void TryAndBindMap(MapForm form)
+        {
             if (form != null)
             {
                 form.TryToMakeContext();
@@ -635,6 +640,50 @@ namespace Toolkit
         {
             MapEditorGlobals.ActiveActionType = typeof (FloodToolAction);
             VerifySingleCheck(sender);
+        }
+
+
+        
+        public MapForm GetActiveMap()
+        {
+            return dockPanel.ActiveDocument as MapForm;
+        }
+
+
+        private void buttonUndo_Click(object sender, EventArgs e)
+        {
+            var map = GetActiveMap();
+
+            if (map != null)
+            {
+                map.RedoStack.Push(new GameMapSnapshot(map.Map, typeof(PencilAction)));
+                var backupState =  map.BackupStack.Pop();
+                map.Map = backupState.Map;
+                TryAndBindMap(map);
+            }
+            else
+            {
+                MessageBox.Show("Please select a map before trying to perform map actions.");
+            }
+
+        }
+
+        private void buttonRedo_Click(object sender, EventArgs e)
+        {
+            var map = GetActiveMap();
+
+            if (map != null)
+            {
+                var state = map.RedoStack.Pop();
+                var backupState = map.BackupStack.Pop();
+                map.Map = backupState.Map;
+                TryAndBindMap(map);
+            }
+            else
+            {
+                MessageBox.Show("Please select a map before trying to perform map actions.");
+            }
+
         }
 
 

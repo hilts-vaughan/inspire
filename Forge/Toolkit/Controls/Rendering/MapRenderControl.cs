@@ -32,6 +32,11 @@ namespace Toolkit.Controls.Rendering
 
             _gameMap = map;
 
+            if (screen != null)
+            {
+                screen.GameMap = map;
+                screen._renderer._gameMap = map;
+            }
         }
 
         public MapRenderControl()
@@ -92,7 +97,7 @@ namespace Toolkit.Controls.Rendering
             {
                 for (int y = 0; y < _gameMap.Layers[0].Height; y++)
                 {
-                    var rect = new Rectangle(x*32, y*32, 32, 32);
+                    var rect = new Rectangle(x * 32, y * 32, 32, 32);
 
                     _sb.DrawRectangle(rect, _gridColor, 2f);
                 }

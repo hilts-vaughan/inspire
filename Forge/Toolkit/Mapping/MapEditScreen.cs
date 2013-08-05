@@ -13,17 +13,17 @@ namespace Toolkit.Mapping
 {
     public class MapEditScreen : ServiceEntityScreen
     {
-        private readonly GameMap _gameMap;
+        public GameMap GameMap;
         public TileMapRenderer _renderer;
 
         public MapEditScreen(GameMap gameMap)
         {
-            _gameMap = gameMap;
+            GameMap = gameMap;
         }
 
         public override void LoadContent()
         {
-            _renderer = new TileMapRenderer(this, _gameMap);
+            _renderer = new TileMapRenderer(this, GameMap);
             base.LoadContent();
         }
 

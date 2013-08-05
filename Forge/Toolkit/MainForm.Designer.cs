@@ -99,8 +99,8 @@ namespace Toolkit
             this.buttonEraser = new System.Windows.Forms.ToolStripButton();
             this.buttonFill = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
-            this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.menuMain.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -277,6 +277,7 @@ namespace Toolkit
             this.toolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
             this.toolStripMenuItem2.Size = new System.Drawing.Size(187, 22);
             this.toolStripMenuItem2.Text = "History";
+            this.toolStripMenuItem2.Visible = false;
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // contentExplorerToolStripMenuItem
@@ -322,7 +323,7 @@ namespace Toolkit
             // closeAllToolStripMenuItem
             // 
             this.closeAllToolStripMenuItem.Name = "closeAllToolStripMenuItem";
-            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.closeAllToolStripMenuItem.Text = "Close All";
             this.closeAllToolStripMenuItem.Click += new System.EventHandler(this.closeAllToolStripMenuItem_Click);
             // 
@@ -387,7 +388,7 @@ namespace Toolkit
             this.testToolStripMenuItem.Image = global::Toolkit.Properties.Resources.resultset_next;
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
             this.testToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.testToolStripMenuItem.Text = "Test...";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
@@ -532,6 +533,7 @@ namespace Toolkit
             this.buttonUndo.Name = "buttonUndo";
             this.buttonUndo.Size = new System.Drawing.Size(23, 22);
             this.buttonUndo.Text = "Undo";
+            this.buttonUndo.Click += new System.EventHandler(this.buttonUndo_Click);
             // 
             // buttonRedo
             // 
@@ -541,6 +543,7 @@ namespace Toolkit
             this.buttonRedo.Name = "buttonRedo";
             this.buttonRedo.Size = new System.Drawing.Size(23, 22);
             this.buttonRedo.Text = "Redo";
+            this.buttonRedo.Click += new System.EventHandler(this.buttonRedo_Click);
             // 
             // toolStripSeparator4
             // 
@@ -602,6 +605,11 @@ namespace Toolkit
             this.toolStripButton10.Name = "toolStripButton10";
             this.toolStripButton10.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton10.Text = "Rectangle Fill";
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
             // 
             // dockPanel
             // 
@@ -665,11 +673,6 @@ namespace Toolkit
             this.dockPanel.Skin = dockPanelSkin1;
             this.dockPanel.SkinStyle = WeifenLuo.WinFormsUI.Docking.Skins.Style.VisualStudio2012Light;
             this.dockPanel.TabIndex = 18;
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
             // 
             // MainForm
             // 

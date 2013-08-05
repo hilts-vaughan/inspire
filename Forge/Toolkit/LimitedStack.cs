@@ -28,7 +28,7 @@ namespace Toolkit
         }
 
         public T Peek()
-        {
+        { 
             return _stack[_stack.Count - 1];
         }
 
