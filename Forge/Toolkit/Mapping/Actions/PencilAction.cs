@@ -4,34 +4,77 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Inspire.Shared.Models.Map;
+using Microsoft.Xna.Framework;
 
 namespace Toolkit.Mapping.Actions
 {
-    public class PencilAction : IMapAction
+    public class PencilAction : GenericToolAction, IMapAction
     {
-        public string ActionName { get; private set; }
-        public void Execute(GameMap gameMap, int x, int y, int layer)
+        List<int> _previousTiles = new List<int>(); 
+
+        public PencilAction(int x, int y, int layer, Rectangle selectedTiles) : base(x, y, layer, selectedTiles)
         {
+
+        }
+
+        public new string ActionName
+        {
+            get { return "Pencil tool"; }
+        }
+        
+        
+
+        public new void Execute(GameMap gameMap)
+        {
+
+
+            _previousTiles.Clear();
+
             // Get vertical portion
             var curTexture = MapEditorGlobals.CurrentActiveTexture;
-            var global = MapEditorGlobals.RectangleSelectedTiles;
 
             // We need to loop over the width of the editor
-            for (int w = 0; w < MapEditorGlobals.RectangleSelectedTiles.Width / 32; w++)
+            for (int w = 0; w < SelectedTiles.Width / 32; w++)
             {
-                for (int h = 0; h < MapEditorGlobals.RectangleSelectedTiles.Height / 32; h++)
+                for (int h = 0; h < SelectedTiles.Height / 32; h++)
                 {
 
-                    var gX = MapEditorGlobals.RectangleSelectedTiles.X / 32 + w;
-                    var gY = MapEditorGlobals.RectangleSelectedTiles.Y / 32 + h;
+                    var gX = SelectedTiles.X / 32 + w;
+                    var gY = SelectedTiles.Y / 32 + h;
 
                     var tY = (gY) * curTexture.Width / 32;
                     var tX = gX;
                     var tileID = tY + tX;
 
-                    gameMap.Layers[layer].MapTiles[x + w][y + h].TileId = tileID;
+                    _previousTiles.Add(gameMap.Layers[Layer].MapTiles[X + w][Y + h].TileId);
+                    gameMap.Layers[Layer].MapTiles[X + w][Y + h].TileId = tileID;
                 }
             }
+        }
+
+        public new void UnExecute(GameMap gameMap)
+        {
+            // Get vertical portion
+            var curTexture = MapEditorGlobals.CurrentActiveTexture;
+
+            // We need to loop over the width of the editor
+            for (int w = 0; w < SelectedTiles.Width / 32; w++)
+            {
+                for (int h = 0; h < SelectedTiles.Height / 32; h++)
+                {
+
+                    var gX = SelectedTiles.X / 32 + w;
+                    var gY = SelectedTiles.Y / 32 + h;
+
+                    var tY = (gY) * curTexture.Width / 32;
+                    var tX = gX;
+                    var tileID = tY + tX;
+
+                    gameMap.Layers[Layer].MapTiles[X + w][Y + h].TileId = _previousTiles.First();
+                    _previousTiles.Remove(_previousTiles.First());
+                }
+            }
+
         }
     }
 }

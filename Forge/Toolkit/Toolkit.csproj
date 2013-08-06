@@ -281,11 +281,15 @@
     </Compile>
     <Compile Include="Mapping\Actions\EraserActioncs.cs" />
     <Compile Include="Mapping\Actions\FloodToolAction.cs" />
+    <Compile Include="Mapping\Actions\GenericToolAction.cs" />
+    <Compile Include="Mapping\Actions\MapActionPackage.cs" />
     <Compile Include="Mapping\Actions\PencilAction.cs" />
     <Compile Include="Mapping\GameMapSnapshot.cs" />
     <Compile Include="Mapping\IMapAction.cs" />
     <Compile Include="Mapping\MapEditorGlobals.cs" />
     <Compile Include="Mapping\MapEditScreen.cs" />
+    <Compile Include="Mapping\MapTransactionMananger.cs" />
+    <Compile Include="Mapping\UndoManager.cs" />
     <Compile Include="NetworkManager.cs" />
     <Compile Include="PacketProcessor.cs" />
     <Compile Include="PacketService.cs" />

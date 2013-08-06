@@ -107,6 +107,7 @@ namespace Toolkit
             {
                 form.TryToMakeContext();
                 _layersDockForm.BindLayers(form);
+
             }
         }
 
@@ -649,13 +650,29 @@ namespace Toolkit
             return dockPanel.ActiveDocument as MapForm;
         }
 
+        private void UpdateRedoAndUndo()
+        {
+            var map = GetActiveMap();
+            var undosLeft = map.UndoManager;
+        }
+
 
         private void buttonUndo_Click(object sender, EventArgs e)
         {
+            
             var map = GetActiveMap();
 
             if (map != null)
             {
+
+                if (map.UndoManager.UndosLeft == 0)
+                {
+                    MessageBox.Show("There's nothing left to undo.");
+                    return;
+                }
+
+                map.UndoManager.PerformUndo();
+                return;
                 map.RedoStack.Push(new GameMapSnapshot(map.Map, typeof(PencilAction)));
                 var backupState =  map.BackupStack.Pop();
                 map.Map = backupState.Map;
@@ -674,6 +691,15 @@ namespace Toolkit
 
             if (map != null)
             {
+
+                if (map.UndoManager.RedosLeft == 0)
+                {
+                    MessageBox.Show("There's nothing left to redo.");
+                    return;
+                }
+
+                map.UndoManager.PerformRedo();
+                return;
                 var state = map.RedoStack.Pop();
                 var backupState = map.BackupStack.Pop();
                 map.Map = backupState.Map;

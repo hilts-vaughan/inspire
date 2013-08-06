@@ -21,7 +21,9 @@ namespace Toolkit.Mapping
         /// <summary>
         /// Executes a given action given the current state
         /// </summary>
-        void Execute(GameMap gameMap, int x, int y, int layer);
+        void Execute(GameMap gameMap);
+
+        void UnExecute(GameMap gameMap);
 
     }
 }

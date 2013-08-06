@@ -4,35 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Inspire.Shared.Models.Map;
+using Microsoft.Xna.Framework;
 
 namespace Toolkit.Mapping.Actions
 {
-    public class FloodToolAction : IMapAction
+    public class FloodToolAction : GenericToolAction, IMapAction
     {
-        public string ActionName { get; private set; }
 
         private GameMap _map;
 
-        public void Execute(GameMap gameMap, int x, int y, int layer)
-        {
-            _map = gameMap;
-
-            var gX = MapEditorGlobals.RectangleSelectedTiles.X / 32;
-            var gY = MapEditorGlobals.RectangleSelectedTiles.Y / 32 ;
-
-            var tY = (gY) * MapEditorGlobals.CurrentActiveTexture.Width / 32;
-            var tX = gX;
-            var tileID = tY + tX;
-
-            FloodFill(new Node(x, y, gameMap.Layers[layer].MapTiles[x][y].TileId), gameMap.Layers[layer].MapTiles[x][y].TileId, tileID, layer);
-
-        }
-
         struct Node
         {
-            public int X;
-            public int Y;
-            public int ID;
+            public readonly int X;
+            public readonly int Y;
+            public readonly int ID;
 
             public Node(int x, int y, int id)
             {
@@ -42,20 +27,34 @@ namespace Toolkit.Mapping.Actions
             }
         }
 
+        public FloodToolAction(int x, int y, int layer, Rectangle selectedTiles) : base(x, y, layer, selectedTiles)
+        {
+        }
 
-        //       Flood-fill (node, target-color, replacement-color):
-        //1. Set Q to the empty queue.
-        //2. Add node to the end of Q.
-        //4. While Q is not empty: 
-        //5.     Set n equal to the last element of Q.
-        //7.     Remove last element from Q.
-        //8.     If the color of n is equal to target-color:
-        //9.         Set the color of n to replacement-color.
-        //10.        Add west node to end of Q.
-        //11.        Add east node to end of Q.
-        //12.        Add north node to end of Q.
-        //13.        Add south node to end of Q.
-        //14. Return.
+        public new string ActionName
+        {
+           get { return "Flood tool"; }
+        }
+
+        public new void Execute(GameMap gameMap)
+        {
+            _map = gameMap;
+
+            var gX = MapEditorGlobals.RectangleSelectedTiles.X / 32;
+            var gY = MapEditorGlobals.RectangleSelectedTiles.Y / 32;
+
+            var tY = (gY) * MapEditorGlobals.CurrentActiveTexture.Width / 32;
+            var tX = gX;
+            var tileID = tY + tX;
+
+            FloodFill(new Node(X, Y, gameMap.Layers[Layer].MapTiles[X][Y].TileId), gameMap.Layers[Layer].MapTiles[X][Y].TileId, tileID, Layer);
+        }
+
+        public new void UnExecute(GameMap gameMap)
+        {
+            throw new NotImplementedException();
+        }
+
 
         private void FloodFill(Node start, int targetID, int replacementID, int layer)
         {
