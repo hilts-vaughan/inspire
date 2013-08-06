@@ -28,21 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mapView = new Toolkit.Controls.Rendering.MapRenderControl();
             this.scrollHorizontal = new System.Windows.Forms.HScrollBar();
             this.scrollVertical = new System.Windows.Forms.VScrollBar();
+            this.mapView = new Toolkit.Controls.Rendering.MapRenderControl();
             this.SuspendLayout();
-            // 
-            // mapView
-            // 
-            this.mapView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mapView.Location = new System.Drawing.Point(0, 0);
-            this.mapView.Name = "mapView";
-            this.mapView.Size = new System.Drawing.Size(659, 418);
-            this.mapView.SpriteBatch = null;
-            this.mapView.TabIndex = 2;
-            this.mapView.Text = "mapRenderControl1";
-            this.mapView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapView_MouseDown);
             // 
             // scrollHorizontal
             // 
@@ -59,6 +48,17 @@
             this.scrollVertical.Name = "scrollVertical";
             this.scrollVertical.Size = new System.Drawing.Size(17, 435);
             this.scrollVertical.TabIndex = 0;
+            // 
+            // mapView
+            // 
+            this.mapView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapView.Location = new System.Drawing.Point(0, 0);
+            this.mapView.Name = "mapView";
+            this.mapView.Size = new System.Drawing.Size(659, 418);
+            this.mapView.SpriteBatch = null;
+            this.mapView.TabIndex = 2;
+            this.mapView.Text = "Cons";
+            this.mapView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapView_MouseDown);
             // 
             // MapForm
             // 

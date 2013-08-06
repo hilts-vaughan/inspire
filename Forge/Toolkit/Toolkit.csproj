@@ -272,7 +272,6 @@
     </Compile>
     <Compile Include="Hotkey.cs" />
     <Compile Include="ISaveable.cs" />
-    <Compile Include="LimitedStack.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -302,7 +301,6 @@
     <Compile Include="ProjectSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceContainer.cs" />
-    <Compile Include="Settings.cs" />
     <Compile Include="ShellIcon.cs" />
     <EmbeddedResource Include="Controls\AssetViewList.resx">
       <DependentUpon>AssetViewList.cs</DependentUpon>
@@ -462,7 +460,6 @@
     <None Include="Resources\scissors.png" />
     <None Include="Resources\clipboard-paste.png" />
     <None Include="Resources\clipboard-sign.png" />
-    <Content Include="SciLexer.dll" />
     <None Include="Resources\script_add.png" />
     <None Include="Resources\user_delete.png" />
     <None Include="Resources\user_add.png" />
