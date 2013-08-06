@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Inspire.Shared.Models.Map;
 using Toolkit.Docking.Content;
+using Toolkit.Mapping.Actions.Layer;
 
 namespace Toolkit.Docking
 {
@@ -31,6 +32,11 @@ namespace Toolkit.Docking
             // Bind the context
             _mapContext = mapForm;
 
+            mapForm.UndoManager.UndoPerformed -= UndoPerformed;
+            mapForm.UndoManager.RedoPeformed -= RedoPeformed;
+            mapForm.UndoManager.UndoPerformed += UndoPerformed;
+            mapForm.UndoManager.RedoPeformed += RedoPeformed;
+
             listLayers.Items.Clear();
 
             // Begin populating the view
@@ -48,10 +54,26 @@ namespace Toolkit.Docking
                 listLayers.Items.Add(item);
             }
 
-            listLayers.Items[LayerToIndex(mapForm)].Selected = true;
+            int id = LayerToIndex(mapForm);
+
+            if (id < 0)
+                id = 0;
+
+            listLayers.Items[id].Selected = true;
 
             _mapContext.Refresh();
 
+        }
+
+        private void RedoPeformed(object sender, EventArgs eventArgs)
+        {
+         
+            BindLayers(_mapContext);
+        }
+
+        private void UndoPerformed(object sender, EventArgs eventArgs)
+        {
+            BindLayers(_mapContext);
         }
 
         private int LayerToIndex(MapForm mapForm)
@@ -111,10 +133,17 @@ namespace Toolkit.Docking
         private void buttonRename_Click(object sender, EventArgs e)
         {
             var layer = _mapContext.Map.Layers[_mapContext.CurrentLayer].Name;
-            ShowInputDialog(ref layer);
-            _mapContext.Map.Layers[_mapContext.CurrentLayer].Name = layer;
+            var result = ShowInputDialog(ref layer);
 
-            BindLayers(_mapContext);
+            if (result == DialogResult.OK)
+            {
+
+                var id = (int) listLayers.SelectedItems[0].Tag;
+                _mapContext.TransactionMananger.PerformMapTransaction(new RenameLayerAction(layer, id));
+
+
+                BindLayers(_mapContext);
+            }
 
         }
 
@@ -135,7 +164,10 @@ namespace Toolkit.Docking
             if (id == _mapContext.Map.Layers.Count - 1)
                 return;
 
-            _mapContext.Map.Layers.Swap(id, id + 1);
+            // Apply a transaction
+            _mapContext.TransactionMananger.PerformMapTransaction(new MoveLayerAction(MoveLayerAction.LayerDirection.Up, id));
+
+
 
 
 
@@ -152,9 +184,8 @@ namespace Toolkit.Docking
             if (id == 0)
                 return;
 
-            _mapContext.Map.Layers.Swap(id, id - 1);
-
-
+            // Apply a transaction
+            _mapContext.TransactionMananger.PerformMapTransaction(new MoveLayerAction(MoveLayerAction.LayerDirection.Down, id));
 
             BindLayers(_mapContext);
 
@@ -174,10 +205,12 @@ namespace Toolkit.Docking
             }
 
             var id = (int)listLayers.SelectedItems[0].Tag;
+            var layer = _mapContext.Map.Layers[id];
 
-            _mapContext.Map.Layers.RemoveAt(id);
+            _mapContext.TransactionMananger.PerformMapTransaction(new RemoveLayerAction(layer));
+
+
             _mapContext.CurrentLayer = 0;
-
             BindLayers(_mapContext);
 
 
@@ -188,7 +221,8 @@ namespace Toolkit.Docking
             var id = (int)listLayers.SelectedItems[0].Tag;
 
             // Remove the layer
-            _mapContext.Map.Layers.Insert(id, new MapLayer());
+            _mapContext.TransactionMananger.PerformMapTransaction(new AddLayerAction(new MapLayer(), id));
+
 
             BindLayers(_mapContext);
         }
@@ -197,7 +231,7 @@ namespace Toolkit.Docking
         {
 
             var id = (int)listLayers.SelectedItems[0].Tag;
-            _mapContext.Map.Layers[id].Visible = !_mapContext.Map.Layers[id].Visible; 
+            _mapContext.TransactionMananger.PerformMapTransaction(new ToggleLayerVisibility(id));
 
             BindLayers(_mapContext);
         }

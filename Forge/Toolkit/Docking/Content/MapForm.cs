@@ -181,7 +181,7 @@ namespace Toolkit.Docking.Content
                 Application.DoEvents();
 
                 if (action.GetType() == typeof(FloodToolAction))
-                    return;
+                    break;
 
                 
 

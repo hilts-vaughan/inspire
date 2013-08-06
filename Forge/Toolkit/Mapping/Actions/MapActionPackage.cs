@@ -31,8 +31,6 @@ namespace Toolkit.Mapping.Actions
             _transactionPackage.Reverse();
             foreach (var action in _transactionPackage)
                 action.Execute(gameMap);
-
-
         }
 
         public void UnExecute(GameMap gameMap)

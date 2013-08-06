@@ -12,6 +12,7 @@ namespace Toolkit.Mapping.Actions
     {
 
         private GameMap _map;
+        private int _previousID;
 
         struct Node
         {
@@ -39,6 +40,7 @@ namespace Toolkit.Mapping.Actions
         public new void Execute(GameMap gameMap)
         {
             _map = gameMap;
+            _previousID = gameMap.Layers[Layer].MapTiles[X][Y].TileId;
 
             var gX = MapEditorGlobals.RectangleSelectedTiles.X / 32;
             var gY = MapEditorGlobals.RectangleSelectedTiles.Y / 32;
@@ -52,7 +54,16 @@ namespace Toolkit.Mapping.Actions
 
         public new void UnExecute(GameMap gameMap)
         {
-            throw new NotImplementedException();
+            _map = gameMap;
+
+            var gX = MapEditorGlobals.RectangleSelectedTiles.X / 32;
+            var gY = MapEditorGlobals.RectangleSelectedTiles.Y / 32;
+
+            var tY = (gY) * MapEditorGlobals.CurrentActiveTexture.Width / 32;
+            var tX = gX;
+            var tileID = _previousID;
+
+            FloodFill(new Node(X, Y, gameMap.Layers[Layer].MapTiles[X][Y].TileId), gameMap.Layers[Layer].MapTiles[X][Y].TileId, tileID, Layer);
         }
 
 

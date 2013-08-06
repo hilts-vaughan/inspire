@@ -282,6 +282,11 @@
     <Compile Include="Mapping\Actions\EraserActioncs.cs" />
     <Compile Include="Mapping\Actions\FloodToolAction.cs" />
     <Compile Include="Mapping\Actions\GenericToolAction.cs" />
+    <Compile Include="Mapping\Actions\Layer\AddLayerAction.cs" />
+    <Compile Include="Mapping\Actions\Layer\MoveLayerAction.cs" />
+    <Compile Include="Mapping\Actions\Layer\RemoveLayerAction.cs" />
+    <Compile Include="Mapping\Actions\Layer\RenameLayerAction.cs" />
+    <Compile Include="Mapping\Actions\Layer\ToggleLayerVisibility.cs" />
     <Compile Include="Mapping\Actions\MapActionPackage.cs" />
     <Compile Include="Mapping\Actions\PencilAction.cs" />
     <Compile Include="Mapping\GameMapSnapshot.cs" />

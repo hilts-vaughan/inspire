@@ -43,11 +43,15 @@ namespace Toolkit.Mapping
             _redo.Clear();
         }
 
+        public EventHandler UndoPerformed;
+        public EventHandler RedoPeformed;
+
         public void PerformUndo()
         {           
             var lastAction = _undo.Pop();
             _redo.Push(lastAction);
             _transactionMananger.UnperformMapTransaction(lastAction);
+            UndoPerformed(this, null);
         }
 
         public void PerformRedo()
@@ -55,6 +59,7 @@ namespace Toolkit.Mapping
             var action = _redo.Pop();
             _undo.Push(action);
             _transactionMananger.PerformMapTransactionNoEvent(action);
+            RedoPeformed(this, null);
         }
 
     }
