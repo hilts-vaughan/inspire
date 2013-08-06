@@ -42,8 +42,8 @@ namespace Toolkit.Mapping.Actions
             _map = gameMap;
             _previousID = gameMap.Layers[Layer].MapTiles[X][Y].TileId;
 
-            var gX = MapEditorGlobals.RectangleSelectedTiles.X / 32;
-            var gY = MapEditorGlobals.RectangleSelectedTiles.Y / 32;
+            var gX = SelectedTiles.X / 32;
+            var gY = SelectedTiles.Y / 32;
 
             var tY = (gY) * MapEditorGlobals.CurrentActiveTexture.Width / 32;
             var tX = gX;
@@ -56,8 +56,8 @@ namespace Toolkit.Mapping.Actions
         {
             _map = gameMap;
 
-            var gX = MapEditorGlobals.RectangleSelectedTiles.X / 32;
-            var gY = MapEditorGlobals.RectangleSelectedTiles.Y / 32;
+            var gX = SelectedTiles.X / 32;
+            var gY = SelectedTiles.Y / 32;
 
             var tY = (gY) * MapEditorGlobals.CurrentActiveTexture.Width / 32;
             var tX = gX;
