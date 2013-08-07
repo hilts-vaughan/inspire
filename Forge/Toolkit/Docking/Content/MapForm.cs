@@ -30,7 +30,7 @@ namespace Toolkit.Docking.Content
         public MapTransactionMananger TransactionMananger { get; set; }
 
         public UndoManager UndoManager { get; set; }
-              
+
 
         /// <summary>
         /// The current layer
@@ -110,7 +110,7 @@ namespace Toolkit.Docking.Content
 
         private void TransactionUnperformed(object sender, MapTransactionMananger.TransactionEventArgs transactionEventArgs)
         {
-            
+
         }
 
         public void TryToMakeContext()
@@ -136,61 +136,81 @@ namespace Toolkit.Docking.Content
 
         private void mapView_MouseDown(object sender, MouseEventArgs e)
         {
-            Mouse.WindowHandle = mapView.Handle;
-            var mouseState = Mouse.GetState();
-
-            var prevX = -1;
-            var prevY = -1;
-
-
-
-            //var snapshot = (GameMap) SerializationHelper.ByteArrayToObject(SerializationHelper.ObjectToByteArray(Map));
-            //BackupStack.Push(new GameMapSnapshot(snapshot,  MapEditorGlobals.ActiveActionType));
-            var _transactionsToQueue = new List<IMapAction>();
-
-
-            while (mouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+            if (e.Button == MouseButtons.Left)
             {
+                Mouse.WindowHandle = mapView.Handle;
+                var mouseState = Mouse.GetState();
 
-                mouseState = Mouse.GetState();
-
-                var x = mouseState.X / 32;
-                var y = mouseState.Y / 32;
-
-                if(prevX == x && prevY == y)
-                    continue;
-
-                if (x < 0 || y < 0)
-                    continue;
-
-                prevX = x;
-                prevY = y;
+                var prevX = -1;
+                var prevY = -1;
 
 
-                object[] args = {x, y, CurrentLayer, MapEditorGlobals.RectangleSelectedTiles};            
-                var currentTool = MapEditorGlobals.ActiveActionType;
-                var action = Activator.CreateInstance(currentTool, args);
-                
-                TransactionMananger.PerformMapTransaction(action as IMapAction);
-                _transactionsToQueue.Add(action as IMapAction);
+
+                //var snapshot = (GameMap) SerializationHelper.ByteArrayToObject(SerializationHelper.ObjectToByteArray(Map));
+
+                //BackupStack.Push(new GameMapSnapshot(snapshot,  MapEditorGlobals.ActiveActionType));
+                var _transactionsToQueue = new Stack<IMapAction>();
 
 
-                // Refresh and paginate
+                while (mouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+                {
 
-                Refresh();
-                Application.DoEvents();
+                    mouseState = Mouse.GetState();
 
-                if (action.GetType() == typeof(FloodToolAction))
-                    break;
+                    var x = mouseState.X / 32;
+                    var y = mouseState.Y / 32;
 
-                
+                    if (prevX == x && prevY == y)
+                        continue;
 
+                    if (x < 0 || y < 0)
+                        continue;
+
+                    prevX = x;
+                    prevY = y;
+
+
+                    object[] args = { x, y, CurrentLayer, MapEditorGlobals.RectangleSelectedTiles };
+                    var currentTool = MapEditorGlobals.ActiveActionType;
+                    var action = Activator.CreateInstance(currentTool, args);
+
+                    TransactionMananger.PerformMapTransaction(action as IMapAction);
+                   // UndoManager.AddTransaction(action as IMapAction);
+                    _transactionsToQueue.Push(action as IMapAction);
+                    
+
+
+                    // Refresh and paginate
+
+                    Refresh();
+                    Application.DoEvents();
+
+                    if (action.GetType() == typeof(FloodToolAction))
+                        break;
+
+
+
+                }
+
+
+
+
+                // Create our package and feed it to the undo manager
+                _transactionsToQueue.Reverse();
+                var package = new MapActionPackage(_transactionsToQueue.ToList());
+                UndoManager.AddTransaction(package);
             }
 
-            // Create our package and feed it to the undo manager
-            //_transactionsToQueue.Reverse();
-            var package = new MapActionPackage(_transactionsToQueue);
-            UndoManager.AddTransaction(package);
+
+            // Do right click stuff
+            if (e.Button == MouseButtons.Right)
+            {
+
+                //TODO: Implement me
+                return;
+            }
+
+
 
         }
 

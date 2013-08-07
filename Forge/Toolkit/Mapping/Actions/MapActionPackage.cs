@@ -28,18 +28,22 @@ namespace Toolkit.Mapping.Actions
 
         public void Execute(GameMap gameMap)
         {
-            _transactionPackage.Reverse();
-            foreach (var action in _transactionPackage)
+            for (int index = _transactionPackage.Count - 1; index >= 0; index--)
+            {
+                var action = _transactionPackage[index];
                 action.Execute(gameMap);
+            }
         }
 
         public void UnExecute(GameMap gameMap)
         {
-            _transactionPackage.Reverse();
-            foreach (var action in _transactionPackage)
+            //_transactionPackage.Reverse();
+           // _transactionPackage.Reverse();
+            for (int index = 0; index < _transactionPackage.Count; index++)
+            {
+                var action = _transactionPackage[index];
                 action.UnExecute(gameMap);
+            }
         }
-
-
     }
 }

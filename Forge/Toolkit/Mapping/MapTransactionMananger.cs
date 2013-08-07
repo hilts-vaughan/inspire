@@ -49,6 +49,16 @@ namespace Toolkit.Mapping
         /// <summary>
         /// This method allows a map action to be applied to the current transaction.
         /// </summary>
+        public void PerformMapTransaction(IMapAction mapAction, GameMap map)
+        {
+            mapAction.Execute(map);
+            TransactionPerformed(this, new TransactionEventArgs(mapAction));
+        }
+
+
+        /// <summary>
+        /// This method allows a map action to be applied to the current transaction.
+        /// </summary>
         public void PerformMapTransactionNoEvent(IMapAction mapAction)
         {
             mapAction.Execute(_gameMap);

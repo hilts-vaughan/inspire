@@ -14,6 +14,8 @@ namespace Toolkit.Mapping.Actions
         private GameMap _map;
         private int _previousID;
 
+        List<Node> _affectedNodes = new List<Node>();
+
         struct Node
         {
             public readonly int X;
@@ -28,13 +30,14 @@ namespace Toolkit.Mapping.Actions
             }
         }
 
-        public FloodToolAction(int x, int y, int layer, Rectangle selectedTiles) : base(x, y, layer, selectedTiles)
+        public FloodToolAction(int x, int y, int layer, Rectangle selectedTiles)
+            : base(x, y, layer, selectedTiles)
         {
         }
 
         public new string ActionName
         {
-           get { return "Flood tool"; }
+            get { return "Flood tool"; }
         }
 
         public new void Execute(GameMap gameMap)
@@ -49,29 +52,36 @@ namespace Toolkit.Mapping.Actions
             var tX = gX;
             var tileID = tY + tX;
 
+            // Restore the state, rewind
+            for (int x = 0; x < gameMap.Layers[0].Width; x++)
+            {
+                for (int y = 0; y < gameMap.Layers[0].Height; y++)
+                {
+                    Node node = new Node(x, y, gameMap.Layers[Layer].MapTiles[x][y].TileId);
+                    _affectedNodes.Add(node);
+                }
+            }
+
+
             FloodFill(new Node(X, Y, gameMap.Layers[Layer].MapTiles[X][Y].TileId), gameMap.Layers[Layer].MapTiles[X][Y].TileId, tileID, Layer);
         }
 
         public new void UnExecute(GameMap gameMap)
         {
-            _map = gameMap;
 
-            var gX = SelectedTiles.X / 32;
-            var gY = SelectedTiles.Y / 32;
+            foreach (var node in _affectedNodes)
+            {
+                gameMap.Layers[Layer].MapTiles[node.X][node.Y].TileId = node.ID;
 
-            var tY = (gY) * MapEditorGlobals.CurrentActiveTexture.Width / 32;
-            var tX = gX;
-            var tileID = _previousID;
-
-            FloodFill(new Node(X, Y, gameMap.Layers[Layer].MapTiles[X][Y].TileId), gameMap.Layers[Layer].MapTiles[X][Y].TileId, tileID, Layer);
+            }
         }
 
 
         private void FloodFill(Node start, int targetID, int replacementID, int layer)
         {
 
-            if(targetID == replacementID)
-                return;            
+            if (targetID == replacementID)
+                return;
 
             var _nodes = new Stack<Node>();
             _nodes.Push(start);
@@ -82,6 +92,8 @@ namespace Toolkit.Mapping.Actions
 
                 if (n.ID == targetID)
                 {
+                    var no = new Node(n.X, n.Y, _map.Layers[layer].MapTiles[n.X][n.Y].TileId);
+
                     _map.Layers[layer].MapTiles[n.X][n.Y].TileId = replacementID;
 
 

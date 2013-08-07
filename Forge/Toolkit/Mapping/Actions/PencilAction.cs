@@ -26,7 +26,8 @@ namespace Toolkit.Mapping.Actions
 
         public new void Execute(GameMap gameMap)
         {
-
+            Console.WriteLine("Executing: ");
+            PrintState();
 
             _previousTiles.Clear();
 
@@ -50,10 +51,34 @@ namespace Toolkit.Mapping.Actions
                     gameMap.Layers[Layer].MapTiles[X + w][Y + h].TileId = tileID;
                 }
             }
+
+        }
+
+        private void PrintState()
+        {
+            return;
+            Console.WriteLine("X: " + X);
+            Console.WriteLine("Y: " + Y);
+            Console.WriteLine("Tiles: " + SelectedTiles);
+            Console.WriteLine("Previous Tiles: ");
+
+            foreach (var tile in _previousTiles)
+            {
+                Console.WriteLine(tile);
+            }
+
+
+
         }
 
         public new void UnExecute(GameMap gameMap)
         {
+
+            Console.WriteLine("Unexecuting: ");
+            PrintState();
+
+            List<int> newTiles = new List<int>();
+
             // Get vertical portion
             var curTexture = MapEditorGlobals.CurrentActiveTexture;
 
@@ -69,11 +94,14 @@ namespace Toolkit.Mapping.Actions
                     var tY = (gY) * curTexture.Width / 32;
                     var tX = gX;
                     var tileID = tY + tX;
-
+                    
+                    newTiles.Add(gameMap.Layers[Layer].MapTiles[X + w][Y + h].TileId);
                     gameMap.Layers[Layer].MapTiles[X + w][Y + h].TileId = _previousTiles.First();
                     _previousTiles.Remove(_previousTiles.First());
                 }
             }
+
+
 
         }
     }
