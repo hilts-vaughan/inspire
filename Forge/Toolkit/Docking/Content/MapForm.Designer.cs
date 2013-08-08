@@ -59,6 +59,8 @@
             this.mapView.TabIndex = 2;
             this.mapView.Text = "Cons";
             this.mapView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapView_MouseDown);
+            this.mapView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapView_MouseMove);
+            this.mapView.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mapView_MouseUp);
             // 
             // MapForm
             // 

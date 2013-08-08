@@ -279,6 +279,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Mapping\Actions\Clipboard\ClipboardCutMapAction.cs" />
+    <Compile Include="Mapping\Actions\Clipboard\ClipboardPasteMapAction.cs" />
     <Compile Include="Mapping\Actions\EraserActioncs.cs" />
     <Compile Include="Mapping\Actions\FloodToolAction.cs" />
     <Compile Include="Mapping\Actions\GenericToolAction.cs" />

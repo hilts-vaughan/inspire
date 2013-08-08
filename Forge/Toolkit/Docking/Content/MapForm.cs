@@ -17,7 +17,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Toolkit.Mapping;
 using Toolkit.Mapping.Actions;
+using Toolkit.Mapping.Actions.Clipboard;
 using ButtonState = System.Windows.Forms.ButtonState;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace Toolkit.Docking.Content
 {
@@ -31,6 +33,8 @@ namespace Toolkit.Docking.Content
 
         public UndoManager UndoManager { get; set; }
 
+
+        private Rectangle _mapSelection;
 
         /// <summary>
         /// The current layer
@@ -50,6 +54,73 @@ namespace Toolkit.Docking.Content
 
 
         }
+
+        private bool _hasCopied = false;
+
+        public void CopyCurrentMapToBuffer()
+        {
+            if (mapView.SelectionRectangle == Rectangle.Empty)
+                return;
+
+
+            _hasCopied = true;
+            Rectangle selected = mapView.SelectionRectangle;
+            var x = selected.X/32;
+            var y = selected.Y/32;
+
+            MapEditorGlobals.GlobalClipboardBuffer = new int[selected.Width/32,selected.Height/32];
+
+
+            // We need to loop over the width of the editor
+            for (int w = 0; w < selected.Width / 32; w++)
+            {
+                for (int h = 0; h < selected.Height / 32; h++)
+                {
+                    MapEditorGlobals.GlobalClipboardBuffer[w, h] =
+                        Map.Layers[CurrentLayer].MapTiles[x + w][y + h].TileId;
+
+                }
+            }
+
+
+
+        }
+
+        public void CutTiles()
+        {
+            if (mapView.SelectionRectangle == Rectangle.Empty)
+                return;
+
+
+            CopyCurrentMapToBuffer();
+            var action = new ClipboardCutMapAction(mapView.SelectionRectangle, CurrentLayer,
+                                                   MapEditorGlobals.GlobalClipboardBuffer);
+            TransactionMananger.PerformMapTransaction(action);
+            mapView.SelectionRectangle = Rectangle.Empty;
+        }
+
+        public void PasteTiles()
+        {
+            if (mapView.SelectionRectangle == Rectangle.Empty)
+            {
+                MessageBox.Show("Select a location to paste first.");
+                return;
+            }
+                
+
+
+            if (!_hasCopied)
+                return;
+
+            // Apply the transaction
+            var action = new ClipboardPasteMapAction(mapView.SelectionRectangle, CurrentLayer,
+                                                     MapEditorGlobals.GlobalClipboardBuffer);
+            TransactionMananger.PerformMapTransaction(action);
+
+
+            mapView.SelectionRectangle = Rectangle.Empty;
+        }
+
 
         private void TransactionPerformed(object sender, MapTransactionMananger.TransactionEventArgs transactionEventArgs)
         {
@@ -136,6 +207,12 @@ namespace Toolkit.Docking.Content
 
         private void mapView_MouseDown(object sender, MouseEventArgs e)
         {
+
+            if (e.Button == MouseButtons.Right)
+            {
+                mapView.SelectionRectangle = new Rectangle(e.X / 32 * 32, e.Y / 32 * 32, 32, 32);
+            }
+
             if (e.Button == MouseButtons.Left)
             {
                 Mouse.WindowHandle = mapView.Handle;
@@ -175,9 +252,9 @@ namespace Toolkit.Docking.Content
                     var action = Activator.CreateInstance(currentTool, args);
 
                     TransactionMananger.PerformMapTransaction(action as IMapAction);
-                   // UndoManager.AddTransaction(action as IMapAction);
+                    // UndoManager.AddTransaction(action as IMapAction);
                     _transactionsToQueue.Push(action as IMapAction);
-                    
+
 
 
                     // Refresh and paginate
@@ -223,6 +300,69 @@ namespace Toolkit.Docking.Content
         {
             var releaseRequest = new ContentReleasePacket(ContentType.Map, _template.Id);
             NetworkManager.Instance.SendPacket(releaseRequest);
+        }
+
+        private void mapView_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button == MouseButtons.Right)
+            {
+
+                if (mapView.SelectionRectangle.Width < 32)
+                    mapView.SelectionRectangle = new Rectangle(mapView.SelectionRectangle.X,
+                                                               mapView.SelectionRectangle.Y, 32,
+                                                               mapView.SelectionRectangle.Height);
+
+                if (mapView.SelectionRectangle.Height < 32)
+                    mapView.SelectionRectangle = new Rectangle(mapView.SelectionRectangle.X,
+                                                               mapView.SelectionRectangle.Y, mapView.SelectionRectangle.Width,
+                                                               32);
+
+                if (e.X < mapView.SelectionRectangle.X || e.Y < mapView.SelectionRectangle.Y)
+                    return;
+
+
+                mapView.SelectionRectangle = new Rectangle(mapView.SelectionRectangle.X, mapView.SelectionRectangle.Y, (int)Math.Ceiling((e.X - mapView.SelectionRectangle.X) / 32f) * 32, (int)Math.Ceiling((e.Y - mapView.SelectionRectangle.Y) / 32f) * 32);
+
+
+
+            }
+
+        }
+
+        private void mapView_MouseUp(object sender, MouseEventArgs e)
+        {
+
+
+            if (mapView.SelectionRectangle.Width < 0)
+            {
+
+                mapView.SelectionRectangle = new Rectangle(mapView.SelectionRectangle.X + mapView.SelectionRectangle.Width,
+                                                 mapView.SelectionRectangle.Y,
+                                                 mapView.SelectionRectangle.Width,
+                                                 mapView.SelectionRectangle.Height);
+
+                mapView.SelectionRectangle = new Rectangle(mapView.SelectionRectangle.X,
+                                                                 mapView.SelectionRectangle.Y,
+                                                                 mapView.SelectionRectangle.Width * -1,
+                                                                 mapView.SelectionRectangle.Height);
+            }
+
+            if (mapView.SelectionRectangle.Height < 0)
+            {
+
+                mapView.SelectionRectangle = new Rectangle(mapView.SelectionRectangle.X,
+                                                 mapView.SelectionRectangle.Y + mapView.SelectionRectangle.Height,
+                                                 mapView.SelectionRectangle.Width,
+                                                 mapView.SelectionRectangle.Height);
+
+                mapView.SelectionRectangle = new Rectangle(mapView.SelectionRectangle.X,
+                                                                 mapView.SelectionRectangle.Y,
+                                                                 mapView.SelectionRectangle.Width,
+                                                                 mapView.SelectionRectangle.Height * -1);
+            }
+
+
         }
     }
 }

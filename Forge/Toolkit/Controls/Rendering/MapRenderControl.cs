@@ -26,6 +26,11 @@ namespace Toolkit.Controls.Rendering
         private Color _gridColor;
         private SpriteBatch _sb;
 
+        /// <summary>
+        /// The rectangle selection
+        /// </summary>
+        public Rectangle SelectionRectangle { get; set; }
+
         public void SetMap(GameMap map)
         {
 
@@ -102,6 +107,9 @@ namespace Toolkit.Controls.Rendering
                     _sb.DrawRectangle(rect, _gridColor, 2f);
                 }
             }
+
+            // Draw our selection
+            _sb.DrawRectangle(SelectionRectangle, Color.White, 3f);
 
             _sb.End();
 

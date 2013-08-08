@@ -157,6 +157,59 @@ namespace Toolkit
             }
 
 
+            if (keyData == (Keys.Control | Keys.C))
+            {
+                copyButton.PerformClick();
+                return true;
+            }
+
+
+            if (keyData == (Keys.Control | Keys.V))
+            {
+                pasteButton.PerformClick();
+                return true;
+            }
+
+
+
+            if (keyData == (Keys.Control | Keys.X))
+            {
+                cutButton.PerformClick();
+                return true;
+            }
+
+
+
+
+            if (keyData == (Keys.P))
+            {
+                buttonPencil.PerformClick();
+                return true;
+            }
+
+
+
+            if (keyData == (Keys.D))
+            {
+                buttonDropper.PerformClick();
+                return true;
+            }
+
+
+            if (keyData == (Keys.F))
+            {
+                buttonFill.PerformClick();
+                return true;
+            }
+
+
+            if (keyData == (Keys.E))
+            {
+               buttonEraser.PerformClick();
+                return true;
+            }
+
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -615,7 +668,7 @@ namespace Toolkit
         private void buttonPencil_Click(object sender, EventArgs e)
         {
             VerifySingleCheck(sender);
-            MapEditorGlobals.ActiveActionType = typeof (PencilAction);
+            MapEditorGlobals.ActiveActionType = typeof(PencilAction);
         }
 
         private void VerifySingleCheck(object sender)
@@ -639,12 +692,12 @@ namespace Toolkit
 
         private void buttonFill_Click(object sender, EventArgs e)
         {
-            MapEditorGlobals.ActiveActionType = typeof (FloodToolAction);
+            MapEditorGlobals.ActiveActionType = typeof(FloodToolAction);
             VerifySingleCheck(sender);
         }
 
 
-        
+
         public MapForm GetActiveMap()
         {
             return dockPanel.ActiveDocument as MapForm;
@@ -659,7 +712,7 @@ namespace Toolkit
 
         private void buttonUndo_Click(object sender, EventArgs e)
         {
-            
+
             var map = GetActiveMap();
 
             if (map != null)
@@ -674,7 +727,7 @@ namespace Toolkit
                 map.UndoManager.PerformUndo();
                 return;
                 map.RedoStack.Push(new GameMapSnapshot(map.Map, typeof(PencilAction)));
-                var backupState =  map.BackupStack.Pop();
+                var backupState = map.BackupStack.Pop();
                 map.Map = backupState.Map;
                 TryAndBindMap(map);
             }
@@ -710,6 +763,28 @@ namespace Toolkit
                 MessageBox.Show("Please select a map before trying to perform map actions.");
             }
 
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            var map = GetActiveMap();
+            if (map != null)
+                map.CutTiles();
+
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            var map = GetActiveMap();
+            if (map != null)
+                map.CopyCurrentMapToBuffer();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            var map = GetActiveMap();
+            if (map != null)
+                map.PasteTiles();
         }
 
 
