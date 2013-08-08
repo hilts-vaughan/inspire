@@ -41,6 +41,12 @@ namespace Inspire.GameEngine.ScreenManager
 
 
         /// <summary>
+        /// The camera for this particular screen
+        /// </summary>
+        public Camera2D Camera2D { get; set; }
+
+
+        /// <summary>
         /// Normally when one screen is brought up over the top of another,
         /// the first screen will transition off to make room for the new
         /// one. This property indicates whether the screen is only a small

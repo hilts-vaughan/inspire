@@ -65,10 +65,10 @@ namespace Toolkit.Docking.Content
 
             _hasCopied = true;
             Rectangle selected = mapView.SelectionRectangle;
-            var x = selected.X/32;
-            var y = selected.Y/32;
+            var x = selected.X / 32;
+            var y = selected.Y / 32;
 
-            MapEditorGlobals.GlobalClipboardBuffer = new int[selected.Width/32,selected.Height/32];
+            MapEditorGlobals.GlobalClipboardBuffer = new int[selected.Width / 32, selected.Height / 32];
 
 
             // We need to loop over the width of the editor
@@ -106,7 +106,7 @@ namespace Toolkit.Docking.Content
                 MessageBox.Show("Select a location to paste first.");
                 return;
             }
-                
+
 
 
             if (!_hasCopied)
@@ -363,6 +363,45 @@ namespace Toolkit.Docking.Content
             }
 
 
+        }
+
+        private void mapView_Resize(object sender, EventArgs e)
+        {
+            var widthVisible = mapView.Width / 32;
+            var heightVisible = mapView.Height / 32;
+
+            var mapWidth = Map.Layers[0].Width;
+            var mapHeight = Map.Layers[0].Height;
+
+            scrollVertical.Maximum = mapHeight - 0 - heightVisible / 2;
+            scrollHorizontal.Maximum = mapWidth - widthVisible / 2;
+
+            if (scrollVertical.Value > scrollVertical.Maximum)
+                scrollVertical.Value = scrollVertical.Maximum;
+
+            if (scrollHorizontal.Value > scrollHorizontal.Maximum)
+                scrollHorizontal.Value = scrollHorizontal.Maximum;
+
+
+            if (mapView.screen != null)
+                RecalcBars();
+
+
+        }
+
+        private void scrollVertical_Scroll(object sender, ScrollEventArgs e)
+        {
+            RecalcBars();
+        }
+
+        private void RecalcBars()
+        {
+            mapView.Camera.Pos = new Vector2(scrollHorizontal.Value * 32, scrollVertical.Value * 32);
+        }
+
+        private void scrollHorizontal_Scroll(object sender, ScrollEventArgs e)
+        {
+            RecalcBars();
         }
     }
 }

@@ -40,6 +40,7 @@
             this.scrollHorizontal.Name = "scrollHorizontal";
             this.scrollHorizontal.Size = new System.Drawing.Size(659, 17);
             this.scrollHorizontal.TabIndex = 1;
+            this.scrollHorizontal.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrollHorizontal_Scroll);
             // 
             // scrollVertical
             // 
@@ -48,12 +49,14 @@
             this.scrollVertical.Name = "scrollVertical";
             this.scrollVertical.Size = new System.Drawing.Size(17, 435);
             this.scrollVertical.TabIndex = 0;
+            this.scrollVertical.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrollVertical_Scroll);
             // 
             // mapView
             // 
             this.mapView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mapView.Location = new System.Drawing.Point(0, 0);
             this.mapView.Name = "mapView";
+            this.mapView.SelectionRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, 0, 0);
             this.mapView.Size = new System.Drawing.Size(659, 418);
             this.mapView.SpriteBatch = null;
             this.mapView.TabIndex = 2;
@@ -61,6 +64,7 @@
             this.mapView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mapView_MouseDown);
             this.mapView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapView_MouseMove);
             this.mapView.MouseUp += new System.Windows.Forms.MouseEventHandler(this.mapView_MouseUp);
+            this.mapView.Resize += new System.EventHandler(this.mapView_Resize);
             // 
             // MapForm
             // 

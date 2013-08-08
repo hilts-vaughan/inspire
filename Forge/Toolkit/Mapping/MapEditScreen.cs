@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Inspire.GameEngine;
 using Inspire.GameEngine.Components;
 using Inspire.GameEngine.Services.Rendering;
 using Inspire.GameEngine.States;
@@ -13,8 +14,13 @@ namespace Toolkit.Mapping
 {
     public class MapEditScreen : ServiceEntityScreen
     {
+
+  
+
         public GameMap GameMap;
         public TileMapRenderer _renderer;
+
+
 
         public MapEditScreen(GameMap gameMap)
         {

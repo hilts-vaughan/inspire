@@ -38,7 +38,7 @@ namespace Inspire.GameEngine.Services.Rendering
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, null, ParentScreen.Camera2D.GetTransformation());
 
             foreach (var layer in _gameMap.Layers)
             {

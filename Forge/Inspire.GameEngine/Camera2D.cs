@@ -18,19 +18,27 @@ namespace Inspire.GameEngine
    private int _worldWidth;
    private int _worldHeight;
 
-   public Camera2D(Viewport viewport, int worldWidth, 
+   public Camera2D(Vector2 viewport, int worldWidth, 
       int worldHeight, float initialZoom)
    {
       _zoom = initialZoom;
       _rotation = 0.0f;
       _pos = Vector2.Zero;
-      _viewportWidth = viewport.Width;
-      _viewportHeight = viewport.Height;
+      _viewportWidth = (int) viewport.X;
+      _viewportHeight = (int) viewport.Y;
       _worldWidth = worldWidth;
       _worldHeight = worldHeight;
    }
 
    #region Properties
+
+
+        public Vector2 ViewportSize
+        {
+            set { _viewportWidth = (int) value.X;
+                _viewportHeight = (int) value.Y;
+            }
+        }
 
    public float Zoom
    {
@@ -70,14 +78,7 @@ namespace Inspire.GameEngine
            float bottomBarrier = (float)_viewportHeight *
                   .5f / _zoom;
            _pos = value;
-           if (_pos.X < leftBarrier)
-               _pos.X = leftBarrier;
-           if (_pos.X > rightBarrier)
-               _pos.X = rightBarrier;
-           if (_pos.Y > topBarrier)
-               _pos.Y = topBarrier;
-           if (_pos.Y < bottomBarrier)
-               _pos.Y = bottomBarrier;
+
         }
    }
 
@@ -87,12 +88,10 @@ namespace Inspire.GameEngine
    {
        var pos = new Vector2((float) Math.Floor(_pos.X), (float) Math.Floor(_pos.Y));
 
-     _transform = 
-        Matrix.CreateTranslation(new Vector3(-pos.X, -pos.Y, 0)) *
-        Matrix.CreateRotationZ(Rotation) *
-        Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
-        Matrix.CreateTranslation(new Vector3(_viewportWidth * 0.5f,
-            _viewportHeight * 0.5f, 0));
+       _transform =
+           Matrix.CreateTranslation(new Vector3(-pos.X, -pos.Y, 0))*
+           Matrix.CreateRotationZ(Rotation)*
+           Matrix.CreateScale(new Vector3(Zoom, Zoom, 1));
 
        return _transform;
    }

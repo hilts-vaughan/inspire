@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Inspire.GameEngine;
 using Inspire.GameEngine.ScreenManager;
 using Inspire.Shared.Models.Map;
 using Microsoft.Xna.Framework;
@@ -22,9 +23,14 @@ namespace Toolkit.Controls.Rendering
     {
         private ScreenManager _screenManager;
         private GameMap _gameMap;
-        private MapEditScreen screen;
+        public MapEditScreen screen;
         private Color _gridColor;
         private SpriteBatch _sb;
+
+        public Camera2D Camera
+        {
+            get { return screen.Camera2D; }
+        }
 
         /// <summary>
         /// The rectangle selection
@@ -68,6 +74,10 @@ namespace Toolkit.Controls.Rendering
                 _screenManager.AddScreen(screen, null);
                 screen.LoadContent();
 
+                screen.Camera2D = new Camera2D(new Vector2(Width, Height), _gameMap.Layers[0].Width, _gameMap.Layers[1].Height, 1f);
+
+                Resize += MapRenderControl_Resize;
+
                 _sb = new SpriteBatch(GraphicsDevice);
 
             }
@@ -75,6 +85,11 @@ namespace Toolkit.Controls.Rendering
             // Since there was a context swap, do it up
             MapEditorGlobals.CurrentActiveTexture = screen._renderer._tilesetTexture;
             //CurrentActiveTexture
+        }
+
+        void MapRenderControl_Resize(object sender, EventArgs e)
+        {
+           screen.Camera2D.ViewportSize = new Vector2(Width, Height);
         }
 
 
@@ -95,7 +110,7 @@ namespace Toolkit.Controls.Rendering
             _screenManager.Update(null);
 
 
-            _sb.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
+            _sb.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, null,  Camera.GetTransformation());
 
             // Draw our grid overlay
             for (int x = 0; x < _gameMap.Layers[0].Width; x++)
