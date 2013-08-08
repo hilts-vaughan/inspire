@@ -234,8 +234,11 @@ namespace Toolkit.Docking.Content
 
                     mouseState = Mouse.GetState();
 
-                    var x = mouseState.X / 32;
-                    var y = mouseState.Y / 32;
+                    var worldPosition = Vector2.Transform(new Vector2(mouseState.X, mouseState.Y), Matrix.Invert(mapView.Camera.GetTransformation()));
+
+
+                    var x = (int) (worldPosition.X / 32);
+                    var y = (int) (worldPosition.Y / 32);
 
                     if (prevX == x && prevY == y)
                         continue;

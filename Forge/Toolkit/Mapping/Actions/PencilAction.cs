@@ -47,6 +47,9 @@ namespace Toolkit.Mapping.Actions
                     var tX = gX;
                     var tileID = tY + tX;
 
+                    if (X + w >= gameMap.Layers[0].Width || Y + h >= gameMap.Layers[0].Height)
+                        continue;
+
                     _previousTiles.Add(gameMap.Layers[Layer].MapTiles[X + w][Y + h].TileId);
                     gameMap.Layers[Layer].MapTiles[X + w][Y + h].TileId = tileID;
                 }
@@ -94,7 +97,10 @@ namespace Toolkit.Mapping.Actions
                     var tY = (gY) * curTexture.Width / 32;
                     var tX = gX;
                     var tileID = tY + tX;
-                    
+
+                    if (X + w >= gameMap.Layers[0].Width || Y + h >= gameMap.Layers[0].Height)
+                        continue;
+
                     newTiles.Add(gameMap.Layers[Layer].MapTiles[X + w][Y + h].TileId);
                     gameMap.Layers[Layer].MapTiles[X + w][Y + h].TileId = _previousTiles.First();
                     _previousTiles.Remove(_previousTiles.First());

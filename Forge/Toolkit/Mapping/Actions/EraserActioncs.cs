@@ -23,11 +23,16 @@ namespace Toolkit.Mapping.Actions
 
         public new void UnExecute(GameMap gameMap)
         {
+            if (X >= gameMap.Layers[0].Width || Y >= gameMap.Layers[0].Height)
+                return;
             gameMap.Layers[Layer].MapTiles[X][Y].TileId = _previousID;
         }
 
         public new void Execute(GameMap gameMap)
         {
+            if (X  >= gameMap.Layers[0].Width || Y  >= gameMap.Layers[0].Height)
+                return;
+
             _previousID = gameMap.Layers[Layer].MapTiles[X][Y].TileId;
             gameMap.Layers[Layer].MapTiles[X][Y].TileId = -1;
         }
