@@ -10,6 +10,11 @@ namespace Toolkit.Controls
 {
     class MyListView : ListView
     {
+        public MyListView()
+        {
+            this.MultiSelect = false;
+        }
+
         protected override void WndProc(ref Message m)
         {
             // Swallow mouse messages that are not in the client area

@@ -209,6 +209,15 @@ namespace Toolkit
                 return true;
             }
 
+            if (keyData == (Keys.Q))
+            {
+                _layersDockForm.LayerMoveUp();
+            }
+
+            if (keyData == (Keys.W))
+            {
+                _layersDockForm.LayerMoveDown();
+            }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -581,17 +590,13 @@ namespace Toolkit
 
         private void dockPanel_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (e.KeyCode == Keys.W)
-            {
-                MessageBox.Show("!");
-            }
+ 
 
         }
 
         private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 'w')
-                MessageBox.Show("!");
+
         }
 
         private void itemToolStripMenuItem_Click(object sender, EventArgs e)

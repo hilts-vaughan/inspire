@@ -67,7 +67,7 @@ namespace Toolkit.Docking
 
         private void RedoPeformed(object sender, EventArgs eventArgs)
         {
-         
+
             BindLayers(_mapContext);
         }
 
@@ -138,7 +138,7 @@ namespace Toolkit.Docking
             if (result == DialogResult.OK)
             {
 
-                var id = (int) listLayers.SelectedItems[0].Tag;
+                var id = (int)listLayers.SelectedItems[0].Tag;
                 _mapContext.TransactionMananger.PerformMapTransaction(new RenameLayerAction(layer, id));
 
 
@@ -154,6 +154,43 @@ namespace Toolkit.Docking
 
             var id = (int)listLayers.SelectedItems[0].Tag;
             _mapContext.CurrentLayer = id;
+
+            foreach (var item in listLayers.Items)
+            {
+                var lvItem = (ListViewItem) item;
+
+                if (lvItem.Selected)
+                {
+                    lvItem.ForeColor = Color.DarkGreen;
+                }
+                else
+                {
+                    lvItem.ForeColor = Color.Black;
+                }
+            }
+
+        }
+
+        public void LayerMoveUp()
+        {
+            var id = listLayers.SelectedIndices[0];
+
+            if (id == 0)
+                return;
+
+            listLayers.SelectedItems.Clear();
+            listLayers.Items[id - 1].Selected = true;
+        }
+
+        public void LayerMoveDown()
+        {
+            var id = listLayers.SelectedIndices[0];
+
+            if (id == listLayers.Items.Count - 1)
+                return;
+
+                listLayers.SelectedItems.Clear();
+            listLayers.Items[id + 1].Selected = true;
         }
 
 
