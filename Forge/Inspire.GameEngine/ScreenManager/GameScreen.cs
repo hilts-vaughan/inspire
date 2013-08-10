@@ -9,7 +9,10 @@
 
 #region Using Statements
 using System;
+using System.Reflection;
+using AwesomiumUiLib;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.IO;
 #endregion
@@ -37,6 +40,30 @@ namespace Inspire.GameEngine.ScreenManager
     /// </summary>
     public abstract class GameScreen
     {
+        protected GameScreen()
+        {
+
+        }
+
+
+        public void Initialize()
+        {
+            var executionPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName);
+
+            var width = ScreenManager.GraphicsDevice.PresentationParameters.BackBufferWidth;
+            var height = ScreenManager.GraphicsDevice.PresentationParameters.BackBufferHeight;
+            UiManager.Initialize(ScreenManager.GraphicsDevice, width, height, executionPath);
+        }
+
+        /// <summary>
+        /// The UI manager helps create windows and the basic HTML chrome for pages that require it
+        /// </summary>
+        public AwesomiumUI UiManager
+        {
+            get { return _uiManager; }
+            set { _uiManager = value; }
+        }
+
         #region Properties
 
 
@@ -212,7 +239,7 @@ namespace Inspire.GameEngine.ScreenManager
         }
 
         GestureType enabledGestures = GestureType.None;
-
+        private AwesomiumUI _uiManager = new AwesomiumUI();
 
         #endregion
 
@@ -245,6 +272,8 @@ namespace Inspire.GameEngine.ScreenManager
                                                       bool coveredByOtherScreen)
         {
             this.otherScreenHasFocus = otherScreenHasFocus;
+
+            UiManager.Update();
 
             if (isExiting)
             {
@@ -329,7 +358,24 @@ namespace Inspire.GameEngine.ScreenManager
         /// <summary>
         /// This is called when the screen should draw itself.
         /// </summary>
-        public virtual void Draw(GameTime gameTime) { }
+        public virtual void Draw(GameTime gameTime)
+        {
+
+            var spriteBatch = ScreenManager.SpriteBatch;
+            var width = ScreenManager.GraphicsDevice.PresentationParameters.BackBufferWidth;
+            var height = ScreenManager.GraphicsDevice.PresentationParameters.BackBufferHeight;
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
+
+            if (_uiManager.webTexture != null)
+                spriteBatch.Draw(_uiManager.webTexture, new Rectangle(0, 0, width, height), Color.White);
+
+            spriteBatch.End();
+
+            _uiManager.RenderWebView();
+
+
+        }
 
 
         #endregion

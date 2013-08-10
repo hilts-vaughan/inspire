@@ -155,6 +155,12 @@ namespace Toolkit.Docking
             var id = (int)listLayers.SelectedItems[0].Tag;
             _mapContext.CurrentLayer = id;
 
+            SetColour();
+
+        }
+
+        private void SetColour()
+        {
             foreach (var item in listLayers.Items)
             {
                 var lvItem = (ListViewItem) item;
@@ -168,7 +174,6 @@ namespace Toolkit.Docking
                     lvItem.ForeColor = Color.Black;
                 }
             }
-
         }
 
         public void LayerMoveUp()

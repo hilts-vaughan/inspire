@@ -11,6 +11,7 @@
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using AwesomiumUiLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -55,6 +56,8 @@ namespace Inspire.GameEngine.ScreenManager
         {
             get { return spriteBatch; }
         }
+
+
 
 
         /// <summary>
@@ -232,6 +235,7 @@ namespace Inspire.GameEngine.ScreenManager
             // If we have a graphics device, tell the screen to load content.
             if (isInitialized)
             {
+                screen.Initialize();
                 screen.LoadContent();
             }
 

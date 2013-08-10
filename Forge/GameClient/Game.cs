@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Mail;
 using System.Windows.Forms;
+using GameClient.Screens;
 using Inspire.GameEngine.ScreenManager.Network;
 using Inspire.Shared.Components;
 using Microsoft.Xna.Framework;
@@ -72,6 +73,9 @@ namespace Inspire.GameEngine.ScreenManager
         {
             screenManager = new ScreenManager(Content, GraphicsDevice);
             screenManager.Initialize();
+
+            // Add screen
+            screenManager.AddScreen(new LoginScreen(), null);
 
             //HACK: Defintely don't want this here forever
             Entity._counter = ulong.MaxValue - 10000;

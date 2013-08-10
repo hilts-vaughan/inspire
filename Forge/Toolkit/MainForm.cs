@@ -179,6 +179,18 @@ namespace Toolkit
             }
 
 
+            if (keyData == (Keys.Control | Keys.Z))
+            {
+                buttonUndo.PerformClick();
+                return true;
+            }
+
+
+            if (keyData == (Keys.Control | Keys.Y))
+            {
+                buttonRedo.PerformClick();
+                return true;
+            }
 
 
             if (keyData == (Keys.P))
@@ -205,7 +217,7 @@ namespace Toolkit
 
             if (keyData == (Keys.E))
             {
-               buttonEraser.PerformClick();
+                buttonEraser.PerformClick();
                 return true;
             }
 
@@ -590,7 +602,7 @@ namespace Toolkit
 
         private void dockPanel_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
- 
+
 
         }
 
