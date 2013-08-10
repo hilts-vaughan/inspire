@@ -38,6 +38,7 @@ namespace Inspire.GameEngine.ScreenManager
         SpriteBatch spriteBatch;
         SpriteFont font;
         Texture2D blankTexture;
+        private Texture2D _cursor;
 
         bool isInitialized;
 
@@ -90,10 +91,12 @@ namespace Inspire.GameEngine.ScreenManager
         #region Initialization
 
 
+        public GameWindow Window { get; set; }
+
         /// <summary>
         /// Constructs a new screen manager component.
         /// </summary>
-        public ScreenManager(ContentManager contentManager, GraphicsDevice graphicsDevice)
+        public ScreenManager(ContentManager contentManager, GraphicsDevice graphicsDevice, GameWindow window)
         {
             // we must set EnabledGestures before we can query for them, but
             // we don't assume the game wants to read them.
@@ -101,11 +104,17 @@ namespace Inspire.GameEngine.ScreenManager
 
             ContentManager = contentManager;
             GraphicsDevice = graphicsDevice;
+            Window = window;
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        }
 
+
+
+            LoadContent();
+
+        }
+           
 
         /// <summary>
         /// Initializes the screen manager component.
@@ -122,7 +131,8 @@ namespace Inspire.GameEngine.ScreenManager
         /// </summary>
         protected void LoadContent()
         {
-
+            // Get the cursor location
+            _cursor = TextureLoader.GetTexture("cursor.png", GraphicsDevice);
         }
 
 
@@ -215,6 +225,14 @@ namespace Inspire.GameEngine.ScreenManager
 
                 screen.Draw(gameTime);
             }
+
+            var x = input.MousePosition.X;
+            var y = input.MousePosition.Y;
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
+            spriteBatch.Draw(_cursor, new Vector2(x, y), Color.White);
+            spriteBatch.End();
+
         }
 
 

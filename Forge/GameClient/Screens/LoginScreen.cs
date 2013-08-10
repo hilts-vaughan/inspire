@@ -22,6 +22,7 @@ namespace GameClient.Screens
             // Load all the textures we need
             _backdrop = TextureLoader.GetTexture("bg_login.png", ScreenManager.GraphicsDevice);
 
+            // Load this particular chrome
             UiManager.Load(@"Content\UI\login\index.html");
 
 

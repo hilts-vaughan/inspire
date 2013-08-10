@@ -68,7 +68,7 @@ namespace Toolkit.Controls.Rendering
             // Create our state manager and let's get started
             if (_screenManager == null)
             {
-                _screenManager = new ScreenManager(null, GraphicsDevice);
+                _screenManager = new ScreenManager(null, GraphicsDevice, null);
 
                 screen = new MapEditScreen(_gameMap);
                 _screenManager.AddScreen(screen, null);

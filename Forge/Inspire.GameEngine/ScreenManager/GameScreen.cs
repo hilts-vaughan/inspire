@@ -53,6 +53,51 @@ namespace Inspire.GameEngine.ScreenManager
             var width = ScreenManager.GraphicsDevice.PresentationParameters.BackBufferWidth;
             var height = ScreenManager.GraphicsDevice.PresentationParameters.BackBufferHeight;
             UiManager.Initialize(ScreenManager.GraphicsDevice, width, height, executionPath);
+
+            InputSystem.Initialize(ScreenManager.Window);
+            InputSystem.CharEntered += CharEnteredHandler;
+            InputSystem.KeyUp += KeyUpHandler;
+            InputSystem.FullKeyHandler += FullKeyHandler;
+            InputSystem.MouseMove += MouseMoveHandler;
+            InputSystem.MouseDown += MouseDownHandler;
+            InputSystem.MouseUp += MouseUpHandler;
+
+        }
+
+ 
+
+        public void FullKeyHandler(object sender, uint msg, IntPtr wParam, IntPtr lParam)
+        {
+            UiManager.InjectKeyboardEvent((int)msg, (int)wParam, (int)lParam);
+        }
+
+        public void KeyUpHandler(object sender, KeyEventArgs e)
+        {
+
+
+        }
+
+
+
+
+        public void CharEnteredHandler(object sender, CharacterEventArgs e)
+        {
+        }
+
+
+        public void MouseMoveHandler(object sender, MouseEventArgs e)
+        {
+            UiManager.InjectMouseMove(e.Location.X, e.Location.Y);
+        }
+
+        public void MouseDownHandler(object sender, MouseEventArgs e)
+        {
+            UiManager.InjectMouseDown(e.Button);
+        }
+
+        public void MouseUpHandler(object sender, MouseEventArgs e)
+        {
+            UiManager.InjectMouseUp(e.Button);
         }
 
         /// <summary>

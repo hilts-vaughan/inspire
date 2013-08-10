@@ -71,7 +71,7 @@ namespace Inspire.GameEngine.ScreenManager
         /// </summary>
         protected override void Initialize()
         {
-            screenManager = new ScreenManager(Content, GraphicsDevice);
+            screenManager = new ScreenManager(Content, GraphicsDevice, Window);
             screenManager.Initialize();
 
             // Add screen
