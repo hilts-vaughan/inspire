@@ -12,6 +12,7 @@ using System;
 using System.ComponentModel.Design;
 using System.Drawing;
 using System.Windows.Forms;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 #endregion
 
@@ -91,6 +92,9 @@ namespace Toolkit.Controls
                 graphicsDeviceService = GraphicsDeviceService.AddRef(Handle,
                                                                      ClientSize.Width,
                                                                      ClientSize.Height);
+
+            
+                
 
                 // Register the service, so components like ContentManager can find it.
                 contentServices.AddService<IGraphicsDeviceService>(graphicsDeviceService);

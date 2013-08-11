@@ -17,13 +17,13 @@ namespace GameServer.Game
         {
             var entity = new Entity();
 
-            var size = Vector2.Zero;
+            var size = new Vector2(96, 96);
             var position = new Vector2(character.WorldX, character.WorldY);
             entity.AddComponent(new TransformComponent(position, size));
 
             entity.AddComponent(new CharacterComponent(connection));
             entity.AddComponent(new NameComponent(character.Name));
-            entity.AddComponent(new SkinComponent("FemaleSheet1"));
+            entity.AddComponent(new SkinComponent("HumanBase"));
 
 
             return entity;

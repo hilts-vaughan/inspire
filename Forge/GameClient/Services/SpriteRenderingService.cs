@@ -33,7 +33,7 @@ namespace GameClient.Services
             LoadDescriptors();
 
             // Load fonts
-            _entityFont = ContentManager.Load<SpriteFont>(@"Fonts\Kootenay");
+            _entityFont = ContentManager.Load<SpriteFont>(@"Fonts\AnonPro");
 
             // Listen for when an entity might hav ebeen added on
             ServiceManager.EntityAdded += ServiceManagerOnEntityAdded;
@@ -122,15 +122,8 @@ namespace GameClient.Services
 
                     pos = new Vector2((float)Math.Round(pos.X), (float)Math.Round(pos.Y));
 
-                    //Draw stroke
-                    spriteBatch.DrawString(font, nameComponent.Name, pos + new Vector2(1, 0), Color.DarkRed);
 
-                    spriteBatch.DrawString(font, nameComponent.Name, pos + new Vector2(-1, 0), Color.DarkRed);
-
-                    spriteBatch.DrawString(font, nameComponent.Name, pos + new Vector2(0, 1), Color.DarkRed);
-                    spriteBatch.DrawString(font, nameComponent.Name, pos + new Vector2(0, -1), Color.DarkRed);
-
-                    spriteBatch.DrawString(font, nameComponent.Name, pos, Color.DarkBlue);
+                    spriteBatch.DrawString(font, nameComponent.Name, pos, Color.White);
                 }
 
 

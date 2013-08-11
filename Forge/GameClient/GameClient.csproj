@@ -125,7 +125,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Levels\castle.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Levels\Tileset_Forest.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -134,6 +134,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sprites\Bomb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sprites\Characters\HumanBase.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sprites\Characters\MaleSheet1.png">
@@ -947,6 +950,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\Fonts\AnonPro.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Levels\Battle_Royale.tmx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

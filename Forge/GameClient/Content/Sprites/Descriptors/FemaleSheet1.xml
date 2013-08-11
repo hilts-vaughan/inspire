@@ -1,46 +1,117 @@
 <?xml version="1.0"?>
 <SpriteDescriptor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name>FemaleSheet1</Name>
-  <SpritePath>Sprites\Characters\FemaleSheet1.png</SpritePath>
+  <Name>HumanBase</Name>
+  <SpritePath>Sprites\Characters\HumanBase.png</SpritePath>
   <FrameSize>
-    <X>50</X>
-    <Y>70</Y>
+    <X>96</X>
+    <Y>96</Y>
   </FrameSize>
   <BoundingBox>
-    <X>13</X>
-    <Y>45</Y>
-    <Width>24</Width>
-    <Height>20</Height>
+    <X>32</X>
+    <Y>64</Y>
+    <Width>32</Width>
+    <Height>32</Height>
     <Location>
-      <X>13</X>
-      <Y>45</Y>
+      <X>32</X>
+      <Y>64</Y>
     </Location>
   </BoundingBox>
   <SpriteDepth>1</SpriteDepth>
   <Animations>
+    
     <SpriteDescriptorAnimation>
-      <Name>WalkUp</Name>
+      <Name>AttackLeft</Name>
       <Speed>0.25</Speed>
-      <FrameCount>3</FrameCount>
+      <FrameCount>5</FrameCount>
       <Row>0</Row>
     </SpriteDescriptorAnimation>
-    <SpriteDescriptorAnimation>
-      <Name>WalkDown</Name>
-      <Speed>0.25</Speed>
-      <FrameCount>3</FrameCount>
-      <Row>1</Row>
-    </SpriteDescriptorAnimation>
+
     <SpriteDescriptorAnimation>
       <Name>WalkLeft</Name>
       <Speed>0.25</Speed>
-      <FrameCount>3</FrameCount>
+      <FrameCount>4</FrameCount>
+      <Row>1</Row>
+    </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>IdleLeft</Name>
+      <Speed>0.25</Speed>
+      <FrameCount>2</FrameCount>
       <Row>2</Row>
     </SpriteDescriptorAnimation>
+
+
+
+
+    <SpriteDescriptorAnimation>
+      <Name>AttackRight</Name>
+      <Speed>0.25</Speed>
+      <FrameCount>5</FrameCount>
+      <Row>3</Row>
+    </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>WalkUp</Name>
+      <Speed>0.25</Speed>
+      <FrameCount>4</FrameCount>
+      <Row>4</Row>
+    </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>IdleUp</Name>
+      <Speed>0.25</Speed>
+      <FrameCount>2</FrameCount>
+      <Row>5</Row>
+    </SpriteDescriptorAnimation>
+
+
+
+    <SpriteDescriptorAnimation>
+      <Name>AttackDown</Name>
+      <Speed>0.25</Speed>
+      <FrameCount>5</FrameCount>
+      <Row>6</Row>
+    </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>WalkDown</Name>
+      <Speed>0.25</Speed>
+      <FrameCount>4</FrameCount>
+      <Row>7</Row>
+    </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>IdleDown</Name>
+      <Speed>0.25</Speed>
+      <FrameCount>2</FrameCount>
+      <Row>8</Row>
+    </SpriteDescriptorAnimation>
+
+
+
+
+    <SpriteDescriptorAnimation>
+      <Name>AttackRight</Name>
+      <Speed>0.25</Speed>
+      <FrameCount>5</FrameCount>
+      <Row>9</Row>
+    </SpriteDescriptorAnimation>
+
     <SpriteDescriptorAnimation>
       <Name>WalkRight</Name>
       <Speed>0.25</Speed>
-      <FrameCount>3</FrameCount>
-      <Row>3</Row>
+      <FrameCount>4</FrameCount>
+      <Row>10</Row>
     </SpriteDescriptorAnimation>
+
+    <SpriteDescriptorAnimation>
+      <Name>IdleRight</Name>
+      <Speed>0.25</Speed>
+      <FrameCount>2</FrameCount>
+      <Row>11</Row>
+    </SpriteDescriptorAnimation>
+    
+    
+
   </Animations>
 </SpriteDescriptor>
