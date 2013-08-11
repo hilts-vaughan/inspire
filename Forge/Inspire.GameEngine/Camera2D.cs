@@ -32,6 +32,11 @@ namespace Inspire.GameEngine
 
    #region Properties
 
+        public void SetWorldSize(int width, int height)
+        {
+            _worldHeight = height;
+            _worldWidth = width;
+        }
 
         public Vector2 ViewportSize
         {

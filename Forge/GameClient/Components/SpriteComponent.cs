@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Inspire.Shared.Components;
+using Inspire.Shared.Models;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Inspire.GameEngine.ScreenManager.Components
@@ -27,7 +28,5 @@ namespace Inspire.GameEngine.ScreenManager.Components
         public float LastFrameTime { get; set; }
     }
 
-    public class SpriteDescriptor
-    {
-    }
+    
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Inspire.Shared.Components;
+using Inspire.Shared.Service;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,11 +19,12 @@ namespace Inspire.GameEngine.Services
         {
             _contentManager = contentManager;
             GraphicsDevice = device;
+            EntityCollection = new EntityCollection();
         }
 
         public Entity RetrieveEntityByID(ulong userID)
         {
-            foreach (var entity in Entities)
+            foreach (var entity in EntityCollection.Entities)
             {
                 if (entity.ID == userID)
                     return entity;
@@ -34,6 +36,9 @@ namespace Inspire.GameEngine.Services
 
         public GraphicsDevice GraphicsDevice { get; set; }
 
+        /// <summary>
+        /// Grab the camera
+        /// </summary>
         public Camera2D Camera { get; set; }
 
         private List<Service> _services = new List<Service>();
@@ -78,7 +83,7 @@ namespace Inspire.GameEngine.Services
 
         public void RemoveEntityByID(ulong entityID)
         {
-            foreach (var entity in Entities)
+            foreach (var entity in EntityCollection.Entities)
             {
                 if (entity.ID == entityID)
                 {
@@ -96,17 +101,14 @@ namespace Inspire.GameEngine.Services
         /// <param name="entity"></param>
         public void AddEntity(Entity entity)
         {
-            Entities.Add(entity);
+            EntityCollection.Entities.Add(entity);
             OnEntityAdded(entity);
         }
 
         /// <summary>
         /// A list of entities contained in this service system.
         /// </summary>
-        public List<Entity> Entities
-        {
-            get { return null; }
-        }
+        public EntityCollection EntityCollection { get; set; }
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -124,7 +126,7 @@ namespace Inspire.GameEngine.Services
 
             foreach (var toRemove in _toRemove)
             {
-                Entities.Remove(toRemove);
+                EntityCollection.Entities.Remove(toRemove);
                 OnEntityRemoved(toRemove);
             }
             _toRemove.Clear();

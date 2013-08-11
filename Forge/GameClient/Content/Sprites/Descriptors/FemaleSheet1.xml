@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <SpriteDescriptor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>FemaleSheet1</Name>
-  <SpritePath>Sprites\Characters\FemaleSheet1</SpritePath>
+  <SpritePath>Sprites\Characters\FemaleSheet1.png</SpritePath>
   <FrameSize>
     <X>50</X>
     <Y>70</Y>

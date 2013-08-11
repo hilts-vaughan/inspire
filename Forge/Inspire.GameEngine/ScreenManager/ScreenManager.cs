@@ -232,9 +232,12 @@ namespace Inspire.GameEngine.ScreenManager
             var x = input.MousePosition.X;
             var y = input.MousePosition.Y;
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
-            spriteBatch.Draw(_cursor, new Vector2(x, y), Color.White);
-            spriteBatch.End();
+            if (Window != null)
+            {
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
+                spriteBatch.Draw(_cursor, new Vector2(x, y), Color.White);
+                spriteBatch.End();
+            }
 
         }
 
@@ -273,14 +276,16 @@ namespace Inspire.GameEngine.ScreenManager
                 //jsConsole.Bind("log", false, JSConsoleLog);
                 //jsConsole.Bind("dir", false, JSConsoleLog);
 
-                InputSystem.Initialize(Window);
-                InputSystem.CharEntered += CharEnteredHandler;
-                InputSystem.KeyUp += KeyUpHandler;
-                InputSystem.FullKeyHandler += FullKeyHandler;
-                InputSystem.MouseMove += MouseMoveHandler;
-                InputSystem.MouseDown += MouseDownHandler;
-                InputSystem.MouseUp += MouseUpHandler;
-
+                if (Window != null)
+                {
+                    InputSystem.Initialize(Window);
+                    InputSystem.CharEntered += CharEnteredHandler;
+                    InputSystem.KeyUp += KeyUpHandler;
+                    InputSystem.FullKeyHandler += FullKeyHandler;
+                    InputSystem.MouseMove += MouseMoveHandler;
+                    InputSystem.MouseDown += MouseDownHandler;
+                    InputSystem.MouseUp += MouseUpHandler;
+                }
 
 
                 _done = true;

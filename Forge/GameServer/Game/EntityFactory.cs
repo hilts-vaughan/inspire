@@ -22,6 +22,8 @@ namespace GameServer.Game
             entity.AddComponent(new TransformComponent(position, size));
 
             entity.AddComponent(new CharacterComponent(connection));
+            entity.AddComponent(new NameComponent(character.Name));
+            entity.AddComponent(new SkinComponent("FemaleSheet1"));
 
 
             return entity;

@@ -53,6 +53,8 @@
     <Compile Include="Components\CharacterComponent.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\Entity.cs" />
+    <Compile Include="Components\NameComponent.cs" />
+    <Compile Include="Components\SkinComponent.cs" />
     <Compile Include="Components\TransformComponent.cs" />
     <Compile Include="Crypto\HashHelper.cs" />
     <Compile Include="Models\Account.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="Models\Enums\ContentType.cs" />
     <Compile Include="Models\Enums\ItemType.cs" />
     <Compile Include="Models\Map\GameMap.cs" />
+    <Compile Include="Models\SpriteDescriptor.cs" />
     <Compile Include="Models\Templates\ClassificationTemplate.cs" />
     <Compile Include="Models\Templates\EditorTemplateEntry.cs" />
     <Compile Include="Models\Templates\IContentTemplate.cs" />
