@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using Awesomium.Core;
 using AwesomiumUiLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -237,6 +238,7 @@ namespace Inspire.GameEngine.ScreenManager
 
         }
 
+        private AwesomiumUI _ui = new AwesomiumUI();
 
         #endregion
 
@@ -252,6 +254,7 @@ namespace Inspire.GameEngine.ScreenManager
             screen.ControllingPlayer = controllingPlayer;
             screen.ScreenManager = this;
             screen.IsExiting = false;
+            screen.UiManager = _ui;
 
             if (!_done)
             {
@@ -262,6 +265,23 @@ namespace Inspire.GameEngine.ScreenManager
                 var height = GraphicsDevice.PresentationParameters.BackBufferHeight;
 
                 screen.UiManager.Initialize(GraphicsDevice, width, height, executionPath);
+
+
+                _ui.webView.ConsoleMessage += WebViewOnConsoleMessage;
+
+                //JSObject jsConsole = UiManager.webView.CreateGlobalJavascriptObject("console");
+                //jsConsole.Bind("log", false, JSConsoleLog);
+                //jsConsole.Bind("dir", false, JSConsoleLog);
+
+                InputSystem.Initialize(Window);
+                InputSystem.CharEntered += CharEnteredHandler;
+                InputSystem.KeyUp += KeyUpHandler;
+                InputSystem.FullKeyHandler += FullKeyHandler;
+                InputSystem.MouseMove += MouseMoveHandler;
+                InputSystem.MouseDown += MouseDownHandler;
+                InputSystem.MouseUp += MouseUpHandler;
+
+
 
                 _done = true;
             }
@@ -282,6 +302,51 @@ namespace Inspire.GameEngine.ScreenManager
             TouchPanel.EnabledGestures = screen.EnabledGestures;
         }
 
+
+        private void JSConsoleLog(object sender, JavascriptMethodEventArgs e)
+        {
+            Console.WriteLine(e.Arguments[0].ToString());
+        }
+
+        private void WebViewOnConsoleMessage(object sender, ConsoleMessageEventArgs consoleMessageEventArgs)
+        {
+            Console.WriteLine(consoleMessageEventArgs.Message);
+        }
+
+
+        public void FullKeyHandler(object sender, uint msg, IntPtr wParam, IntPtr lParam)
+        {
+            _ui.InjectKeyboardEvent((int)msg, (int)wParam, (int)lParam);
+        }
+
+        public void KeyUpHandler(object sender, KeyEventArgs e)
+        {
+
+
+        }
+
+
+
+
+        public void CharEnteredHandler(object sender, CharacterEventArgs e)
+        {
+        }
+
+
+        public void MouseMoveHandler(object sender, MouseEventArgs e)
+        {
+            _ui.InjectMouseMove(e.Location.X, e.Location.Y);
+        }
+
+        public void MouseDownHandler(object sender, MouseEventArgs e)
+        {
+            _ui.InjectMouseDown(e.Button);
+        }
+
+        public void MouseUpHandler(object sender, MouseEventArgs e)
+        {
+            _ui.InjectMouseUp(e.Button);
+        }
 
         /// <summary>
         /// Removes a screen from the screen manager. You should normally

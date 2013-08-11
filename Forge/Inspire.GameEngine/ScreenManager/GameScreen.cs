@@ -52,34 +52,11 @@ namespace Inspire.GameEngine.ScreenManager
         {
 
 
-            UiManager.webView.ConsoleMessage += WebViewOnConsoleMessage;
-
-            //JSObject jsConsole = UiManager.webView.CreateGlobalJavascriptObject("console");
-            //jsConsole.Bind("log", false, JSConsoleLog);
-            //jsConsole.Bind("dir", false, JSConsoleLog);
-
-            InputSystem.Initialize(ScreenManager.Window);
-            InputSystem.CharEntered += CharEnteredHandler;
-            InputSystem.KeyUp += KeyUpHandler;
-            InputSystem.FullKeyHandler += FullKeyHandler;
-            InputSystem.MouseMove += MouseMoveHandler;
-            InputSystem.MouseDown += MouseDownHandler;
-            InputSystem.MouseUp += MouseUpHandler;
-
             InjectLibraries();
         }
 
 
 
-        private void JSConsoleLog(object sender, JavascriptMethodEventArgs e)
-        {
-            Console.WriteLine(e.Arguments[0].ToString());
-        }
-
-        private void WebViewOnConsoleMessage(object sender, ConsoleMessageEventArgs consoleMessageEventArgs)
-        {
-            Console.WriteLine(consoleMessageEventArgs.Message);
-        }
 
         private void InjectLibraries()
         {
@@ -87,39 +64,6 @@ namespace Inspire.GameEngine.ScreenManager
         }
 
 
-        public void FullKeyHandler(object sender, uint msg, IntPtr wParam, IntPtr lParam)
-        {
-            UiManager.InjectKeyboardEvent((int)msg, (int)wParam, (int)lParam);
-        }
-
-        public void KeyUpHandler(object sender, KeyEventArgs e)
-        {
-
-
-        }
-
-
-
-
-        public void CharEnteredHandler(object sender, CharacterEventArgs e)
-        {
-        }
-
-
-        public void MouseMoveHandler(object sender, MouseEventArgs e)
-        {
-            UiManager.InjectMouseMove(e.Location.X, e.Location.Y);
-        }
-
-        public void MouseDownHandler(object sender, MouseEventArgs e)
-        {
-            UiManager.InjectMouseDown(e.Button);
-        }
-
-        public void MouseUpHandler(object sender, MouseEventArgs e)
-        {
-            UiManager.InjectMouseUp(e.Button);
-        }
 
         /// <summary>
         /// The UI manager helps create windows and the basic HTML chrome for pages that require it
@@ -305,7 +249,7 @@ namespace Inspire.GameEngine.ScreenManager
         }
 
         GestureType enabledGestures = GestureType.None;
-        private AwesomiumUI _uiManager = new AwesomiumUI();
+        private AwesomiumUI _uiManager;
 
         #endregion
 
