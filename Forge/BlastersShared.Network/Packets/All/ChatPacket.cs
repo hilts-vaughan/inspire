@@ -1,4 +1,5 @@
-﻿using Lidgren.Network;
+﻿using Inspire.Shared.Models.Enums;
+using Lidgren.Network;
 
 namespace Inspire.Network.Packets.All
 {
@@ -14,9 +15,12 @@ namespace Inspire.Network.Packets.All
         /// </summary>
         public string Message { get; set; }
 
-        public ChatPacket(string message)
+        public ChatChannel ChatChannel { get; set; }
+
+        public ChatPacket(string message, ChatChannel chatChannel)
         {
             Message = message;
+            ChatChannel = chatChannel;
         }
 
         public override NetOutgoingMessage ToNetBuffer(ref NetOutgoingMessage netOutgoingMessage)
@@ -24,6 +28,7 @@ namespace Inspire.Network.Packets.All
             base.ToNetBuffer(ref netOutgoingMessage);
 
             netOutgoingMessage.Write(Message);
+            netOutgoingMessage.Write((byte) ChatChannel);
 
             return netOutgoingMessage;
         }
@@ -32,7 +37,8 @@ namespace Inspire.Network.Packets.All
         public new static Packet FromNetBuffer(NetIncomingMessage incomingMessage)
         {
             var message = incomingMessage.ReadString();
-            return new ChatPacket(message);
+            var channel = (ChatChannel) incomingMessage.ReadByte();
+            return new ChatPacket(message, channel);
         }
 
       

@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using BlastersShared;
+using GameServer.Game;
 using GameServer.Models;
 using GameServer.Network;
 using Inspire.Network.Packets.Client;
@@ -50,8 +52,14 @@ namespace GameServer.Services.Auth
                     var account = context.Accounts.FirstOrDefault(x => x.Username.ToLower() == obj.Username);
                     var character = context.Characters.FirstOrDefault(x => x.AccountId == account.AccountId);
 
-                    // Add the character to the world
-                    ServiceContainer.Characters.Add(character);
+                    if(character == null)
+                        throw new Exception("A character could not be found under this slot. This should never happen.");
+
+                    // Introduce the entity into the simulation
+                    var entity = EntityFactory.CreateCharacter(character, obj.Sender);
+                    var mapSimulator = ServiceContainer.MapSimulators[character.MapId];
+                    mapSimulator.AddEntity(entity);
+
                 }
 
             }

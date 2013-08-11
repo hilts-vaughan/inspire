@@ -12,9 +12,6 @@ namespace Inspire.Shared.Service
         // Used to implement the GetService function
         private Dictionary<Type, Service> _serviceLookupTable;
 
-        public EntityCollection EntityCollection { get; set; }
-
-
 
         public ServiceContainer()
         {
@@ -46,7 +43,7 @@ namespace Inspire.Shared.Service
         /// Registers a service into the container.
         /// </summary>
         /// <param name="service"></param>
-        public void RegisterService(Service service)
+        public virtual void RegisterService(Service service)
         {
             service.ServiceContainer = this;
             _serviceLookupTable.Add(service.GetType(), service);

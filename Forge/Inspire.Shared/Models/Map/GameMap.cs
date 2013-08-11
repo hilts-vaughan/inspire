@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using BlastersShared;
 using Inspire.Shared.Models.Templates;
 
 namespace Inspire.Shared.Models.Map

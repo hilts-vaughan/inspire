@@ -2,8 +2,7 @@
 using System.IO;
 using AltSerialize;
 
-
-namespace BlastersShared
+namespace Inspire.Shared
 {
     public static class SerializationHelper
     {

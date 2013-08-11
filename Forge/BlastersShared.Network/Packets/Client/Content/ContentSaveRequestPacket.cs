@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlastersShared;
 using Inspire.Network.Packets.Server;
+using Inspire.Shared;
 using Inspire.Shared.Models.Enums;
 using Inspire.Shared.Models.Templates;
 using Lidgren.Network;

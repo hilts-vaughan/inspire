@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlastersShared;
+using Inspire.Shared;
 using Inspire.Shared.Models.Enums;
 using Inspire.Shared.Models.Templates;
 using Lidgren.Network;

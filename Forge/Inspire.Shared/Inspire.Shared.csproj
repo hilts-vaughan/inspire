@@ -53,6 +53,7 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Enums\ArmourType.cs" />
+    <Compile Include="Models\Enums\ChatChannel.cs" />
     <Compile Include="Models\Enums\ContentType.cs" />
     <Compile Include="Models\Enums\ItemType.cs" />
     <Compile Include="Models\Map\GameMap.cs" />

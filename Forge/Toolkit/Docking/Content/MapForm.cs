@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BlastersShared;
 using Inspire.GameEngine.ScreenManager.Network;
 using Inspire.Network.Packets.Client.Content;
+using Inspire.Shared;
 using Inspire.Shared.Models.Enums;
 using Inspire.Shared.Models.Map;
 using Inspire.Shared.Models.Templates;
