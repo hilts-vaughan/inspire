@@ -11,6 +11,8 @@
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using AwesomiumUiLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -114,7 +116,7 @@ namespace Inspire.GameEngine.ScreenManager
             LoadContent();
 
         }
-           
+
 
         /// <summary>
         /// Initializes the screen manager component.
@@ -240,6 +242,7 @@ namespace Inspire.GameEngine.ScreenManager
 
         #region Public Methods
 
+        private bool _done = false;
 
         /// <summary>
         /// Adds a new screen to the screen manager.
@@ -250,6 +253,20 @@ namespace Inspire.GameEngine.ScreenManager
             screen.ScreenManager = this;
             screen.IsExiting = false;
 
+            if (!_done)
+            {
+                var executionPath =
+                    Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName);
+
+                var width = GraphicsDevice.PresentationParameters.BackBufferWidth;
+                var height = GraphicsDevice.PresentationParameters.BackBufferHeight;
+
+                screen.UiManager.Initialize(GraphicsDevice, width, height, executionPath);
+
+                _done = true;
+            }
+
+
             // If we have a graphics device, tell the screen to load content.
             if (isInitialized)
             {
@@ -257,6 +274,8 @@ namespace Inspire.GameEngine.ScreenManager
                 screen.LoadContent();
             }
 
+
+         
             screens.Add(screen);
 
             // update the TouchPanel to respond to gestures this screen is interested in

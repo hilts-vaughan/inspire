@@ -28,6 +28,9 @@ namespace Inspire.Shared.Models
         /// </summary>
         public string Name { get; set; }
 
+
+        public string Description { get; set; }
+
         public int Level { get; set; }
 
         public int MapId { get; set; }
@@ -44,6 +47,11 @@ namespace Inspire.Shared.Models
             MapId = mapId;
             WorldX = worldX;
             WorldY = worldY;
+        }
+
+        public Character()
+        {
+            
         }
     }
 }

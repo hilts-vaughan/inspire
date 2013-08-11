@@ -78,6 +78,8 @@
     <Compile Include="Packets\Server\Content\ContentListResult.cs" />
     <Compile Include="Packets\Server\Content\ContentResultPacket.cs" />
     <Compile Include="Packets\Server\Content\ContentSaveResultPacket.cs" />
+    <Compile Include="Packets\Server\Entity\EntityAddPacket.cs" />
+    <Compile Include="Packets\Server\Entity\EntityRemovePacket.cs" />
     <Compile Include="Packets\Server\LoginResultPacket.cs" />
     <Compile Include="Packets\Server\CharacterInfoPacket.cs" />
     <Compile Include="Packets\Server\SendMapPacket.cs" />

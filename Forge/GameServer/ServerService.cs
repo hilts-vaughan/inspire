@@ -9,7 +9,7 @@ namespace GameServer
 {
     public abstract class ServerService : Service
     {
-        public new ServerServiceContainer ServiceContainer { get; set; }
+       // public  ServerServiceContainer ServiceContainer { get; set; }
 
     }
 }

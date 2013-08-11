@@ -1,7 +1,6 @@
-﻿using Inspire.Network;
-using Lidgren.Network;
+﻿using Lidgren.Network;
 
-    namespace BlastersShared.Network.Packets.AppServer
+namespace Inspire.Network.Packets.Server.Entity
     {
         /// <summary>
         /// This packet is sent from the app server to a user to indicate that an entity is being removed.

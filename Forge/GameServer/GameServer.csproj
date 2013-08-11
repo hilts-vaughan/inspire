@@ -67,10 +67,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\CharacterComponent.cs" />
     <Compile Include="Editor\AuthorizationTable.cs" />
     <Compile Include="Editor\ContentLocking\ContentLockStore.cs" />
     <Compile Include="Editor\ContentLocking\ContentLockManager.cs" />
+    <Compile Include="Game\EntityFactory.cs" />
     <Compile Include="Game\MapSimulator.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Models\Inits\DataPopulatorInit.cs" />
@@ -94,6 +94,7 @@
     <Compile Include="Services\Combat\CombatService.cs" />
     <Compile Include="Services\Editor\EditorAuthenticationService.cs" />
     <Compile Include="Services\Editor\EditorService.cs" />
+    <Compile Include="Services\EntitySyncService.cs" />
     <Compile Include="Services\IMapService.cs" />
     <Compile Include="Services\MapServiceAttribute.cs" />
     <Compile Include="Services\MovementService.cs" />
@@ -117,6 +118,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Components\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>

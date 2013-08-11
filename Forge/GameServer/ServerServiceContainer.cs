@@ -41,6 +41,7 @@ namespace GameServer
         public ServerServiceContainer()
         {
             Characters = new List<Entity>();
+            MapSimulators = new List<MapSimulator>();
         }
 
         public override void RegisterService(Service service)
@@ -55,7 +56,10 @@ namespace GameServer
             var mapService = service as IMapService;
 
             if (mapService != null)
+            {
                 mapService.MapSimulator = simulator;
+                mapService.AfterMapSetup();
+            }
         }
 
     }

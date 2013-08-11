@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GameServer.Components;
+using GameServer.Network;
 using GameServer.Services;
+using Inspire.Network.Packets.Server;
 using Inspire.Shared.Components;
 using Inspire.Shared.Models.Map;
 using Inspire.Shared.Models.Templates;
@@ -25,7 +26,7 @@ namespace GameServer.Game
 
         // A service container allows services to be hooked up
         public readonly ServerServiceContainer ServerServiceContainer = new ServerServiceContainer();
-        private Dictionary<NetConnection, Entity> _characterMap = new Dictionary<NetConnection, Entity>(); 
+        private Dictionary<NetConnection, Entity> _characterMap = new Dictionary<NetConnection, Entity>();
 
         public EntityCollection EntityCollection { get; private set; }
 
@@ -33,6 +34,7 @@ namespace GameServer.Game
         {
             // We assign the map inside here
             GameMap = GameMap.FromTemplate(template);
+            EntityCollection = new EntityCollection();
 
             // Register all the services we want here
             RegisterServices();
@@ -54,6 +56,15 @@ namespace GameServer.Game
         private void AddCharacter(Entity entity, NetConnection connection)
         {
             _characterMap.Add(connection, entity);
+
+            // When we add a character, we should also send map data if required
+            SendMapTo(connection);
+        }
+
+        private void SendMapTo(NetConnection connection)
+        {
+            var packet = new SendMapPacket(GameMap);
+            ClientNetworkManager.Instance.SendPacket(packet, connection);
         }
 
         private void RegisterServices()

@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BlastersShared;
 using Inspire.GameEngine.ScreenManager.Network;
 using Inspire.Network.Packets.Client.Content;
 using Inspire.Shared;

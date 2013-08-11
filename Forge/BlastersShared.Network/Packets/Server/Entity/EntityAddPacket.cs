@@ -17,6 +17,10 @@ namespace Inspire.Network.Packets.Server.Entity
 
         public Shared.Components.Entity Entity { get; set; }
 
+        public EntityAddPacket()
+        {
+            
+        }
 
 
         public override NetOutgoingMessage ToNetBuffer(ref NetOutgoingMessage netOutgoingMessage)

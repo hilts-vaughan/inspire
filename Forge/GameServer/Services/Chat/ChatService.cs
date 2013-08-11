@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GameServer.Components;
 using GameServer.Network;
 using Inspire.Network.Packets.All;
 
@@ -19,7 +18,7 @@ namespace GameServer.Services.Chat
         private void HandleChatMessage(ChatPacket chatPacket)
         {
             // Grab the sender
-            var sender = ServiceContainer.GetEntityFromConnection(chatPacket.Sender);
+            //var sender = ServiceContainer.GetEntityFromConnection(chatPacket.Sender);
             //var name = sender.GetComponent<CharacterComponent>().CharacterModel.Name;
 
 

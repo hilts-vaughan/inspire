@@ -41,6 +41,7 @@ namespace Inspire.GameEngine.ScreenManager
     /// </summary>
     public abstract class GameScreen
     {
+
         protected GameScreen()
         {
 
@@ -49,11 +50,8 @@ namespace Inspire.GameEngine.ScreenManager
 
         public void Initialize()
         {
-            var executionPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName);
 
-            var width = ScreenManager.GraphicsDevice.PresentationParameters.BackBufferWidth;
-            var height = ScreenManager.GraphicsDevice.PresentationParameters.BackBufferHeight;
-            UiManager.Initialize(ScreenManager.GraphicsDevice, width, height, executionPath);
+
             UiManager.webView.ConsoleMessage += WebViewOnConsoleMessage;
 
             //JSObject jsConsole = UiManager.webView.CreateGlobalJavascriptObject("console");
@@ -69,11 +67,9 @@ namespace Inspire.GameEngine.ScreenManager
             InputSystem.MouseUp += MouseUpHandler;
 
             InjectLibraries();
-
-
         }
 
-      
+
 
         private void JSConsoleLog(object sender, JavascriptMethodEventArgs e)
         {
@@ -87,7 +83,7 @@ namespace Inspire.GameEngine.ScreenManager
 
         private void InjectLibraries()
         {
-            
+
         }
 
 

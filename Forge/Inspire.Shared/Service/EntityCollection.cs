@@ -12,7 +12,7 @@ namespace Inspire.Shared.Service
 
         public EntityCollection(ObservableCollection<Entity> entities)
         {
-            Entities = entities           
+            Entities = entities;
         }
 
         public EntityCollection()

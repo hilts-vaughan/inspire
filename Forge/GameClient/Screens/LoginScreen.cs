@@ -41,7 +41,8 @@ namespace GameClient.Screens
         {
             if (loginResultPacket.Result == LoginResultPacket.LoginResult.Succesful)
             {
-                
+                ScreenManager.RemoveScreen(this);
+                ScreenManager.AddScreen(new GameplayScreen(), null);
             }
         }
 

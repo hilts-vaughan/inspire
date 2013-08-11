@@ -20,5 +20,10 @@ namespace GameServer.Services.Combat
         }
 
         public MapSimulator MapSimulator { get; set; }
+    
+        public void AfterMapSetup()
+        {
+    
+        }
     }
 }

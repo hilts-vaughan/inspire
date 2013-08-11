@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GameServer.Components;
 using GameServer.Game;
 using GameServer.Network;
 using Inspire.Network.Packets.Client;
@@ -22,7 +21,7 @@ namespace GameServer.Services
 
         private void MovementRecieved(NotifyMovementPacket notifyMovementPacket)
         {
-            var user = ServiceContainer.GetEntityFromConnection(notifyMovementPacket.Sender);
+            var user = ((ServerServiceContainer) ServiceContainer).GetEntityFromConnection(notifyMovementPacket.Sender);
             var transform = user.GetComponent<TransformComponent>();
 
             transform.LastLocalPosition = transform.LocalPosition;

@@ -57,7 +57,7 @@ namespace GameServer.Services.Auth
 
                     // Introduce the entity into the simulation
                     var entity = EntityFactory.CreateCharacter(character, obj.Sender);
-                    var mapSimulator = ServiceContainer.MapSimulators[character.MapId];
+                    var mapSimulator = ((ServerServiceContainer) ServiceContainer).MapSimulators[character.MapId];
                     mapSimulator.AddEntity(entity);
 
                 }

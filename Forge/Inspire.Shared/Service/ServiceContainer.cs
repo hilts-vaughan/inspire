@@ -6,7 +6,7 @@ namespace Inspire.Shared.Service
     /// <summary>
     /// A generic service container that provides collections and a base service 
     /// </summary>
-    public class ServiceContainer
+    public abstract class ServiceContainer
     {
 
         // Used to implement the GetService function

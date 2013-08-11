@@ -1,5 +1,4 @@
-﻿using BlastersShared;
-using Inspire.Shared;
+﻿using Inspire.Shared;
 using Inspire.Shared.Models.Enums;
 using Lidgren.Network;
 

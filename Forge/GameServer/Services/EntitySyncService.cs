@@ -4,8 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlastersShared.Network.Packets.AppServer;
-using GameServer.Components;
+using BlastersShared;
 using GameServer.Game;
 using GameServer.Network;
 using Inspire.Network.Packets.Server.Entity;
@@ -55,8 +54,12 @@ namespace GameServer.Services
 
                         // Send the new addition to everyone
                         SendNetworkAddition(o);
+                    
+                    
+                        Logger.Instance.Log(Level.Debug, "Entity with ID " + o.ID + " was added to a map.");
                     }
 
+                    
 
                     break;
                 case NotifyCollectionChangedAction.Remove:
