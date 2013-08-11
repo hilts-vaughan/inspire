@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using BlastersShared;
 using GameServer.Models;
 using GameServer.Network;
 using Inspire.Network.Packets.Client;
@@ -14,7 +15,7 @@ namespace GameServer.Services.Auth
     /// Provides authentication related utilities to handle login requests. 
     /// This service writes to the user dictionary. 
     /// </summary>
-    public class AuthenticationService : Service
+    public class AuthenticationService : ServerService
     {
 
         public AuthenticationService()
@@ -36,13 +37,22 @@ namespace GameServer.Services.Auth
 
             if (AreCredentialsValid(username, password))
             {
-               // var user = AddUser(obj, username);
 
-                //Logger.Instance.Log(Level.Info, user.Name + " has joined the lobby.");
-
-           
+                Logger.Instance.Log(Level.Info, username + " has succesfully authenticated");
+                
                 var packet = new LoginResultPacket(LoginResultPacket.LoginResult.Succesful);
                 ClientNetworkManager.Instance.SendPacket(packet, obj.Sender);
+
+
+                // Grab that account
+                using (var context = new ServerContext())
+                {
+                    var account = context.Accounts.FirstOrDefault(x => x.Username.ToLower() == obj.Username);
+                    var character = context.Characters.FirstOrDefault(x => x.AccountId == account.AccountId);
+
+                    // Add the character to the world
+                    ServiceContainer.Characters.Add(character);
+                }
 
             }
 

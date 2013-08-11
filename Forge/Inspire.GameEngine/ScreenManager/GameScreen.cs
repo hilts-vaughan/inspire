@@ -10,6 +10,7 @@
 #region Using Statements
 using System;
 using System.Reflection;
+using Awesomium.Core;
 using AwesomiumUiLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -53,6 +54,11 @@ namespace Inspire.GameEngine.ScreenManager
             var width = ScreenManager.GraphicsDevice.PresentationParameters.BackBufferWidth;
             var height = ScreenManager.GraphicsDevice.PresentationParameters.BackBufferHeight;
             UiManager.Initialize(ScreenManager.GraphicsDevice, width, height, executionPath);
+            UiManager.webView.ConsoleMessage += WebViewOnConsoleMessage;
+
+            //JSObject jsConsole = UiManager.webView.CreateGlobalJavascriptObject("console");
+            //jsConsole.Bind("log", false, JSConsoleLog);
+            //jsConsole.Bind("dir", false, JSConsoleLog);
 
             InputSystem.Initialize(ScreenManager.Window);
             InputSystem.CharEntered += CharEnteredHandler;
@@ -62,9 +68,28 @@ namespace Inspire.GameEngine.ScreenManager
             InputSystem.MouseDown += MouseDownHandler;
             InputSystem.MouseUp += MouseUpHandler;
 
+            InjectLibraries();
+
+
         }
 
- 
+      
+
+        private void JSConsoleLog(object sender, JavascriptMethodEventArgs e)
+        {
+            Console.WriteLine(e.Arguments[0].ToString());
+        }
+
+        private void WebViewOnConsoleMessage(object sender, ConsoleMessageEventArgs consoleMessageEventArgs)
+        {
+            Console.WriteLine(consoleMessageEventArgs.Message);
+        }
+
+        private void InjectLibraries()
+        {
+            
+        }
+
 
         public void FullKeyHandler(object sender, uint msg, IntPtr wParam, IntPtr lParam)
         {

@@ -8,13 +8,27 @@
 
 </head>
 <body id="container">
-<script src="global.js"> </script>
 
-            <div id="login">
+		<script type="text/javascript" src="../lib/jQuery/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../lib/jQuery/js/jquery-ui-1.8.20.custom.min.js"></script>
+		<script type="text/javascript" src="../lib/jQuery/js/jquery.layoutengine.min.js"></script>
+		<script src="global.js"> </script>
+
+	<div id="wrapper">
+            <div id="login" class="box">
                 Username: <input type="text" id="txt-username" placeholder="Username" size="28"> </br>
                 Password: <input type="password" id="txt-password" placeholder="Password" size="28"> </br>
-                <button class="loginbutton" type="button">Login</button>
+                <button class="loginbutton" type="button" onclick="login.login()">Login</button>
             </div>
+
+
+             <div id="selectchar" class="box" style="display: none;">
+             	Please wait while the server is connecting...
+            </div>
+
+    </div>
+
+           	<script> $("#login").center().draggable(); $("#selectchar").center().draggable();  </script>
 
 
 </html>

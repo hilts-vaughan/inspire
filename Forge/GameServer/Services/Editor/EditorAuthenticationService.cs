@@ -17,7 +17,7 @@ namespace GameServer.Services.Editor
     /// <summary>
     /// This service is responsible for authenticating users
     /// </summary>
-    public class EditorAuthenticationService : Service
+    public class EditorAuthenticationService : ServerService
     {
         private AuthorizationTable _authorizationTable;
 

@@ -73,11 +73,14 @@
     <Compile Include="Packets\Client\Content\ContentReleasePacket.cs" />
     <Compile Include="Packets\Client\Content\ContentSaveRequestPacket.cs" />
     <Compile Include="Packets\Client\LoginRequestPacket.cs" />
+    <Compile Include="Packets\Client\NotifyMovementPacket.cs" />
     <Compile Include="Packets\Editor\EditorLoginRequestPacket.cs" />
     <Compile Include="Packets\Server\Content\ContentListResult.cs" />
     <Compile Include="Packets\Server\Content\ContentResultPacket.cs" />
     <Compile Include="Packets\Server\Content\ContentSaveResultPacket.cs" />
     <Compile Include="Packets\Server\LoginResultPacket.cs" />
+    <Compile Include="Packets\Server\CharacterInfoPacket.cs" />
+    <Compile Include="Packets\Server\SendMapPacket.cs" />
     <Compile Include="Packets\SPlayerDisconnect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestResult.cs" />

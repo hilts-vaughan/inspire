@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Inspire.Shared.Components
 {
@@ -60,16 +61,9 @@ namespace Inspire.Shared.Components
             // Perhaps, when the dictionary implementation falls in, it'll get better
         }
 
-
-        public Component GetComponent(Type type)
+        public T GetComponent<T>() where T : Component
         {
-            foreach (var component in Components)
-            {
-                if (component.GetType() == type)
-                    return component;
-            }
-
-            return null;
+            return (T)Components.FirstOrDefault(c => c.GetType() == typeof(T));
         }
 
         /// <summary>
@@ -77,9 +71,9 @@ namespace Inspire.Shared.Components
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public bool HasComponent(Type type)
+        public bool HasComponent<T>() where T : Component
         {
-            return GetComponent(type) != null;
+            return GetComponent<T>() != null;
         }
 
 

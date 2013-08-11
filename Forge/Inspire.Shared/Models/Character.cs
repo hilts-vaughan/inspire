@@ -28,6 +28,22 @@ namespace Inspire.Shared.Models
         /// </summary>
         public string Name { get; set; }
 
+        public int Level { get; set; }
 
+        public int MapId { get; set; }
+        public int WorldX { get; set; }
+        public int WorldY { get; set; }
+
+
+        public Character(int characterId, int accountId, string name, int level, int mapId, int worldX, int worldY)
+        {
+            CharacterId = characterId;
+            AccountId = accountId;
+            Name = name;
+            Level = level;
+            MapId = mapId;
+            WorldX = worldX;
+            WorldY = worldY;
+        }
     }
 }

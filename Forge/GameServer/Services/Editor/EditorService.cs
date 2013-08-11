@@ -25,7 +25,7 @@ namespace GameServer.Services.Editor
     /// <summary>
     /// The editor service allows developers to edit data over the wire and send it back for processing.
     /// </summary>  
-    public class EditorService : Service
+    public class EditorService : ServerService
     {
         // Some objects that will come in handy
         private AuthorizationTable _authorizationTable = new AuthorizationTable();

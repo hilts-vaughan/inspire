@@ -14,3 +14,14 @@ window.setPlayerNames = function(text) {
   }
   return null;
 };
+
+jQuery.fn.center = function () {
+    this.parent().css("position","absolute");
+    var t = this.parent().css("top");
+    var l = this.parent().css("left");
+    
+    this.css("position","absolute");
+    this.css("top", ((this.parent().height() - this.outerHeight()) / 2) + this.parent().scrollTop() + "px");
+    this.css("left", ((this.parent().width() - this.outerWidth()) / 2) + this.parent().scrollLeft() + "px");
+    return this;
+}

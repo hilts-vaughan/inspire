@@ -12,7 +12,7 @@ namespace Inspire.Shared.Service
         // Used to implement the GetService function
         private Dictionary<Type, Service> _serviceLookupTable;
 
-
+        public EntityCollection EntityCollection { get; set; }
 
 
 

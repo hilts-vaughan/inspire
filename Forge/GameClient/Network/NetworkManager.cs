@@ -39,7 +39,7 @@ namespace Inspire.GameEngine.ScreenManager.Network
             _client = new NetClient(config);
 
             _client.Start();
-
+            Connect();
 
         }
 

@@ -59,7 +59,9 @@
     <Compile Include="Network\PacketService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\GameplayScreen.cs" />
     <Compile Include="Screens\LoginScreen.cs" />
+    <Compile Include="UI\UIWindow.cs" />
     <Compile Include="Utilities\GameTimer.cs" />
     <Compile Include="Utilities\PathUtility.cs" />
   </ItemGroup>
@@ -73,6 +75,10 @@
     </Reference>
     <Reference Include="AwesomiumUiLib">
       <HintPath>..\..\Dependencies\AwesomiumUiLib.dll</HintPath>
+    </Reference>
+    <Reference Include="BitFactory.Logging, Version=1.5.2.0, Culture=neutral, PublicKeyToken=de68848483a294a9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\BitFactory.Logging.dll</HintPath>
     </Reference>
     <Reference Include="C3.XNA.Primitives2D">
       <HintPath>..\..\Dependencies\C3.XNA.Primitives2D.dll</HintPath>
@@ -202,6 +208,620 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\global.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\UI\lib\jQuery\css\smoothness\jquery-ui-1.8.20.custom.css" />
+    <Content Include="Content\UI\lib\jQuery\development-bundle\AUTHORS.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\external\jquery.bgiframe-2.1.2.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\external\jquery.cookie.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\external\jquery.metadata.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\external\qunit.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\external\qunit.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\GPL-LICENSE.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\jquery-1.7.2.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\MIT-LICENSE.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\images\ui-bg_flat_75_ffffff_40x100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\images\ui-bg_glass_65_ffffff_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\images\ui-bg_glass_75_dadada_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\images\ui-icons_222222_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\images\ui-icons_2e83ff_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\images\ui-icons_454545_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\images\ui-icons_888888_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\images\ui-icons_cd0a0a_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.accordion.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.all.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.autocomplete.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.base.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.button.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.core.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.datepicker.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.dialog.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.progressbar.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.resizable.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.selectable.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.slider.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.tabs.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\base\jquery.ui.theme.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\images\ui-bg_flat_75_ffffff_40x100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\images\ui-bg_glass_65_ffffff_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\images\ui-bg_glass_75_dadada_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\images\ui-icons_222222_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\images\ui-icons_2e83ff_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\images\ui-icons_454545_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\images\ui-icons_888888_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\images\ui-icons_cd0a0a_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery-ui-1.8.20.custom.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.accordion.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.all.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.autocomplete.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.base.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.button.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.core.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.datepicker.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.dialog.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.progressbar.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.resizable.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.selectable.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.slider.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.tabs.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\themes\smoothness\jquery.ui.theme.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery-ui-i18n.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-af.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-ar-DZ.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-ar.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-az.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-bg.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-bs.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-ca.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-cs.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-cy-GB.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-da.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-de.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-el.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-en-AU.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-en-GB.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-en-NZ.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-eo.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-es.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-et.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-eu.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-fa.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-fi.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-fo.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-fr-CH.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-fr.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-ge.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-gl.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-he.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-hi.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-hr.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-hu.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-hy.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-id.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-is.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-it.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-ja.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-kk.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-km.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-ko.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-lb.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-lt.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-lv.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-mk.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-ml.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-ms.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-nl-BE.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-nl.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-no.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-pl.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-pt-BR.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-pt.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-rm.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-ro.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-ru.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-sk.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-sl.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-sq.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-sr-SR.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-sr.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-sv.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-ta.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-th.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-tj.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-tr.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-uk.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-vi.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-zh-CN.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-zh-HK.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\i18n\jquery.ui.datepicker-zh-TW.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery-ui-1.8.20.custom.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.blind.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.bounce.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.clip.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.core.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.drop.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.explode.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.fade.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.fold.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.highlight.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.pulsate.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.scale.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.shake.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.slide.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.effects.transfer.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.accordion.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.autocomplete.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.button.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.core.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.datepicker.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.dialog.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.draggable.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.droppable.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.mouse.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.position.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.progressbar.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.resizable.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.selectable.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.slider.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.sortable.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.tabs.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\jquery.ui.widget.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.blind.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.bounce.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.clip.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.core.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.drop.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.explode.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.fade.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.fold.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.highlight.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.pulsate.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.scale.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.shake.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.slide.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.effects.transfer.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.accordion.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.autocomplete.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.button.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.core.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.datepicker.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.dialog.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.draggable.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.droppable.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.mouse.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.position.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.progressbar.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.resizable.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.selectable.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.slider.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.sortable.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.tabs.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\development-bundle\ui\minified\jquery.ui.widget.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\js\jquery-1.7.2.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\js\jquery-ui-1.8.20.custom.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\lib\jQuery\js\jquery.layoutengine.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\login\global.js">
@@ -337,6 +957,10 @@
     <None Include="Content\Levels\Tileset_Forest.tsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Content\UI\lib\jQuery\css\smoothness\images\Thumbs.db" />
+    <None Include="Content\UI\lib\jQuery\development-bundle\package.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="ReferenceDependencies\awesomium_process">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -367,9 +991,7 @@
       <Name>Inspire.Shared</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

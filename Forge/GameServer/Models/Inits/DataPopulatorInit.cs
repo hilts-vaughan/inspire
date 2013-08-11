@@ -57,7 +57,11 @@ namespace GameServer.Models.Inits
             // Add a new user
             var rootUser = new Account(0, "root", HashHelper.CalculateSha512Hash("root"), DateTime.UtcNow);
             rootUser.EditorAllowed = true;
+
+            var character = new Character(1, 1, "Administrator", 1, 0, 0, 0);
+           
             context.Accounts.Add(rootUser);
+            context.Characters.Add(character);
 
             context.SaveChanges();
             base.Seed(context);
