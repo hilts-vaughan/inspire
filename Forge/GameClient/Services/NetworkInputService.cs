@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using Inspire.GameEngine.ScreenManager;
+﻿using Inspire.GameEngine.ScreenManager;
 using Inspire.GameEngine.Services;
 using Inspire.Shared.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace BlastersGame.Services
+namespace GameClient.Services
 {
     /// <summary>
     /// The network input service is used for relaying network presses coming from entities accross the network.
@@ -38,8 +33,11 @@ namespace BlastersGame.Services
         public override void HandleInput(InputState inputState)
         {
 
+            if (_player == null)
+                return;
+
             // Get the transform component
-            var transformComponent = (TransformComponent)_player.GetComponent(typeof(TransformComponent));
+            var transformComponent = _player.GetComponent<TransformComponent>();
 
             const int ABSOLUTE_SPEED = 3;
 
@@ -61,8 +59,6 @@ namespace BlastersGame.Services
             if (inputState.MoveDownIssued())
                 newVector += new Vector2(0, ABSOLUTE_SPEED * 1);
 
-
-
             if (newVector != transformComponent.Velocity)
                 transformComponent.Velocity = newVector;
 
@@ -75,7 +71,7 @@ namespace BlastersGame.Services
         {
             // Query for the player we want
 
-            foreach (var entity in ServiceManager.Entities)
+            foreach (var entity in ServiceManager.EntityCollection.Entities)
                 if (entity.ID == _idToMonitor)
                     _player = entity;
 

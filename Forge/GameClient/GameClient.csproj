@@ -62,6 +62,9 @@
     <Compile Include="Screens\GameplayScreen.cs" />
     <Compile Include="Screens\LoginScreen.cs" />
     <Compile Include="Services\EntitySyncService.cs" />
+    <Compile Include="Services\MovementService.cs" />
+    <Compile Include="Services\Movement\EntityInterpolator.cs" />
+    <Compile Include="Services\NetworkInputService.cs" />
     <Compile Include="Services\SpriteRenderingService.cs" />
     <Compile Include="UI\UIWindow.cs" />
     <Compile Include="Utilities\GameTimer.cs" />

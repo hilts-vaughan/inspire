@@ -92,7 +92,7 @@
 
     <SpriteDescriptorAnimation>
       <Name>AttackRight</Name>
-      <Speed>0.25</Speed>
+      <Speed>0.15</Speed>
       <FrameCount>5</FrameCount>
       <Row>9</Row>
     </SpriteDescriptorAnimation>

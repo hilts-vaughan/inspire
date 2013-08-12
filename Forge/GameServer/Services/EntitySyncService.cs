@@ -16,16 +16,16 @@ namespace GameServer.Services
     {
         public override void PeformUpdate()
         {
-          
+
         }
 
         public override void Setup()
         {
-          
+
         }
 
         public MapSimulator MapSimulator { get; set; }
-     
+
         public void AfterMapSetup()
         {
             // Hook into the additional and removal packets
@@ -41,25 +41,30 @@ namespace GameServer.Services
                     foreach (Entity o in notifyCollectionChangedEventArgs.NewItems)
                     {
 
+                        // Send the new addition to everyone
+                        SendNetworkAddition(o);
+
                         var characterComponent = o.GetComponent<CharacterComponent>();
                         if (characterComponent != null)
                         {
                             // If this is a player, send them all current entities, too
                             foreach (var entity in MapSimulator.EntityCollection.Entities)
                             {
+                                if (entity == o)
+                                    continue;
+
                                 var packet = new EntityAddPacket(entity);
                                 ClientNetworkManager.Instance.SendPacket(packet, characterComponent.Connection);
                             }
                         }
 
-                        // Send the new addition to everyone
-                        SendNetworkAddition(o);
-                    
-                    
+
+
+
                         Logger.Instance.Log(Level.Debug, "Entity with ID " + o.ID + " was added to a map.");
                     }
 
-                    
+
 
                     break;
                 case NotifyCollectionChangedAction.Remove:
@@ -76,14 +81,14 @@ namespace GameServer.Services
             var packet = new EntityRemovePacket(entity.ID);
 
             // Get all interested clients
-            var characters =  MapSimulator.EntityCollection.Filter<CharacterComponent>();
+            var characters = MapSimulator.EntityCollection.Filter<CharacterComponent>();
 
             // Send to all interested parties
             foreach (var character in characters.Entities)
             {
                 var characterComponent = character.GetComponent<CharacterComponent>();
                 ClientNetworkManager.Instance.SendPacket(packet, characterComponent.Connection);
-            }         
+            }
         }
 
 
@@ -99,7 +104,7 @@ namespace GameServer.Services
             {
                 var characterComponent = character.GetComponent<CharacterComponent>();
                 ClientNetworkManager.Instance.SendPacket(packet, characterComponent.Connection);
-            }   
+            }
 
         }
 

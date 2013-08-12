@@ -23,12 +23,14 @@ namespace GameServer
         /// A list of characters that are logged in
         /// </summary>
         public List<Entity> Characters { get; set; }
-        public List<MapSimulator> MapSimulators { get; set; }      
+        public List<MapSimulator> MapSimulators { get; set; }
 
-        private Dictionary<NetConnection, Entity> _characterLookup = new Dictionary<NetConnection, Entity>(); 
+        private Dictionary<NetConnection, Entity> _characterLookup = new Dictionary<NetConnection, Entity>();
 
         public Entity GetEntityFromConnection(NetConnection connection)
         {
+            if (!_characterLookup.ContainsKey(connection))
+                return null;
             return _characterLookup[connection];
         }
 
@@ -51,8 +53,8 @@ namespace GameServer
 
         public void SetMapSimulator(Service service, MapSimulator simulator)
         {
-                    
-           // Check if it's a map service
+
+            // Check if it's a map service
             var mapService = service as IMapService;
 
             if (mapService != null)

@@ -16,10 +16,13 @@ namespace Inspire.Network.Packets.Client
         /// </summary>
         public Vector2 Location { get; set; }
 
-        public NotifyMovementPacket(Vector2  velocity, Vector2 location)
+        public ulong EntityID { get; set; }
+
+        public NotifyMovementPacket(Vector2 velocity, Vector2 location, ulong entityID)
         {
             Velocity = velocity;
             Location = location;
+            EntityID = entityID;
         }
 
         public override NetOutgoingMessage ToNetBuffer(ref NetOutgoingMessage netOutgoingMessage)
@@ -32,6 +35,8 @@ namespace Inspire.Network.Packets.Client
             netOutgoingMessage.Write(Location.X);
             netOutgoingMessage.Write(Location.Y);
 
+            netOutgoingMessage.Write(EntityID);
+
             return netOutgoingMessage;
         }
 
@@ -42,9 +47,9 @@ namespace Inspire.Network.Packets.Client
             // Read values back in
             var velocity = new Vector2(incomingMessage.ReadFloat(), incomingMessage.ReadFloat());
             var location = new Vector2(incomingMessage.ReadFloat(), incomingMessage.ReadFloat());
+            var id = incomingMessage.ReadUInt64();
 
-
-            var packet = new NotifyMovementPacket(velocity, location);
+            var packet = new NotifyMovementPacket(velocity, location, id);
             return packet;
         }
 

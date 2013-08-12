@@ -33,6 +33,7 @@ namespace GameClient.Screens
             // Setup 
             Camera2D.SetWorldSize(obj.Map.Layers[0].Width, obj.Map.Layers[0].Height);
             _tileMapRenderer = new TileMapRenderer(this, obj.Map);        
+            networkInput.Initialize();
         }
 
         public override void LoadContent()
@@ -49,14 +50,21 @@ namespace GameClient.Screens
 
             base.LoadContent();
         }
+        NetworkInputService networkInput;
 
         private void RegisterServices()
         {
             var spriteRender = new SpriteRenderingService();
             var entitySync = new EntitySyncService();
 
+            networkInput = new NetworkInputService(0);
+            var movementService = new MovementService(0);
+            
+
             _serviceContainer.AddService(spriteRender);
             _serviceContainer.AddService(entitySync);
+            _serviceContainer.AddService(networkInput);
+            _serviceContainer.AddService(movementService);
 
         }
 

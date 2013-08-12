@@ -22,6 +22,10 @@ namespace GameServer.Services
         private void MovementRecieved(NotifyMovementPacket notifyMovementPacket)
         {
             var user = ((ServerServiceContainer) ServiceContainer).GetEntityFromConnection(notifyMovementPacket.Sender);
+
+            if(user == null)
+                return;
+
             var transform = user.GetComponent<TransformComponent>();
 
             transform.LastLocalPosition = transform.LocalPosition;
@@ -38,14 +42,14 @@ namespace GameServer.Services
             {
                 if(character == user)
                     continue;                
-                SyncToNearby(character.GetComponent<CharacterComponent>().Connection, transform);
+                SyncToNearby(character.GetComponent<CharacterComponent>().Connection, transform, user.ID);
             }
 
         }
 
-        private void SyncToNearby(NetConnection sendTo, TransformComponent transformComponent)
+        private void SyncToNearby(NetConnection sendTo, TransformComponent transformComponent, ulong userID)
         {
-            var packet = new NotifyMovementPacket(transformComponent.Velocity, transformComponent.LocalPosition);
+            var packet = new NotifyMovementPacket(transformComponent.Velocity, transformComponent.LocalPosition, userID);
             ClientNetworkManager.Instance.SendPacket(packet, sendTo);
         }
 
