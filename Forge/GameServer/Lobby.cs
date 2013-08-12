@@ -55,14 +55,18 @@ namespace GameServer
             stopwatch.Stop();
             Logger.Instance.Log(Level.Info, "Succesfully started game loop in " + stopwatch.Elapsed.Seconds + "s");
 
+            var proxy = new MapPacketProxy(_serviceContainer);
+
             while (true)
             {
 
                 ClientNetworkManager.Instance.Update();
                 _serviceContainer.PerformUpdates();
 
-                // Perform all required updates for each map
-                _serviceContainer.MapSimulators.ForEach(simulator => simulator.ServerServiceContainer.PerformUpdates());
+                foreach (var simulator in _serviceContainer.MapSimulators)
+                {
+                    simulator.ServerServiceContainer.PerformUpdates();
+                }
 
                 Thread.Sleep(1);
 

@@ -59,12 +59,22 @@ namespace GameServer.Game
 
             // When we add a character, we should also send map data if required
             SendMapTo(connection);
+
+            // Alert that a character was added
+            CharacterAdded(this, entity);
         }
+
+        public EventHandler<Entity> CharacterAdded; 
 
         private void SendMapTo(NetConnection connection)
         {
             var packet = new SendMapPacket(GameMap);
             ClientNetworkManager.Instance.SendPacket(packet, connection);
+        }
+
+        public Entity GetCharacter(NetConnection connection)
+        {
+            return _characterMap[connection];
         }
 
         private void RegisterServices()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Inspire.Shared.Service
 {
@@ -24,19 +25,9 @@ namespace Inspire.Shared.Service
         /// </summary>
         /// <param name="serviceType"></param>
         /// <returns></returns>
-        public Service GetService(Type serviceType)
+        public T GetService<T>() where T : Service
         {
-            
-            if (_serviceLookupTable.ContainsKey(serviceType))
-            {
-                return _serviceLookupTable[serviceType];
-            }
-
-            else
-            {
-                throw new Exception("This type of service is not present. Is it a subclass of Service?");
-            }
-
+            return (T)_serviceLookupTable.Values.FirstOrDefault(c => c.GetType() == typeof(T));
         }
 
         /// <summary>

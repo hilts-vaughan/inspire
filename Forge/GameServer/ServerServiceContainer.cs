@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +25,7 @@ namespace GameServer
         /// A list of characters that are logged in
         /// </summary>
         public List<Entity> Characters { get; set; }
-        public List<MapSimulator> MapSimulators { get; set; }
+        public ObservableCollection<MapSimulator> MapSimulators { get; set; }
 
         private Dictionary<NetConnection, Entity> _characterLookup = new Dictionary<NetConnection, Entity>();
 
@@ -34,22 +36,52 @@ namespace GameServer
             return _characterLookup[connection];
         }
 
-        public void AddCharacter(Character character, NetConnection conneciton)
-        {
-            Characters.Add(null);
-            _characterLookup.Add(conneciton, null);
-        }
+
 
         public ServerServiceContainer()
         {
             Characters = new List<Entity>();
-            MapSimulators = new List<MapSimulator>();
+            MapSimulators = new ObservableCollection<MapSimulator>();
+
+            MapSimulators.CollectionChanged += MapSimulators_CollectionChanged;
+
         }
 
-        public override void RegisterService(Service service)
+        void MapSimulators_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            base.RegisterService(service);
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (MapSimulator mapSimulator in e.NewItems)
+                    mapSimulator.CharacterAdded += CharacterAdded;
+
+
+                return;
+            }
+
+
+            throw new Exception("Removing a map from the simulation is not allowed.");
         }
+
+        private Dictionary<Entity, MapSimulator> _characterSimulatorLookup = new Dictionary<Entity, MapSimulator>();
+
+        public MapSimulator GetSimulatorForCharacter(NetConnection connect)
+        {
+            return _characterSimulatorLookup[_characterLookup[connect]];
+        }
+
+        private void CharacterAdded(object sender, Entity entity)
+        {
+            if (_characterSimulatorLookup.ContainsKey(entity))
+                _characterSimulatorLookup.Remove(entity);
+            _characterSimulatorLookup.Add(entity, sender as MapSimulator);
+
+            // Grab character key
+            var connection = entity.GetComponent<CharacterComponent>().Connection;
+
+            if(!_characterLookup.ContainsKey(connection))
+                _characterLookup.Add(connection, entity);
+        }
+
 
         public void SetMapSimulator(Service service, MapSimulator simulator)
         {

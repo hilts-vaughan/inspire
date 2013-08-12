@@ -70,6 +70,7 @@
     <Compile Include="Editor\AuthorizationTable.cs" />
     <Compile Include="Editor\ContentLocking\ContentLockStore.cs" />
     <Compile Include="Editor\ContentLocking\ContentLockManager.cs" />
+    <Compile Include="Game\MapPacketProxy.cs" />
     <Compile Include="Game\EntityFactory.cs" />
     <Compile Include="Game\MapSimulator.cs" />
     <Compile Include="Logger.cs" />

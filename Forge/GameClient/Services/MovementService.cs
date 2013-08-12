@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GameClient.Services.Movement;
 using Inspire.GameEngine.ScreenManager;
 using Inspire.GameEngine.ScreenManager.Components;
@@ -32,12 +33,13 @@ namespace GameClient.Services
         public MovementService(ulong idToMonitor)
         {
             _idToMonitor = idToMonitor;
+            PacketService.RegisterPacket<NotifyMovementPacket>(MovementRecieved);
         }
 
         public override void Initialize()
         {
-            // Hook into networks events
-            PacketService.RegisterPacket<NotifyMovementPacket>(MovementRecieved);
+
+            ServiceManager.EntityAdded += ServiceManagerOnEntityAdded;
 
             // Query for the players we don't want
             foreach (var entity in ServiceManager.EntityCollection.Entities)
@@ -52,6 +54,18 @@ namespace GameClient.Services
                 var interpolator = new EntityInterpolator(transformComponent);
                 _entityInterpolators.Add(entity.ID, interpolator);
             }
+        }
+
+        private void ServiceManagerOnEntityAdded(Entity entity)
+        {
+            var transform = entity.GetComponent<TransformComponent>();
+
+            if (transform != null)
+            {
+                var interpolator = new EntityInterpolator(transform);
+                _entityInterpolators.Add(entity.ID, interpolator);
+            }
+
         }
 
         private void MovementRecieved(NotifyMovementPacket obj)
@@ -94,12 +108,12 @@ namespace GameClient.Services
             interpolator.ResetProgress(obj.Location);
         }
 
-    
+
         public override void Draw(SpriteBatch spriteBatch)
         {
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, null, ServiceManager.Camera.GetTransformation());
-            
+
             foreach (var entity in ServiceManager.EntityCollection.Entities)
             {
                 // Local players can be moved automatically, then report their status if needed
@@ -109,15 +123,15 @@ namespace GameClient.Services
                 var transformComponent = entity.GetComponent<TransformComponent>();
 
                 Rectangle bbox = new Rectangle(
-                    (int) (transformComponent.LocalPosition.X + spriteDescriptor.BoundingBox.X),
-                    (int) (transformComponent.LocalPosition.Y + spriteDescriptor.BoundingBox.Y),
+                    (int)(transformComponent.LocalPosition.X + spriteDescriptor.BoundingBox.X),
+                    (int)(transformComponent.LocalPosition.Y + spriteDescriptor.BoundingBox.Y),
                     spriteDescriptor.BoundingBox.Width,
                     spriteDescriptor.BoundingBox.Height);
-                
+
                 spriteBatch.DrawRectangle(bbox, Color.White, 2f);
             }
 
-           
+
 
             spriteBatch.End();
         }
@@ -141,7 +155,7 @@ namespace GameClient.Services
 
             var playerSkin = entity.GetComponent<SkinComponent>();
             var playerDescriptor = entity.GetComponent<SpriteComponent>().SpriteDescriptor;
-            
+
             // Move the camera
             ServiceManager.Camera.Move(-lastTransformVector);
 
@@ -153,7 +167,7 @@ namespace GameClient.Services
             //float nextX = MathHelper.Clamp(nextPosition.X + playerDescriptor.BoundingBox.X, 0, ServiceManager.Map.WorldSizePixels.X / 2 - playerDescriptor.BoundingBox.Width);
             //float nextY = MathHelper.Clamp(nextPosition.Y + playerDescriptor.BoundingBox.Y, 0, ServiceManager.Map.WorldSizePixels.Y / 2 - playerDescriptor.BoundingBox.Height);
 
-        
+
             //playerTransform.LocalPosition = new Vector2(nextX - playerDescriptor.BoundingBox.X, nextY - playerDescriptor.BoundingBox.Y);
             playerTransform.LastLocalPosition = playerTransform.LocalPosition;
             playerTransform.LocalPosition += playerTransform.Velocity;
@@ -162,13 +176,13 @@ namespace GameClient.Services
             {
                 if (playerTransform.Velocity.X < 0)
                     playerTransform.DirectionalCache = DirectionalCache.Left;
-                
+
                 if (playerTransform.Velocity.X > 0)
                     playerTransform.DirectionalCache = DirectionalCache.Right;
-                
+
                 if (playerTransform.Velocity.Y > 0)
                     playerTransform.DirectionalCache = DirectionalCache.Down;
-                
+
                 if (playerTransform.Velocity.Y < 0)
                     playerTransform.DirectionalCache = DirectionalCache.Up;
             }
@@ -177,7 +191,7 @@ namespace GameClient.Services
                                      playerTransform.Velocity != Vector2.Zero);
 
 
-            if ((_lastReaction > MovementRate && playerTransform.Velocity != Vector2.Zero) ||  directionalChange)
+            if ((_lastReaction > MovementRate && playerTransform.Velocity != Vector2.Zero) || directionalChange)
             {
                 // Alert the server out this change in events if needed
                 var packet = new NotifyMovementPacket(playerTransform.Velocity, playerTransform.LocalPosition, _idToMonitor);
@@ -193,9 +207,8 @@ namespace GameClient.Services
 
         private void ProcessRemoteEntity(Entity entity, GameTime gameTime)
         {
-            // Interpolate
-            foreach (var entityInterpolator in _entityInterpolators)
-                entityInterpolator.Value.PeformInterpolationStep(gameTime, MovementRate);
+            var entityInterpolator = _entityInterpolators[entity.ID];
+            entityInterpolator.PeformInterpolationStep(gameTime, MovementRate);
         }
 
         public override void HandleInput(InputState inputState)

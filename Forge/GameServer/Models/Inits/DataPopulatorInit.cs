@@ -59,10 +59,17 @@ namespace GameServer.Models.Inits
             var rootUser = new Account(0, "root", HashHelper.CalculateSha512Hash("root"), DateTime.UtcNow);
             rootUser.EditorAllowed = true;
 
-            var character = new Character(1, 1, "Administrator", 1, 0, 0, 0);
-           
+            var rootUser2 = new Account(0, "root2", HashHelper.CalculateSha512Hash("root2"), DateTime.UtcNow);
+            rootUser2.EditorAllowed = true;
+
+            var character = new Character(1, 1, "Beatrix", 1, 0, 0, 0);
+            var character2 = new Character(2, 2, "Galebri", 1, 0, 0, 0);
+
             context.Accounts.Add(rootUser);
+            context.Accounts.Add(rootUser2);
+
             context.Characters.Add(character);
+            context.Characters.Add(character2);
 
             context.SaveChanges();
             base.Seed(context);

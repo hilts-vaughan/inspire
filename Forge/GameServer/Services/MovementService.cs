@@ -14,17 +14,10 @@ namespace GameServer.Services
     [MapService]
     public class MovementService : ServerService, IMapService
     {
-        public MovementService()
-        {
-            PacketService.RegisterPacket<NotifyMovementPacket>(MovementRecieved);
-        }
 
-        private void MovementRecieved(NotifyMovementPacket notifyMovementPacket)
+        public void MovementRecieved(NotifyMovementPacket notifyMovementPacket)
         {
-            var user = ((ServerServiceContainer) ServiceContainer).GetEntityFromConnection(notifyMovementPacket.Sender);
-
-            if(user == null)
-                return;
+            var user = MapSimulator.GetCharacter(notifyMovementPacket.Sender);
 
             var transform = user.GetComponent<TransformComponent>();
 

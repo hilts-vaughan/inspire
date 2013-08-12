@@ -29,8 +29,6 @@ namespace Inspire.Shared.Models
         public string Name { get; set; }
 
 
-        public string Description { get; set; }
-
         public int Level { get; set; }
 
         public int MapId { get; set; }
