@@ -92,8 +92,6 @@ namespace GameClient.Services
                 var nameComponent = entity.GetComponent<NameComponent>();
                 var transformComponent = entity.GetComponent<TransformComponent>();
 
-                if (spriteComponent.Texture.Width == 320)
-                    continue;
 
                 int animation = (int)transformComponent.DirectionalCache;
                 if (entity.HasComponent<CharacterComponent>())

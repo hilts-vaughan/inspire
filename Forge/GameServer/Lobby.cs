@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using BlastersShared;
@@ -25,6 +26,9 @@ namespace GameServer
         static void Main(string[] args)
         {
 
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
 
             // Setup some stuff, because why not
             Console.Title = "Inspire Server";
@@ -48,8 +52,8 @@ namespace GameServer
                 context.MapTemplates.ToList().ForEach(x => _serviceContainer.MapSimulators.Add(new MapSimulator(x)));
 
 
-
-            Logger.Instance.Log(Level.Info, "Succesfully started game loop.");
+            stopwatch.Stop();
+            Logger.Instance.Log(Level.Info, "Succesfully started game loop in " + stopwatch.Elapsed.Seconds + "s");
 
             while (true)
             {

@@ -875,7 +875,7 @@
     <Content Include="Content\Sprites\Characters\FemaleSheet1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sprites\Descriptors\FemaleSheet1.xml">
+    <Content Include="Content\Sprites\Descriptors\HumanBase.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
