@@ -155,7 +155,8 @@ namespace GameClient.Services
 
         
             //playerTransform.LocalPosition = new Vector2(nextX - playerDescriptor.BoundingBox.X, nextY - playerDescriptor.BoundingBox.Y);
-
+            playerTransform.LastLocalPosition = playerTransform.LocalPosition;
+            playerTransform.LocalPosition += playerTransform.Velocity;
 
             if (playerTransform.Velocity.X != playerTransform.Velocity.Y)
             {
