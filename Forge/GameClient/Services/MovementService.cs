@@ -24,7 +24,7 @@ namespace GameClient.Services
         private readonly Dictionary<ulong, EntityInterpolator> _entityInterpolators = new Dictionary<ulong, EntityInterpolator>();
 
         // Timing related info (amount of updates sent per seconds i.e 0.1 is 10FPS )
-        const float MovementRate = 0.1f;
+        const float MovementRate = 0.5f;
         private float _lastReaction;
         private Vector2 lastTransformVector = Vector2.Zero;
 
@@ -44,7 +44,7 @@ namespace GameClient.Services
             // Query for the players we don't want
             foreach (var entity in ServiceManager.EntityCollection.Entities)
             {
-                if (entity.ID == _idToMonitor)
+                if (entity.ID == GameGlobals.EntityID)
                 {
                     continue;
                 }
@@ -141,7 +141,7 @@ namespace GameClient.Services
             foreach (var entity in ServiceManager.EntityCollection.Entities)
             {
                 // Local and remote entities are treated differently
-                if (entity.ID == _idToMonitor)
+                if (entity.ID == GameGlobals.EntityID)
                     ProcessLocalPlayer(entity, gameTime);
                 else
                     ProcessRemoteEntity(entity, gameTime);

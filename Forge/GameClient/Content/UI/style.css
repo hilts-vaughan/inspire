@@ -1,148 +1,55 @@
-/*********** Body ************/
-
-* { margin:0; padding:0; }
 
 body
-{ 
-	font:12px Trebuchet MS, Tahoma, Tw Cen MT, Arial;
-	color:#000;
-}
-
-A:link {text-decoration: none; color: #FFF;}
-A:visited {text-decoration: none; color: #FFF;}
-A:active {text-decoration: none; color: #FFF;}
-A:hover {text-decoration: none; color: #FFF;}
-
-.clear {clear:both;}
-
-#container {width: 800px; height: 600px; margin: 0 auto;
-}
-
-/*********** Top Bar ************/
-
-#topbar {
-	background: url('images/topbarbg.png') repeat-x;
-	height: 35px;
-}
-
-#smiley { float: right; margin: 3px 4px 0 0; border: 0;}
-
-
-#room {
-	background: url('images/roombg.png') no-repeat;
-	width: 72px; height: 18px;
-	color: #FFFFFF;
-	font-weight: bold;
-	padding: 6px 0 0 33px;
-	float: left;
-	margin: 3px 0 0 7px;
-}
-
-/*********** Content ************/
-
-#content {float: left;}
-
-#main {
-	width: 602px; height: 521px;
-	padding: 10px;
-	margin-left: 6px;
-}
-
-/*********** My Items ************/
-
-#myitems {
-	background: url('images/myitemsbg.png') no-repeat;
-	width: 304px; height: 41px;
-	margin: -21px 0 0 100px;
-	padding: 5px 0 0 109px;
-}
-
-.item {
-	background: url('images/items.png') no-repeat;
-	width: 47px; height: 38px;
-	float: left;
-	margin: 0 1px 0 2px;
-	text-align: center;
-	vertical-align: middle;
-	line-height: 38px;
+{
 	color: white;
 }
 
-/*********** Sidebar ************/
-
-#sidebar {float: right; padding-right: 0px;}
-
-#gamemap {
-	background: url('images/gamemapbg.png') no-repeat;
-	width: 163px; height: 18px;
-	margin-bottom: 4px;
-	color: #FFFFFF;
-	font-weight: bold;
-	text-align: center;
-    vertical-align: middle;
-	padding: 6px 0 0 0;
+#wrapper
+{
+	width: 1024px;
+	height: 768px;
 }
 
-#sidebarbg {
-	background: url('images/sidebarbg.png') no-repeat;
-	width: 156px; height: 537px;
-	padding: 8px 0 0 7px;
+.box
+{
+	padding-left: 30px;
+	padding-top: 10px;
+	width: 300px;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: 1px black;
+	border-radius: 13px;
 }
 
-#timer {
-	background: url('images/timerbg.png') no-repeat;
-	width: 149px; height: 47px;
-	text-align: center;
-	padding-top: 35px;
-	margin-bottom: 7px;
-}
-
-.playerbox {
-	background: url('images/playerboxbg.png') no-repeat;
-	width: 149px; height: 34px;
-	padding: 3px;
-	margin-bottom: -1px;
-}
-
-	.pblefticon {
-		background: url('images/pblefticonbg.png') no-repeat;
-		width: 43px; height: 34px;
-		float: left;
-		margin-right: 2px;
-	}
-	
-	.pbmidicon {
-		background: url('images/pbmidiconbg.png') no-repeat;
-		width: 22px; height: 19px;
-		float: left;
-		margin: 1px 2px 0px 0px;
-	}
-	
-	.rankbadges {
-		background: url('images/rankbadgesbg.png') no-repeat;
-		width: 74px; height: 20px;
-		float: left;
-	}
-	
-	.playername {
-		font-size: 10px; 
-		color: #FFFFFF;
-		text-shadow: 1px 1px 10px #193959;
-		font-weight: bold;
-		line-height: 14px;
-	}
-
-#item {
-	background: url('images/itembox.png') no-repeat;
-	width: 149px; height: 68px;
-	margin: 6px 0 5px 0;
+.box2
+{
+	padding: 10px;
+	width: 300px;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: 1px black;
+	border-radius: 3px;
 }
 
 
+#selectchar
+{
+	width: 400;
+}
 
 
+.chattext
+{
+    border:1px solid #999999;
+    width:100%;
+    margin:5px 0;
+    padding:3px;
+}
 
+.loginbutton
+{
 
+}
 
-
-
+body
+{
+	user-select: none;
+}

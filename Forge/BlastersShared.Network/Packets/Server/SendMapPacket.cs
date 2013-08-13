@@ -13,13 +13,13 @@ namespace Inspire.Network.Packets.Server
     {
 
         public GameMap Map { get; set; }
+        public ulong PlayerId { get; set; }
 
-
-        public SendMapPacket(GameMap map)
+        public SendMapPacket(GameMap map, ulong playerId)
         {
             Map = map;
+            PlayerId = playerId;
         }
-
 
         public override NetOutgoingMessage ToNetBuffer(ref NetOutgoingMessage netOutgoingMessage)
         {
@@ -28,7 +28,7 @@ namespace Inspire.Network.Packets.Server
             var buffer = SerializationHelper.ObjectToByteArray(Map);
             netOutgoingMessage.Write(buffer.Length);
             netOutgoingMessage.Write(buffer);
-
+            netOutgoingMessage.Write(PlayerId);
 
             return netOutgoingMessage;
         }
@@ -38,7 +38,8 @@ namespace Inspire.Network.Packets.Server
         {
             var result =
                 (GameMap) SerializationHelper.ByteArrayToObject(incomingMessage.ReadBytes(incomingMessage.ReadInt32()));
-            var packet = new SendMapPacket(result);
+            var id = incomingMessage.ReadUInt64();
+            var packet = new SendMapPacket(result, id);
             return packet;
         }
 

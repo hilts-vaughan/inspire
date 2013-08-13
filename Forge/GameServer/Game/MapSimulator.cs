@@ -68,7 +68,8 @@ namespace GameServer.Game
 
         private void SendMapTo(NetConnection connection)
         {
-            var packet = new SendMapPacket(GameMap);
+            var id = _characterMap[connection].ID;
+            var packet = new SendMapPacket(GameMap, id);
             ClientNetworkManager.Instance.SendPacket(packet, connection);
         }
 

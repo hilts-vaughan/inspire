@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GameClient.Services;
+using GameClient.UI;
+using GameClient.UI.Windows;
 using Inspire.GameEngine;
 using Inspire.GameEngine.ScreenManager;
 using Inspire.GameEngine.ScreenManager.Network;
@@ -32,8 +34,10 @@ namespace GameClient.Screens
         {
             // Setup 
             Camera2D.SetWorldSize(obj.Map.Layers[0].Width, obj.Map.Layers[0].Height);
-            _tileMapRenderer = new TileMapRenderer(this, obj.Map);        
+            _tileMapRenderer = new TileMapRenderer(this, obj.Map);
+            GameGlobals.EntityID = obj.PlayerId;
             networkInput.Initialize();
+
         }
 
         public override void LoadContent()
@@ -48,9 +52,26 @@ namespace GameClient.Screens
 
             UiManager.Load("");
 
+            UiManager.Load(@"Content\UI\game\index.html");
+            UiManager.OnLoadCompleted += OnLoadCompleted;
+
+
             base.LoadContent();
         }
+
+        UiChatWindow _chatWindow = new UiChatWindow();
+        private void OnLoadCompleted()
+        {
+            UiBinder.AttachWindow(UiManager, _chatWindow);
+        }
+
+        private void OnDocumentCompleted()
+        {
+ 
+        }
+
         NetworkInputService networkInput;
+        MovementService movementService;
 
         private void RegisterServices()
         {
@@ -58,8 +79,8 @@ namespace GameClient.Screens
             var entitySync = new EntitySyncService();
 
             networkInput = new NetworkInputService(0);
-            var movementService = new MovementService(0);
-            
+            movementService = new MovementService(0);
+
 
             _serviceContainer.AddService(spriteRender);
             _serviceContainer.AddService(entitySync);

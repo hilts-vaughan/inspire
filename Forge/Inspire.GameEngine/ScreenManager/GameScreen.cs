@@ -283,7 +283,8 @@ namespace Inspire.GameEngine.ScreenManager
         {
             this.otherScreenHasFocus = otherScreenHasFocus;
 
-            UiManager.Update();
+            if (!UiManager.webView.IsLoading)
+                UiManager.Update();
 
             if (isExiting)
             {

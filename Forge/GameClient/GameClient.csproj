@@ -54,6 +54,7 @@
     <Compile Include="Components\SpriteComponent.cs" />
     <Compile Include="EntityFactory.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameGlobals.cs" />
     <Compile Include="Network\NetworkManager.cs" />
     <Compile Include="Network\PacketProcessor.cs" />
     <Compile Include="Network\PacketService.cs" />
@@ -66,7 +67,9 @@
     <Compile Include="Services\Movement\EntityInterpolator.cs" />
     <Compile Include="Services\NetworkInputService.cs" />
     <Compile Include="Services\SpriteRenderingService.cs" />
+    <Compile Include="UI\UiBinder.cs" />
     <Compile Include="UI\UIWindow.cs" />
+    <Compile Include="UI\Windows\UiChatWindow.cs" />
     <Compile Include="Utilities\GameTimer.cs" />
     <Compile Include="Utilities\PathUtility.cs" />
   </ItemGroup>
@@ -213,6 +216,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sprites\Mods\RangeUp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\game\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\global.js">
@@ -838,7 +844,7 @@
     <Content Include="Content\UI\login\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\UI\login\style.css">
+    <Content Include="Content\UI\windows\chat.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ReferenceDependencies\avcodec-53.dll">
@@ -931,9 +937,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\images\topbarbg.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\UI\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\style.css">

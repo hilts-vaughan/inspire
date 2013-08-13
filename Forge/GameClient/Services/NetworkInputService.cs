@@ -33,8 +33,13 @@ namespace GameClient.Services
         public override void HandleInput(InputState inputState)
         {
 
-            if (_player == null)
+            if (GameGlobals.EntityID == null)
                 return;
+
+            if (_player == null)
+            {
+                _player = ServiceManager.RetrieveEntityByID((ulong) GameGlobals.EntityID);
+            }
 
             // Get the transform component
             var transformComponent = _player.GetComponent<TransformComponent>();
@@ -69,11 +74,7 @@ namespace GameClient.Services
 
         public override void Initialize()
         {
-            // Query for the player we want
 
-            foreach (var entity in ServiceManager.EntityCollection.Entities)
-                if (entity.ID == _idToMonitor)
-                    _player = entity;
 
         }
     }
