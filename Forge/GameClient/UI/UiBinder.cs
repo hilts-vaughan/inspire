@@ -17,6 +17,8 @@ namespace GameClient.UI
             var html = window.Html;
             var statement = "$('#wrapper').append('" + html + "');";
             UiManager.CallJavascript(statement);
+            window.UiManager = UiManager;
+            window.InjectJavascript();
         }
 
     }

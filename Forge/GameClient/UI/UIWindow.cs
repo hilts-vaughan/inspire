@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AwesomiumUiLib;
 
 namespace GameClient.UI
 {
@@ -15,6 +16,8 @@ namespace GameClient.UI
 
         protected string _windowPath;
 
+        public AwesomiumUI UiManager { get; set; }
+
         protected UiWindow(string windowPath)
         {
             _windowPath = windowPath;
@@ -22,6 +25,9 @@ namespace GameClient.UI
         }
 
         public string Html { get; private set; }
+
+
+        public abstract void InjectJavascript();
 
     }
 }
