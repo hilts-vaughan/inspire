@@ -7,6 +7,7 @@ using GameServer.Game;
 using GameServer.Models;
 using GameServer.Network;
 using GameServer.Services.Auth;
+using GameServer.Services.Chat;
 using GameServer.Services.Editor;
 using Inspire.Shared.Service;
 
@@ -18,7 +19,7 @@ namespace GameServer
 
         static AuthenticationService _authenticationService = new AuthenticationService();
         private static EditorService _editorService;
-
+        private static ChatService _chatService = new ChatService();
 
         static ServerServiceContainer _serviceContainer = new ServerServiceContainer();
 
@@ -41,7 +42,7 @@ namespace GameServer
             // Add services
             _serviceContainer.RegisterService(_authenticationService);
             _serviceContainer.RegisterService(_editorService);
-
+            _serviceContainer.RegisterService(_chatService);
 
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             ClientNetworkManager.Instance.Update();
