@@ -1,7 +1,7 @@
 Arcane Engine
 =======
 
-A work in progress made engine that will work on simplifying the development process of current game engines such as RPG Maker, Game Maker and much more. It will come with a server for optional multiplayer.
+A work in progress game engine that will work on simplifying the development process of current game engines such as RPG Maker, Game Maker and much more. It will come with a server for optional multiplayer.
 
 Credits:  
 Vaughan Hilts  
