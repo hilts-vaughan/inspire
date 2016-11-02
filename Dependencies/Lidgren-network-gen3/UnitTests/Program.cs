@@ -36,16 +36,16 @@ namespace UnitTests
 			catch (NetException nex)
 			{
 				if (nex.Message != "This message has already been sent! Use NetPeer.SendMessage() to send to multiple recipients efficiently")
-					throw nex;
+					throw;
 			}
 
 			peer.Shutdown("bye");
 
 			// read all message
-			NetIncomingMessage inc;
-			while((inc = peer.ReadMessage()) != null)
+			NetIncomingMessage inc = peer.WaitMessage(5000);
+			while (inc != null)
 			{
-				switch(inc.MessageType)
+				switch (inc.MessageType)
 				{
 					case NetIncomingMessageType.DebugMessage:
 					case NetIncomingMessageType.VerboseDebugMessage:
@@ -56,10 +56,11 @@ namespace UnitTests
 					case NetIncomingMessageType.Error:
 						throw new Exception("Received error message!");
 				}
+
+				inc = peer.ReadMessage();
 			}
-			
+
 			Console.WriteLine("Done");
-			Console.ReadKey();
 		}
 
 		/// <summary>

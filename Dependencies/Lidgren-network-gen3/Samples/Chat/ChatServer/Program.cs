@@ -54,10 +54,15 @@ namespace ChatServer
 							string text = im.ReadString();
 							Output(text);
 							break;
+
 						case NetIncomingMessageType.StatusChanged:
 							NetConnectionStatus status = (NetConnectionStatus)im.ReadByte();
+
 							string reason = im.ReadString();
 							Output(NetUtility.ToHexString(im.SenderConnection.RemoteUniqueIdentifier) + " " + status + ": " + reason);
+
+							if (status == NetConnectionStatus.Connected)
+								Output("Remote hail: " + im.SenderConnection.RemoteHailMessage.ReadString());
 
 							UpdateConnectionsList();
 							break;
@@ -82,6 +87,7 @@ namespace ChatServer
 							Output("Unhandled type: " + im.MessageType + " " + im.LengthBytes + " bytes " + im.DeliveryMethod + "|" + im.SequenceChannel);
 							break;
 					}
+					s_server.Recycle(im);
 				}
 				Thread.Sleep(1);
 			}
