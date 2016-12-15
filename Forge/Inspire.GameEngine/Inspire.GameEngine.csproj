@@ -30,7 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Awesomium.Core, Version=1.7.1.0, Culture=neutral, PublicKeyToken=e1a0d7c8071a5214, processorArchitecture=x86" />
+    <Reference Include="Awesomium.Core, Version=1.7.1.0, Culture=neutral, PublicKeyToken=e1a0d7c8071a5214, processorArchitecture=x86">
+      <HintPath>..\GameClient\ReferenceDependencies\Awesomium.Core.dll</HintPath>
+    </Reference>
     <Reference Include="AwesomiumSharpXna">
       <HintPath>..\..\Dependencies\AwesomiumSharpXna.dll</HintPath>
     </Reference>

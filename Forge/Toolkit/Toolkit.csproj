@@ -550,7 +550,7 @@
       <Project>{a4b36fe1-4d31-4fb9-9927-dc1dbb6418c5}</Project>
       <Name>Inspire.GameEngine</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\Vaughan Hilts\Documents\GitHub\inspire\Forge\Inspire.Shared\Inspire.Shared.csproj">
+    <ProjectReference Include="..\Inspire.Shared\Inspire.Shared.csproj">
       <Project>{c7c387e1-0bcd-4976-b066-58d5bcb1db35}</Project>
       <Name>Inspire.Shared</Name>
     </ProjectReference>

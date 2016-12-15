@@ -14,14 +14,14 @@ namespace UnitTests
 			//
 			// Test encryption
 			//
-			List<INetEncryption> algos = new List<INetEncryption>();
+			List<NetEncryption> algos = new List<NetEncryption>();
 
-			algos.Add(new NetXorEncryption("TopSecret"));
-			algos.Add(new NetXtea("TopSecret"));
-            algos.Add(new NetAESEncryption("TopSecret"));
-            algos.Add(new NetRC2Encryption("TopSecret"));
-            algos.Add(new NetDESEncryption("TopSecret"));
-		    algos.Add(new NetTripleDESEncryption("TopSecret"));
+			algos.Add(new NetXorEncryption(peer, "TopSecret"));
+			algos.Add(new NetXtea(peer, "TopSecret"));
+			algos.Add(new NetAESEncryption(peer, "TopSecret"));
+			algos.Add(new NetRC2Encryption(peer, "TopSecret"));
+			algos.Add(new NetDESEncryption(peer, "TopSecret"));
+			algos.Add(new NetTripleDESEncryption(peer, "TopSecret"));
 
 			foreach (var algo in algos)
 			{
@@ -31,17 +31,21 @@ namespace UnitTests
 				om.Write(5, 5);
 				om.Write(true);
 				om.Write("kokos");
-				int trueLen = om.LengthBits;
+				int unencLen = om.LengthBits;
 				om.Encrypt(algo);
 
 				// convert to incoming message
 				NetIncomingMessage im = Program.CreateIncomingMessage(om.PeekDataBuffer(), om.LengthBits);
+				if (im.Data == null || im.Data.Length == 0)
+					throw new NetException("bad im!");
+
 				im.Decrypt(algo);
 
-				if (im.LengthBits != trueLen)
+				if (im.Data == null || im.Data.Length == 0 || im.LengthBits != unencLen)
 					throw new NetException("Length fail");
 
-				if (im.ReadString() != "Hallon")
+				var str = im.ReadString();
+				if (str != "Hallon")
 					throw new NetException("fail");
 				if (im.ReadInt32() != 42)
 					throw new NetException("fail");
@@ -89,7 +93,7 @@ namespace UnitTests
 						throw new NetException("SRP non matching session values!");
 				}
 
-				var test = NetSRP.CreateEncryption(Ss);
+				var test = NetSRP.CreateEncryption(peer, Ss);
 			}
 
 			Console.WriteLine("Message encryption OK");

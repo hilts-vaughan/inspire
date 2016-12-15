@@ -114,7 +114,6 @@ namespace ImageServer
 
 								om.Write((ushort)ImageWidth);
 								om.Write((ushort)ImageHeight);
-								om.WriteVariableUInt32(0);
 								om.Write(ImageData);
 
 								Server.SendMessage(om, inc.SenderConnection, NetDeliveryMethod.ReliableOrdered, 0);
@@ -122,6 +121,10 @@ namespace ImageServer
 								// all messages will be sent before disconnect so we can call it here
 								// inc.SenderConnection.Disconnect("Bye bye now");
 							}
+
+							if (status == NetConnectionStatus.Disconnected)
+								NativeMethods.AppendText(MainForm.richTextBox1, inc.SenderConnection.Statistics.ToString());
+
 							break;
 					}
 
